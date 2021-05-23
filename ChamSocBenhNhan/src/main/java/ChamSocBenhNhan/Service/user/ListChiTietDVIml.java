@@ -41,6 +41,7 @@ public class ListChiTietDVIml implements ListChiTietDVService {
 
 	public int saveRegisterService(ListDangKyDichVu emp, int maDichVu, int maKhachHang) {
 		return listcttd.saverRegister(emp, maDichVu, maKhachHang);
+		
 
 	}
 
@@ -50,15 +51,18 @@ public class ListChiTietDVIml implements ListChiTietDVService {
 
 	public List<ListDangKyDichVu> getRegisterServiceForCustomer(int maKhachHang) {
 		return listcttd.getRegisterServiceForCustomer(maKhachHang);
+		
 	}
 
 	// bảng quản ký đăng ký dịch vụ
 	public List<ListDangKyDichVu> getDangKyDichVu() {
 		return listcttd.getDangKyDichVu();
+		
 	}
 
 	public List<ListDangKyDichVu> getTongThanhTienDangKyDichVu() {
 		return listcttd.getTongThanhTienDangKyDichVu();
+		
 	}
 	
 	

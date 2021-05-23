@@ -16,7 +16,7 @@ import ChamSocBenhNhan.Entity.User.ListNhanVienvaDichVu;
 @Service
 public interface ListChiTietDVService {
 	@Autowired
-	public List<ListNhanVienvaDichVu> getServiceById(int id);
+	public List<ListNhanVienvaDichVu> getServiceById(int id); 
 
 	@Autowired
 	public List<ListDangKyDichVu> getIdCustomer();
@@ -33,10 +33,10 @@ public interface ListChiTietDVService {
 	public List<ListDangKyDichVu> getCommentById(int id, String limit);
 	
 	@Autowired
-	public int saveRegisterService(ListDangKyDichVu emp, int maDichVu, int maKhachHang);
+	public int saveRegisterService(ListDangKyDichVu emp, int maDichVu, int maKhachHang); 
 
 	@Autowired
-	public List<ListDangKyDichVu> getRegisterServiceForCustomer(int maKhachHang);
+	public List<ListDangKyDichVu> getRegisterServiceForCustomer(int maKhachHang); 
 
 	@Autowired
 	public List<ListDangKyDichVu> getDangKyDichVu();

@@ -74,6 +74,7 @@ public class ChiTietDVController extends BaseControlUser {
 			return "redirect:/home/ctdv/" + maDichVu + "?message=" + URLEncoder.encode(message, "UTF-8");
 
 		}
+		
 		String message = "<script>alert('Lưu thành công!!!');</script>";
 
 		return "redirect:/home/ctdv/" + maDichVu + "?message=" + URLEncoder.encode(message, "UTF-8");
@@ -82,7 +83,7 @@ public class ChiTietDVController extends BaseControlUser {
 
 	// save data register service
 	@RequestMapping(value = "/saves/{maDichVu}/{maKhachHang}", method = RequestMethod.POST)
-	public String save(ListDangKyDichVu emp, @PathVariable int maDichVu, @PathVariable int maKhachHang)
+	public String saveRegisterService(ListDangKyDichVu emp, @PathVariable int maDichVu, @PathVariable int maKhachHang)
 			throws UnsupportedEncodingException {
 
 		int kq = listcttd.saveRegisterService(emp, maDichVu, maKhachHang);
@@ -104,6 +105,7 @@ public class ChiTietDVController extends BaseControlUser {
 		String message = "<script>alert('Chúc mừng bạn đã đăng ký dịch vụ thành công!!!');</script>";
 
 		return "redirect:/home/chitiethoadon/" + maKhachHang + "?message=" + URLEncoder.encode(message, "UTF-8");
+		
 
 	}
 

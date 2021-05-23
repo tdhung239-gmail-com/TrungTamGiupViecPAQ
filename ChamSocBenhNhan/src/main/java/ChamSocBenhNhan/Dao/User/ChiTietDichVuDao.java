@@ -38,7 +38,7 @@ public class ChiTietDichVuDao extends BaseDaoUser {
 		return _jdbcTemplate.query("select * from danhgia where maDichVu=" + maDichVu + "", new ListDanhGiaMapper());
 	}
 
-	public int saverRegister(ListDangKyDichVu p, int maDichVu, int maKhachHang) {
+	public int saverRegister(ListDangKyDichVu p, int maDichVu, int maKhachHang) { 
 		String nu = "chua"; 
 		Integer kq = 0;
 		if (maKhachHang == 0) {
@@ -115,10 +115,10 @@ public class ChiTietDichVuDao extends BaseDaoUser {
 			}
 		}
 		return kq;
-
+ 
 	}
 
-	public List<ListDangKyDichVu> getDangKyDichVu() {
+	public List<ListDangKyDichVu> getDangKyDichVu() { 
 		List<ListDangKyDichVu> list = new ArrayList<ListDangKyDichVu>();
 
 		list = _jdbcTemplate.query(
@@ -140,9 +140,9 @@ public class ChiTietDichVuDao extends BaseDaoUser {
 
 		return list;
 
-	}
+	} 
 
-	public List<ListDangKyDichVu> getTongThanhTienDangKyDichVu() {
+	public List<ListDangKyDichVu> getTongThanhTienDangKyDichVu() { 
 		List<ListDangKyDichVu> list = new ArrayList<ListDangKyDichVu>();
 
 		list = _jdbcTemplate.query(
@@ -157,7 +157,7 @@ public class ChiTietDichVuDao extends BaseDaoUser {
 						+ " FROM `dangkydichvu`,`dichvu`,`khachhang` WHERE `dangkydichvu`.maDichVu = `dichvu`.maDichVu and `dangkydichvu`.maKhachHang =`khachhang`.maKhachHang",
 				new ListDangKyDichVuMapper());
 
-		return list;
+		return list; 
 	}
 
 	public int saveComment(@RequestParam(value = "profile") CommonsMultipartFile file, HttpSession s,
