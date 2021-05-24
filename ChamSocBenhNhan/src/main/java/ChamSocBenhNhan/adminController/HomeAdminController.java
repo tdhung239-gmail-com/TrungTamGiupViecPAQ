@@ -24,33 +24,33 @@ public class HomeAdminController extends BaseController {
 	@Autowired
 	private HomeIml b1 = new HomeIml();
 
-	@RequestMapping(value = "/quan-li/{taiKhoan}/{matKhau}", method = RequestMethod.GET)
-	public ModelAndView checkLogin(@PathVariable(value = "taiKhoan") String taiKhoan,
-			@PathVariable(value = "matKhau") String matKhau, TaiKhoanMapper map, HttpSession ss) {
-		if (b1.dologin(taiKhoan, matKhau) != null) {
-			ss.setAttribute("okee", taiKhoan);
-			ss.setAttribute("okee2", matKhau);
-			_mvShare.addObject("getChonThang", b1.getChonThang());
-			_mvShare.addObject("getChonNam", b1.getChonNam());
-			_mvShare.addObject("qldkdv", b1.getDangKyDichVu());
-			_mvShare.addObject("sum", b1.getTongThanhTienDangKyDichVu());
-			for (int i = 1; i < b1.getListTongThanhTienDangKyDichVu().size(); i++) {
-				_mvShare.addObject("thang" + i + "", b1.getListTongThanhTienDangKyDichVu().get(i).intValue());
+	@RequestMapping(value = "/quan-li/{taiKhoan}/{matKhau}", method = RequestMethod.GET) 
+	public ModelAndView checkLogin(@PathVariable(value = "taiKhoan") String taiKhoan, 
+			@PathVariable(value = "matKhau") String matKhau, TaiKhoanMapper map, HttpSession ss) { 
+		if (b1.dologin(taiKhoan, matKhau) != null) { 
+			ss.setAttribute("okee", taiKhoan); 
+			ss.setAttribute("okee2", matKhau); 
+			_mvShare.addObject("getChonThang", b1.getChonThang()); 
+			_mvShare.addObject("getChonNam", b1.getChonNam()); 
+			_mvShare.addObject("qldkdv", b1.getDangKyDichVu()); 
+			_mvShare.addObject("sum", b1.getTongThanhTienDangKyDichVu()); 
+			for (int i = 1; i < b1.getListTongThanhTienDangKyDichVu().size(); i++) { 
+				_mvShare.addObject("thang" + i + "", b1.getListTongThanhTienDangKyDichVu().get(i).intValue()); 
 			}
-			_mvShare.addObject("command", new chonThangNam());
-			_mvShare.setViewName("admin/index");
-		} else {
-			_mvShare.setViewName("redirect:/404/");
-		}
-		return _mvShare;
+			_mvShare.addObject("command", new chonThangNam()); 
+			_mvShare.setViewName("admin/index"); 
+		} else { 
+			_mvShare.setViewName("redirect:/404/"); 
+		} 
+		return _mvShare; 
 
 	}
 
-	@RequestMapping(value = "/locThongKe/{taiKhoan}/{matKhau}", method = RequestMethod.POST)
-	public String locThongKe(chonThangNam ctn, @PathVariable(value = "taiKhoan") String taiKhoan,
-			@PathVariable(value = "matKhau") String matKhau) {
-		b1.locThongKe(ctn);
-		return "redirect:/quan-li/" + taiKhoan + "/" + matKhau + "";
+	@RequestMapping(value = "/locThongKe/{taiKhoan}/{matKhau}", method = RequestMethod.POST) 
+	public String locThongKe(chonThangNam ctn, @PathVariable(value = "taiKhoan") String taiKhoan,  
+			@PathVariable(value = "matKhau") String matKhau) { 
+		b1.locThongKe(ctn); 
+		return "redirect:/quan-li/" + taiKhoan + "/" + matKhau + ""; 
 	}
 
 	@RequestMapping(value = "/404/", method = RequestMethod.GET)

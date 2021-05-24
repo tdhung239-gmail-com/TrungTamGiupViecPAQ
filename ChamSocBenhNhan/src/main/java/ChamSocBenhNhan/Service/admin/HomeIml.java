@@ -12,12 +12,12 @@ import ChamSocBenhNhan.Entity.Admin.chonThangNam;
 import ChamSocBenhNhan.Entity.User.ListDangKyDichVu;
 
 @Service
-public class HomeIml implements HomeService {
+public class HomeIml implements HomeService { 
 	@Autowired
-	private HomeAdminDao slidesDao = new HomeAdminDao();
+	private HomeAdminDao slidesDao = new HomeAdminDao(); 
 
-	public List<TaiKhoan> dologin(String userName, String pass) {
-		return slidesDao.dologin(userName, pass);
+	public List<TaiKhoan> dologin(String userName, String pass) { 
+		return slidesDao.dologin(userName, pass); 
 	}
 
 	public Map<Integer, String> getChonThang() {

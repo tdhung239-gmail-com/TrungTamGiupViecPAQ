@@ -10,9 +10,9 @@ import ChamSocBenhNhan.Entity.Admin.chonThangNam;
 import ChamSocBenhNhan.Entity.User.ListDangKyDichVu;
 
 @Service
-public interface HomeService {
+public interface HomeService { 
 	
-	public List<TaiKhoan> dologin(String userName, String pass);
+	public List<TaiKhoan> dologin(String userName, String pass); 
 	public Map<Integer, String> getChonThang();
 	public Map<Integer, String> getChonNam();
 	public List<ListDangKyDichVu> getDangKyDichVu();

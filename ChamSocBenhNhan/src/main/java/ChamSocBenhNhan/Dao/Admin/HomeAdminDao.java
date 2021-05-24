@@ -18,16 +18,16 @@ import ChamSocBenhNhan.Entity.User.ListDangKyDichVuMapper;
 @Repository
 public class HomeAdminDao extends BaseDao {
 
-	public List<TaiKhoan> dologin(String userName, String pass) {
-		List<TaiKhoan> list = new ArrayList<TaiKhoan>();
-		String sql = ("SELECT * FROM `taikhoan` WHERE TenTaiKhoan = '" + userName + "' and MatKhau = '" + pass + "'");
-		list = _jdbcTemplate.query(sql, new TaiKhoanMapper());
-		if (list.size() > 0) {
-			return list;
-		} else
-			return null;
+	public List<TaiKhoan> dologin(String userName, String pass) { 
+		List<TaiKhoan> list = new ArrayList<TaiKhoan>(); 
+		String sql = ("SELECT * FROM `taikhoan` WHERE TenTaiKhoan = '" + userName + "' and MatKhau = '" + pass + "'"); 
+		list = _jdbcTemplate.query(sql, new TaiKhoanMapper()); 
+		if (list.size() > 0) { 
+			return list; 
+		} else 
+			return null; 
 
-	}
+	} 
 
 	public Map<Integer, String> getChonThang() {
 
