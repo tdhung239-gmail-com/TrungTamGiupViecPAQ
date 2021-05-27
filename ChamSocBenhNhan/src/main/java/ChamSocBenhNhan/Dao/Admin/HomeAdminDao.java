@@ -16,7 +16,7 @@ import ChamSocBenhNhan.Entity.User.ListDangKyDichVu;
 import ChamSocBenhNhan.Entity.User.ListDangKyDichVuMapper;
 
 @Repository
-public class HomeAdminDao extends BaseDao {
+public class HomeAdminDao extends BaseDao { 
 
 	public List<TaiKhoan> dologin(String userName, String pass) { 
 		List<TaiKhoan> list = new ArrayList<TaiKhoan>(); 
@@ -29,47 +29,47 @@ public class HomeAdminDao extends BaseDao {
 
 	} 
 
-	public Map<Integer, String> getChonThang() {
+	public Map<Integer, String> getChonThang() { 
+ 
+		Map<Integer, String> states = new HashMap<Integer, String>(); 
+		for (int i = 1; i < 13; i++) { 
+			states.put(i, "Tháng " + i + ""); 
+		} 
 
-		Map<Integer, String> states = new HashMap<Integer, String>();
-		for (int i = 1; i < 13; i++) {
-			states.put(i, "Tháng " + i + "");
+		return states; 
+	} 
+
+	public Map<Integer, String> getChonNam() { 
+ 
+		Map<Integer, String> states = new HashMap<Integer, String>(); 
+		for (int i = 2021; i < 2030; i++) { 
+			states.put(i, "Năm" + i + ""); 
 		}
+ 
+		return states; 
+	} 
 
-		return states;
-	}
+	Date newDate2 = new Date(); 
+	java.sql.Date newDateSql2 = new java.sql.Date(newDate2.getTime()); 
+	Integer yearnow = Integer.parseInt(newDateSql2.toString().substring(0, newDateSql2.toString().indexOf("-"))); 
+	Integer monthnow = Integer.parseInt(newDateSql2.toString().substring(newDateSql2.toString().indexOf("-") + 1, 
+			newDateSql2.toString().lastIndexOf("-"))); 
+	Integer month = monthnow; 
+	Integer year = yearnow; 
 
-	public Map<Integer, String> getChonNam() {
+	public void locThongKe(chonThangNam ctn) { 
+		Integer month = ctn.getGiaTriThang(); 
+		Integer year = ctn.getGiaTriNam(); 
+		this.month = month; 
+		this.year = year; 
 
-		Map<Integer, String> states = new HashMap<Integer, String>();
-		for (int i = 2021; i < 2030; i++) {
-			states.put(i, "Năm" + i + "");
-		}
+	} 
 
-		return states;
-	}
+	public List<ListDangKyDichVu> getDangKyDichVu() { 
 
-	Date newDate2 = new Date();
-	java.sql.Date newDateSql2 = new java.sql.Date(newDate2.getTime());
-	Integer yearnow = Integer.parseInt(newDateSql2.toString().substring(0, newDateSql2.toString().indexOf("-")));
-	Integer monthnow = Integer.parseInt(newDateSql2.toString().substring(newDateSql2.toString().indexOf("-") + 1,
-			newDateSql2.toString().lastIndexOf("-")));
-	Integer month = monthnow;
-	Integer year = yearnow;
-
-	public void locThongKe(chonThangNam ctn) {
-		Integer month = ctn.getGiaTriThang();
-		Integer year = ctn.getGiaTriNam();
-		this.month = month;
-		this.year = year;
-
-	}
-
-	public List<ListDangKyDichVu> getDangKyDichVu() {
-
-		List<ListDangKyDichVu> list = new ArrayList<ListDangKyDichVu>();
-
-		list = _jdbcTemplate.query(
+		List<ListDangKyDichVu> list = new ArrayList<ListDangKyDichVu>(); 
+ 
+		list = _jdbcTemplate.query( 
 				"SELECT maDKDV,`dichvu`.maDichVu,`khachhang`.maKhachHang,tenKhachHang,tenDichVu,sdt,diaChi,diaChiSuDungDichVu,"
 						+ "luongTheoNgay,luongTheoThang,ngayBatDau,ngayKetThuc,gioBatDau,gioKetThuc,phiDichVuTheoThang,phiDichVuTheoNgay,phiDichVuTheoGio,tinhTrangThanhToan"
 						+ ",IF(luongTheoNgay!=0, DATEDIFF(ngayKetThuc,ngayBatDau), IF(luongTheoThang!=0,DATEDIFF(ngayKetThuc,ngayBatDau)%30,0)) as tongThoiGianTheoNgay"
@@ -85,17 +85,17 @@ public class HomeAdminDao extends BaseDao {
 						+ "as tongTien, 5 as tongThanhTien "
 						+ " FROM `dangkydichvu`,`dichvu`,`khachhang` WHERE `dangkydichvu`.maDichVu = `dichvu`.maDichVu and `dangkydichvu`.maKhachHang =`khachhang`.maKhachHang and Month(ngayBatDau)="
 						+ month + " and Year(ngayBatDau) = " + year + "",
-				new ListDangKyDichVuMapper());
+				new ListDangKyDichVuMapper()); 
 
-		return list;
+		return list; 
 
 	}
+ 
+	public List<ListDangKyDichVu> getTongThanhTienDangKyDichVu() { 
 
-	public List<ListDangKyDichVu> getTongThanhTienDangKyDichVu() {
+		List<ListDangKyDichVu> list = new ArrayList<ListDangKyDichVu>(); 
 
-		List<ListDangKyDichVu> list = new ArrayList<ListDangKyDichVu>();
-
-		list = _jdbcTemplate.query(
+		list = _jdbcTemplate.query( 
 				"SELECT maDKDV,`dichvu`.maDichVu,`khachhang`.maKhachHang,tenKhachHang,sdt,diaChi,tenDichVu,diaChiSuDungDichVu,"
 						+ "luongTheoNgay,luongTheoThang,ngayBatDau,ngayKetThuc,gioBatDau,gioKetThuc,phiDichVuTheoThang,phiDichVuTheoNgay,phiDichVuTheoGio,tinhTrangThanhToan"
 						+ ",5 as tongThoiGianTheoNgay" + ", 5 as tongThoiGianTheoThang" + ", 5 as tongThoiGianTheoGio"
@@ -105,16 +105,16 @@ public class HomeAdminDao extends BaseDao {
 						+ "0+phiDichVuTheoGio+(IF(luongTheoGio!=0,Hour(gioKetThuc)-Hour(gioBatDau),0)*luongTheoGio))) "
 						+ ") as tongThanhTien "
 						+ " FROM `dangkydichvu`,`dichvu`,`khachhang` WHERE `dangkydichvu`.maDichVu = `dichvu`.maDichVu and `dangkydichvu`.maKhachHang =`khachhang`.maKhachHang and Month(ngayBatDau)="
-						+ month + " and Year(ngayBatDau) = " + year + "",
-				new ListDangKyDichVuMapper());
+						+ month + " and Year(ngayBatDau) = " + year + "", 
+				new ListDangKyDichVuMapper()); 
 
-		return list;
+		return list; 
 	}
-
-	public Map<Integer, Integer> getListTongThanhTienDangKyDichVu() {
-		List<ListDangKyDichVu> list = new ArrayList<ListDangKyDichVu>();
-		Map<Integer, Integer> states = new HashMap<Integer, Integer>();
-		for (int i = 1; i < 13; i++) {
+ 
+	public Map<Integer, Integer> getListTongThanhTienDangKyDichVu() { 
+		List<ListDangKyDichVu> list = new ArrayList<ListDangKyDichVu>(); 
+		Map<Integer, Integer> states = new HashMap<Integer, Integer>(); 
+		for (int i = 1; i < 13; i++) { 
 			list = _jdbcTemplate.query(
 					"SELECT maDKDV,`dichvu`.maDichVu,`khachhang`.maKhachHang,tenKhachHang,sdt,diaChi,tenDichVu,diaChiSuDungDichVu,"
 							+ "luongTheoNgay,luongTheoThang,ngayBatDau,ngayKetThuc,gioBatDau,gioKetThuc,phiDichVuTheoThang,phiDichVuTheoNgay,phiDichVuTheoGio,tinhTrangThanhToan"
@@ -126,30 +126,30 @@ public class HomeAdminDao extends BaseDao {
 							+ ") as tongThanhTien "
 							+ " FROM `dangkydichvu`,`dichvu`,`khachhang` WHERE `dangkydichvu`.maDichVu = `dichvu`.maDichVu and `dangkydichvu`.maKhachHang =`khachhang`.maKhachHang and Month(ngayBatDau)="
 							+ i + " and Year(ngayBatDau) = " + yearnow + "",
-					new ListDangKyDichVuMapper());
-			states.put(i, list.get(0).getTongThanhTien());
-
+					new ListDangKyDichVuMapper()); 
+			states.put(i, list.get(0).getTongThanhTien()); 
+ 
 		}
 		// System.out.println(states.get(5).intValue());
-		return states;
+		return states; 
 
-	}
+	} 
 
-	public TaiKhoan getSuaTaiKhoan(String TenTaiKhoan) {
-		String sql = "SELECT * from taikhoan where TenTaiKhoan=?";
+	public TaiKhoan getSuaTaiKhoan(String TenTaiKhoan) { 
+		String sql = "SELECT * from taikhoan where TenTaiKhoan=?"; 
 		return _jdbcTemplate.queryForObject(sql, new Object[] { TenTaiKhoan },
-				new BeanPropertyRowMapper<TaiKhoan>(TaiKhoan.class));
+				new BeanPropertyRowMapper<TaiKhoan>(TaiKhoan.class)); 
 
-	}
+	} 
 
-	public int luuSuaTaiKhoan(TaiKhoan p, String t, int m) {
+	public int luuSuaTaiKhoan(TaiKhoan p, String t, int m) { 
 		// if(sđt khogn phải kiểu ỉnt)
-		System.out.println(p.getTenTaiKhoan());
-		System.out.println(p.getMatKhau());
+		System.out.println(p.getTenTaiKhoan()); 
+		System.out.println(p.getMatKhau()); 
 		String sql = " UPDATE `taikhoan` SET `MatKhau`=" + p.getMatKhau() + " WHERE `TenTaiKhoan`= '"
-				+ t + "'";
-		return _jdbcTemplate.update(sql);
+				+ t + "'"; 
+		return _jdbcTemplate.update(sql); 
 
-	}
+	} 
 
-}
+} 
