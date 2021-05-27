@@ -21,98 +21,98 @@ import ChamSocBenhNhan.Entity.User.ListNhanVienvaDichVu;
 import ChamSocBenhNhan.Service.admin.NhanVienIml;
 
 @Controller
-public class NhanVienController extends BaseController {
-	@Autowired
+public class NhanVienController extends BaseController { 
+	@Autowired 
 	NhanVienIml nv = new NhanVienIml();
-
+ 
 	// *
-	@RequestMapping(value = { "/quan-li/nhan-vien/{maNhanVien}" })
-	public ModelAndView getViewQLNhanvien(@PathVariable String maNhanVien) {
-		_mvShare.addObject("nhanvienn", nv.getViewQlNhanVien(maNhanVien));
-		_mvShare.setViewName("admin/viewqlnhanvien");
-		return _mvShare;
+	@RequestMapping(value = { "/quan-li/nhan-vien/{maNhanVien}" }) 
+	public ModelAndView getViewQLNhanvien(@PathVariable String maNhanVien) { 
+		_mvShare.addObject("nhanvienn", nv.getViewQlNhanVien(maNhanVien)); 
+		_mvShare.setViewName("admin/viewqlnhanvien"); 
+		return _mvShare; 
 	}
 
-	@RequestMapping("/quan-li/nhan-vien/them-nhan-vien")
-	public String themNhanVien(Model m) {
+	@RequestMapping("/quan-li/nhan-vien/them-nhan-vien") 
+	public String themNhanVien(Model m) { 
 		// m.addAttribute("chonTinhTrangLamViec", nv.getChonTinhTrangLamViec());
 		// m.addAttribute("chonTinhTrangDuyetHoSo", nv.getChonTinhTrangDuyetHoSo());
-		m.addAttribute("chonDichVu", nv.getChonDichVu());
-		m.addAttribute("command", new ListNhanVienvaDichVu());
-		return "admin/themnhanvien";
+		m.addAttribute("chonDichVu", nv.getChonDichVu()); 
+		m.addAttribute("command", new ListNhanVienvaDichVu()); 
+		return "admin/themnhanvien"; 
 	}
 
-	@RequestMapping(value = "/luuThemNhanVien", method = RequestMethod.POST)
+	@RequestMapping(value = "/luuThemNhanVien", method = RequestMethod.POST) 
 	public String luuThemNhanVien(@RequestParam(value = "profile") CommonsMultipartFile file, HttpSession s,
-			ChonDichVu dv, ListNhanVienvaDichVu hsnv) throws UnsupportedEncodingException {
+			ChonDichVu dv, ListNhanVienvaDichVu hsnv) throws UnsupportedEncodingException { 
 
-		if (nv.luuNhanVien(file, s, dv, hsnv) > 0) {
+		if (nv.luuNhanVien(file, s, dv, hsnv) > 0) { 
 			System.out.println("tc");
-			String message = "<script>alert('Chúc mừng bạn đã thêm mới nhân viên thành công!!!');</script>";
+			String message = "<script>alert('Chúc mừng bạn đã thêm mới nhân viên thành công!!!');</script>"; 
 
-			return "redirect:/quan-li/nhan-vien/all?message=" + URLEncoder.encode(message, "UTF-8");
+			return "redirect:/quan-li/nhan-vien/all?message=" + URLEncoder.encode(message, "UTF-8"); 
 		}
 
-		String message = "<script>alert('Lưu không thành công, có thể là do bạn chưa đủ 16 tuổi hoặc bạn chưa chọn ảnh!!!');</script>";
+		String message = "<script>alert('Lưu không thành công, có thể là do bạn chưa đủ 16 tuổi hoặc bạn chưa chọn ảnh!!!');</script>"; 
 
-		return "redirect:/quan-li/nhan-vien/them-nhan-vien?message=" + URLEncoder.encode(message, "UTF-8");
+		return "redirect:/quan-li/nhan-vien/them-nhan-vien?message=" + URLEncoder.encode(message, "UTF-8"); 
 
+	} 
+
+	@RequestMapping("/quan-li/nhan-vien/suaNhanVien/{maHSNV}") 
+	public String getSuaNhanVien(@PathVariable int maHSNV, Model m) { 
+		m.addAttribute("chonDichVu", nv.getChonDichVu()); 
+		m.addAttribute("command", nv.getSuaNhanVien(maHSNV)); 
+		return "admin/suanhanvien"; 
 	}
 
-	@RequestMapping("/quan-li/nhan-vien/suaNhanVien/{maHSNV}")
-	public String getSuaNhanVien(@PathVariable int maHSNV, Model m) {
-		m.addAttribute("chonDichVu", nv.getChonDichVu());
-		m.addAttribute("command", nv.getSuaNhanVien(maHSNV));
-		return "admin/suanhanvien";
-	}
+	@RequestMapping(value = "/luuSuaNhanVien", method = RequestMethod.POST) 
+	public String luuSuaNhanVien(@RequestParam(value = "profile") CommonsMultipartFile file, HttpSession s, 
+			ChonDichVu dv, @ModelAttribute("emp") ListNhanVienvaDichVu emp) throws UnsupportedEncodingException { 
+		int kq = nv.luuSuaNhanvien(file, s, emp, dv); 
 
-	@RequestMapping(value = "/luuSuaNhanVien", method = RequestMethod.POST)
-	public String luuSuaNhanVien(@RequestParam(value = "profile") CommonsMultipartFile file, HttpSession s,
-			ChonDichVu dv, @ModelAttribute("emp") ListNhanVienvaDichVu emp) throws UnsupportedEncodingException {
-		int kq = nv.luuSuaNhanvien(file, s, emp, dv);
-
-		if (kq == 11) {
-			String message = "<script>alert('Sửa không thành công, tồn tại nhân viên trong bảng lương, để tránh lỗi phân công bạn k nên thay đổi mã dich vụ !!!');</script>";
-			return "redirect:/quan-li/nhan-vien/suaNhanVien/" + emp.getMaHSNV() + "?message="
-					+ URLEncoder.encode(message, "UTF-8");
+		if (kq == 11) { 
+			 String message = "<script>alert('Sửa không thành công, tồn tại nhân viên trong bảng lương, để tránh lỗi phân công bạn k nên thay đổi mã dich vụ !!!');</script>";
+			return "redirect:/quan-li/nhan-vien/suaNhanVien/" + emp.getMaHSNV() + "?message=" 
+					+ URLEncoder.encode(message, "UTF-8"); 
 
 		}
 
-		else if (kq == 0) {
-			String message = "<script>alert('Sửa không thành công, năm sinh phải lớn hơn 16 tuổi !!!');</script>";
-			return "redirect:/quan-li/nhan-vien/suaNhanVien/" + emp.getMaHSNV() + "?message="
-					+ URLEncoder.encode(message, "UTF-8");
+		else if (kq == 0) { 
+			String message = "<script>alert('Sửa không thành công, năm sinh phải lớn hơn 16 tuổi !!!');</script>"; 
+			return "redirect:/quan-li/nhan-vien/suaNhanVien/" + emp.getMaHSNV() + "?message=" 
+					+ URLEncoder.encode(message, "UTF-8"); 
 
 		}
 		
-		else if (kq == 5) {
-			String message = "<script>alert('Sửa không thành công, nhập số điện thoại phải từ 10-11 số !!!');</script>";
-			return "redirect:/quan-li/nhan-vien/suaNhanVien/" + emp.getMaHSNV() + "?message="
-					+ URLEncoder.encode(message, "UTF-8");
+		else if (kq == 5) { 
+			String message = "<script>alert('Sửa không thành công, nhập số điện thoại phải từ 10-11 số !!!');</script>"; 
+			return "redirect:/quan-li/nhan-vien/suaNhanVien/" + emp.getMaHSNV() + "?message=" 
+					+ URLEncoder.encode(message, "UTF-8"); 
 
 		}
-		else {
-			System.out.println("tc");
+		else { 
+			System.out.println("tc"); 
 			String message = "<script>alert('Cập nhật thành công!!!');</script>";
-			return "redirect:quan-li/nhan-vien/all?message=" + URLEncoder.encode(message, "UTF-8");
-		}
-
+			return "redirect:quan-li/nhan-vien/all?message=" + URLEncoder.encode(message, "UTF-8"); 
+		} 
+ 
 	}
 
-	@RequestMapping(value = "quan-li/nhan-vien/xoaNhanVien/{maHSNV}", method = RequestMethod.GET)
-	public String xoaNhanVien(@PathVariable int maHSNV) throws UnsupportedEncodingException {
+	@RequestMapping(value = "quan-li/nhan-vien/xoaNhanVien/{maHSNV}", method = RequestMethod.GET) 
+	public String xoaNhanVien(@PathVariable int maHSNV) throws UnsupportedEncodingException { 
 
-		int kq = nv.xoaNhanVien(maHSNV);
-		if (kq > 0) {
-			String message = "<script>alert('Xóa thành công!!!');</script>";
-			return "redirect:/quan-li/nhan-vien/all?message=" + URLEncoder.encode(message, "UTF-8");
-		} else {
-			String message = "<script>alert('Xóa không thành công vì đang còn tồn tại nhân viên này bên bảng lương chưa được xóa!!!');</script>";
-			return "redirect:/quan-li/nhan-vien/all?message=" + URLEncoder.encode(message, "UTF-8");
+		int kq = nv.xoaNhanVien(maHSNV); 
+		if (kq > 0) { 
+			String message = "<script>alert('Xóa thành công!!!');</script>"; 
+			return "redirect:/quan-li/nhan-vien/all?message=" + URLEncoder.encode(message, "UTF-8"); 
+		} else { 
+			String message = "<script>alert('Xóa không thành công vì đang còn tồn tại nhân viên này bên bảng lương chưa được xóa!!!');</script>"; 
+			return "redirect:/quan-li/nhan-vien/all?message=" + URLEncoder.encode(message, "UTF-8"); 
 
-		}
+		} 
 
-	}
+	} 
 
 	@RequestMapping(value = { "/quan-li/dangky-timviec" })
 	public ModelAndView getViewQLDangKyTimViec() {
