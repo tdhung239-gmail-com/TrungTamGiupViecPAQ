@@ -229,9 +229,9 @@ public class DangKyDichVuDao extends BaseDao {
 						)) {
 					String sql = "update dangkydichvu set maKhachHang='" + p.getMaKhachHang() + "',gioBatDau='"
 							+ p.getGioBatDau() + "',gioKetThuc='" + p.getGioKetThuc() + "',tinhTrangThanhToan='"
-							+ p.getTinhTrangThanhToan() + "', ngayBatDau='" + p.getNgayBatDau()
-							+ "',diaChiSuDungDichVu='" + p.getDiaChiSuDungDichVu() + "' where maDKDV=" + p.getMaDKDV()
-							+ "";
+							+ p.getTinhTrangThanhToan() + "', ngayBatDau='" + p.getNgayBatDau() + "',ngayKetThuc='"
+							+ p.getNgayBatDau() + "',diaChiSuDungDichVu='" + p.getDiaChiSuDungDichVu()
+							+ "' where maDKDV=" + p.getMaDKDV() + "";
 					kq = _jdbcTemplate.update(sql);
 				} else {
 					kq = 5;
@@ -239,27 +239,28 @@ public class DangKyDichVuDao extends BaseDao {
 
 			} else {
 
-				if (
-
-				p.getNgayBatDau().after(newDateSql2) && Compare.checkTimeHaveSecond(p.getGioBatDau(), "07:00")
+				if (p.getNgayBatDau().after(newDateSql2) && Compare.checkTimeHaveSecond(p.getGioBatDau(), "07:00")
 						&& Compare.checkTimeHaveSecond("17:00", p.getGioKetThuc())
 						&& Compare.checkTimeThan1HourHaveSencond(p.getGioKetThuc(), p.getGioBatDau())
 						|| ((Compare.checkDateEqual(p.getNgayBatDau().toString(), newDateSql2.toString())
 								&& Compare.checkTimeHaveSecond(p.getGioBatDau(), timeNew))
 								&& Compare.checkTimeHaveSecond(p.getGioBatDau(), "07:00")
 								&& Compare.checkTimeHaveSecond("17:00", p.getGioKetThuc())
-								&& Compare.checkTimeThan1HourHaveSencond(p.getGioKetThuc(), p.getGioBatDau())
-
-						)
-
-				) {
+								&& Compare.checkTimeThan1HourHaveSencond(p.getGioKetThuc(), p.getGioBatDau()))) {
 					String sql = "update dangkydichvu set maKhachHang='" + p.getMaKhachHang() + "',gioBatDau='"
 							+ p.getGioBatDau() + "',gioKetThuc='" + p.getGioKetThuc() + "',tinhTrangThanhToan='"
-							+ p.getTinhTrangThanhToan() + "', ngayBatDau='" + p.getNgayBatDau()
-							+ "',diaChiSuDungDichVu='" + p.getDiaChiSuDungDichVu() + "' where maDKDV=" + p.getMaDKDV()
-							+ "";
+							+ p.getTinhTrangThanhToan() + "', ngayBatDau='" + p.getNgayBatDau() + "',ngayKetThuc='"
+							+ p.getNgayBatDau() + "',diaChiSuDungDichVu='" + p.getDiaChiSuDungDichVu()
+							+ "' where maDKDV=" + p.getMaDKDV() + "";
 					kq = _jdbcTemplate.update(sql);
-				} else {
+				} else if (p.getNgayBatDau().toString().equals(ngayBatDauCu)) {
+					String sql = "update dangkydichvu set maKhachHang='" + p.getMaKhachHang() + "',tinhTrangThanhToan='"
+							+ p.getTinhTrangThanhToan() + "',diaChiSuDungDichVu='" + p.getDiaChiSuDungDichVu()
+							+ "' where maDKDV=" + p.getMaDKDV() + "";
+					kq = _jdbcTemplate.update(sql);
+				} else
+
+				{
 					kq = 10;
 				}
 
