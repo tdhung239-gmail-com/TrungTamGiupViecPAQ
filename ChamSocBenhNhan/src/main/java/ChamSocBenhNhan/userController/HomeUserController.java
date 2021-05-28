@@ -24,9 +24,9 @@ import ChamSocBenhNhan.Entity.User.ListNhanVienvaDichVu;
 import ChamSocBenhNhan.Service.user.HomeUserIml;
 
 @Controller
-public class HomeUserController extends BaseControlUser { 
-	@Autowired 
-	private HomeUserIml listhome = new HomeUserIml(); 
+public class HomeUserController extends BaseControlUser {  
+	@Autowired  
+	private HomeUserIml listhome = new HomeUserIml();  
 
 	@RequestMapping(value = { "/home" }) 
 	public ModelAndView home(HttpSession ss) { 
@@ -135,33 +135,33 @@ public class HomeUserController extends BaseControlUser {
 	
 	// đóng tuyển dụng
 	
-	@RequestMapping(value = { "/home/lienhe" })
-	public ModelAndView lienhe(HttpSession ss) {
-		ss.removeAttribute("limit");
-		_mvShare.addObject("command", new LienHe());
-		_mvShare.setViewName("user/lienhe");
-		return _mvShare;
-	}
+	@RequestMapping(value = { "/home/lienhe" }) 
+	public ModelAndView lienhe(HttpSession ss) { 
+		ss.removeAttribute("limit"); 
+		_mvShare.addObject("command", new LienHe()); 
+		_mvShare.setViewName("user/lienhe"); 
+		return _mvShare; 
+	} 
 
-	@RequestMapping(value = { "/home/lienhe/save" })
-	public ModelAndView saveLienhe(LienHe emp) {
-		int kq = listhome.saveContent(emp);
-		if (kq != 0) {
-			String message = "<script>alert('Gửi liên hệ thành công!!!');</script>";
-			try {
-				_mvShare.setViewName("redirect:/home/lienhe?message=" + URLEncoder.encode(message, "UTF-8"));
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
-		} else {
-			String message = "<script>alert('Gửi liên hệ không thành công!!!');</script>";
-			try {
-				_mvShare.setViewName("redirect:/home/lienhe?message=" + URLEncoder.encode(message, "UTF-8"));
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
-		}
-		return _mvShare;
-	}
+	@RequestMapping(value = { "/home/lienhe/save" }) 
+	public ModelAndView saveLienhe(LienHe emp) { 
+		int kq = listhome.saveContent(emp); 
+		if (kq != 0) { 
+			String message = "<script>alert('Gửi liên hệ thành công!!!');</script>"; 
+			try { 
+				_mvShare.setViewName("redirect:/home/lienhe?message=" + URLEncoder.encode(message, "UTF-8")); 
+			} catch (UnsupportedEncodingException e) { 
+				e.printStackTrace(); 
+			} 
+		} else { 
+			String message = "<script>alert('Gửi liên hệ không thành công!!!');</script>"; 
+			try { 
+				_mvShare.setViewName("redirect:/home/lienhe?message=" + URLEncoder.encode(message, "UTF-8")); 
+			} catch (UnsupportedEncodingException e) { 
+				e.printStackTrace(); 
+			} 
+		} 
+		return _mvShare; 
+	} 
 
-}
+} 

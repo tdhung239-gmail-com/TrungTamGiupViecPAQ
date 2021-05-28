@@ -24,7 +24,7 @@ import ChamSocBenhNhan.Entity.User.list_EmInBangLuong;
 import ChamSocBenhNhan.Entity.User.list_EmInBangLuongMapper;
 
 @Repository
-public class HomeUsserDao extends BaseDaoUser {
+public class HomeUsserDao extends BaseDaoUser { 
 
 	public List<ListNhanVienvaDichVu> getListCardE() {
 
@@ -159,12 +159,12 @@ public class HomeUsserDao extends BaseDaoUser {
 
 	}
 
-	public int saveLienHe(LienHe emp) {
-
+	public int saveLienHe(LienHe emp) { 
+ 
 		String sql = "insert into lienhe(tenLienHe,Email,thongDiep)values('" + emp.getTenLienHe() + "','"
-				+ emp.getEmail() + "','" + emp.getThongDiep() + "')";
-		return _jdbcTemplate.update(sql);
+				+ emp.getEmail() + "','" + emp.getThongDiep() + "')"; 
+		return _jdbcTemplate.update(sql); 
 
-	}
+	} 
 
-}
+} 

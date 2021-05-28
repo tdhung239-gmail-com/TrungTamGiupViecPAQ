@@ -13,7 +13,7 @@ import ChamSocBenhNhan.Entity.User.ListNhanVienvaDichVu;
 import ChamSocBenhNhan.Entity.User.TuyenDung;
 
 @Service
-public interface HomeUserService { 
+public interface HomeUserService {  
 	@Autowired
 	public List<ListNhanVienvaDichVu> getListCardE();
 	@Autowired
@@ -42,7 +42,7 @@ public interface HomeUserService {
 	// đóng tuyển dụng
 	
 	@Autowired
-	public int saveContent(LienHe emp);
+	public int saveContent(LienHe emp); 
 
 
-}
+} 
