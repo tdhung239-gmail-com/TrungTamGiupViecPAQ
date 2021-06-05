@@ -14,9 +14,9 @@ import ChamSocBenhNhan.Entity.User.ListNhanVienvaDichVu;
 import ChamSocBenhNhan.Entity.User.TuyenDung;
 
 @Service
-public class HomeUserIml implements HomeUserService {  
+public class HomeUserIml implements HomeUserService {   
 	@Autowired
-	private HomeUsserDao listDao = new HomeUsserDao(); 
+	private HomeUsserDao listDao = new HomeUsserDao();  
 
 	public List<ListNhanVienvaDichVu> getListCardE() {
 		return listDao.getListCardE();
@@ -36,13 +36,13 @@ public class HomeUserIml implements HomeUserService {
 		return listDao.getListRecruitment();
 	}
 
-	public List<TuyenDung> getReruitmentById(int id) {
-		return listDao.getRecruitmentById(id);
+	public List<TuyenDung> getReruitmentById(int id) { 
+		return listDao.getRecruitmentById(id); 
 	}
 
-	public Map<ChonDichVu, ChonDichVu> getListValueServiceOfDetailRecruitment() {
-		return listDao.getListValueServiceOfDetailRecruitment();
-	}
+	public Map<ChonDichVu, ChonDichVu> getListValueServiceOfDetailRecruitment() { 
+		return listDao.getListValueServiceOfDetailRecruitment(); 
+	} 
 
 	public int saveRegisterRecruitment(ChonDichVu dv, ListNhanVienvaDichVu hsnv, String filename) { 
 		return listDao.saveRegisterRecruitment(dv, hsnv, filename); 
@@ -54,4 +54,4 @@ public class HomeUserIml implements HomeUserService {
 		return listDao.saveLienHe(emp);
 	}
 
- }
+}

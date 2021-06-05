@@ -57,18 +57,18 @@ public class HomeUserController extends BaseControlUser {
 
 	// tuyên dụng
 
-	@RequestMapping(value = { "/home/cttd/{maTuyenDung}" }) 
-	public String chitiettuyendung(HttpSession ss, @PathVariable int maTuyenDung, Model m) { 
+	@RequestMapping(value = { "/home/cttd/{maTuyenDung}" })  
+	public String chitiettuyendung(HttpSession ss, @PathVariable int maTuyenDung, Model m) {  
 		// _mvShare.addObject("cttdd", listhome.getListChiTietTuyenDung());
-		m.addAttribute("cttd", listhome.getReruitmentById(maTuyenDung)); 
-		m.addAttribute("chonGiaTriDichVu", listhome.getListValueServiceOfDetailRecruitment()); 
+		m.addAttribute("cttd", listhome.getReruitmentById(maTuyenDung));  
+		m.addAttribute("chonGiaTriDichVu", listhome.getListValueServiceOfDetailRecruitment());  
 		// _mvShare.addObject("chonDichVu",
 		// listhome.getListItemServiceOfDetailRecruitment());
-		m.addAttribute("command", new ListNhanVienvaDichVu()); 
-		ss.removeAttribute("limit"); 
-		return "user/chitiettuyendung"; 
+		m.addAttribute("command", new ListNhanVienvaDichVu());  
+		ss.removeAttribute("limit");  
+		return "user/chitiettuyendung";  
 	} 
-
+ 
 	@RequestMapping(value = "/home/cttd/save/{maTuyenDung}", method = RequestMethod.POST) 
 	public String saveChiTietTuyenDung(@RequestParam(value = "profile") CommonsMultipartFile file, HttpSession s,
 			ChonDichVu dv, ListNhanVienvaDichVu hsnv, @PathVariable int maTuyenDung) 
