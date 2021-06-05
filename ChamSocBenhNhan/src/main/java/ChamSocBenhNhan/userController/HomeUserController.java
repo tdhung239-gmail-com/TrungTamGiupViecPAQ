@@ -24,9 +24,9 @@ import ChamSocBenhNhan.Entity.User.ListNhanVienvaDichVu;
 import ChamSocBenhNhan.Service.user.HomeUserIml;
 
 @Controller
-public class HomeUserController extends BaseControlUser { 
+public class HomeUserController extends BaseControlUser {  
 	@Autowired 
-	private HomeUserIml listhome = new HomeUserIml(); 
+	private HomeUserIml listhome = new HomeUserIml();  
 
 	@RequestMapping(value = { "/home" })
 	public ModelAndView home(HttpSession ss) {
@@ -57,59 +57,59 @@ public class HomeUserController extends BaseControlUser {
 
 	// tuyên dụng
 
-	@RequestMapping(value = { "/home/cttd/{maTuyenDung}" })
-	public String chitiettuyendung(HttpSession ss, @PathVariable int maTuyenDung, Model m) {
+	@RequestMapping(value = { "/home/cttd/{maTuyenDung}" }) 
+	public String chitiettuyendung(HttpSession ss, @PathVariable int maTuyenDung, Model m) { 
 		// _mvShare.addObject("cttdd", listhome.getListChiTietTuyenDung());
-		m.addAttribute("cttd", listhome.getReruitmentById(maTuyenDung));
-		m.addAttribute("chonGiaTriDichVu", listhome.getListValueServiceOfDetailRecruitment());
+		m.addAttribute("cttd", listhome.getReruitmentById(maTuyenDung)); 
+		m.addAttribute("chonGiaTriDichVu", listhome.getListValueServiceOfDetailRecruitment()); 
 		// _mvShare.addObject("chonDichVu",
 		// listhome.getListItemServiceOfDetailRecruitment());
-		m.addAttribute("command", new ListNhanVienvaDichVu());
-		ss.removeAttribute("limit");
-		return "user/chitiettuyendung";
-	}
+		m.addAttribute("command", new ListNhanVienvaDichVu()); 
+		ss.removeAttribute("limit"); 
+		return "user/chitiettuyendung"; 
+	} 
 
-	@RequestMapping(value = "/home/cttd/save/{maTuyenDung}", method = RequestMethod.POST)
+	@RequestMapping(value = "/home/cttd/save/{maTuyenDung}", method = RequestMethod.POST) 
 	public String saveChiTietTuyenDung(@RequestParam(value = "profile") CommonsMultipartFile file, HttpSession s,
-			ChonDichVu dv, ListNhanVienvaDichVu hsnv, @PathVariable int maTuyenDung)
-			throws UnsupportedEncodingException {
+			ChonDichVu dv, ListNhanVienvaDichVu hsnv, @PathVariable int maTuyenDung) 
+			throws UnsupportedEncodingException { 
 
-		byte[] data = file.getBytes();
+		byte[] data = file.getBytes(); 
 		String path = s.getServletContext().getRealPath("/") + "assets" + File.separator + "user" + File.separator
-				+ "images" + File.separator + "nhanvien" + File.separator + file.getOriginalFilename();
-		String fileName;
-		if (path != "") {
-			try {
-				FileOutputStream fos = new FileOutputStream(path);
-				fos.write(data);
-				fos.close();
-				System.out.println("file upload");
-				fileName = file.getOriginalFilename();
-				if (listhome.saveRegisterRecruitment(dv, hsnv, fileName) == 1) {
-					String message = "<script>alert('Chúc mừng bạn đã đăng ký tuyển dụng thành công!!!');</script>";
+				+ "images" + File.separator + "nhanvien" + File.separator + file.getOriginalFilename(); 
+		String fileName; 
+		if (path != "") { 
+			try { 
+				FileOutputStream fos = new FileOutputStream(path); 
+				fos.write(data); 
+				fos.close(); 
+				System.out.println("file upload"); 
+				fileName = file.getOriginalFilename(); 
+				if (listhome.saveRegisterRecruitment(dv, hsnv, fileName) == 1) { 
+					String message = "<script>alert('Chúc mừng bạn đã đăng ký tuyển dụng thành công!!!');</script>";  
 
-					return "redirect:/home/cttd/" + maTuyenDung + "?message=" + URLEncoder.encode(message, "UTF-8");
+					return "redirect:/home/cttd/" + maTuyenDung + "?message=" + URLEncoder.encode(message, "UTF-8"); 
 				} else if (listhome.saveRegisterRecruitment(dv, hsnv, fileName) == 5) {
-					String message = "<script>alert('Bạn đã đăng ký tuyển dụng không thành công, nhập số điện thoại phải từ 10-11 số !!!');</script>";
+					String message = "<script>alert('Bạn đã đăng ký tuyển dụng không thành công, nhập số điện thoại phải từ 10-11 số !!!');</script>"; 
 
-					return "redirect:/home/cttd/" + maTuyenDung + "?message=" + URLEncoder.encode(message, "UTF-8");
+					return "redirect:/home/cttd/" + maTuyenDung + "?message=" + URLEncoder.encode(message, "UTF-8"); 
 
-				}
+				} 
 
-			} catch (IOException e) {
-				e.printStackTrace();
-				System.out.println("upload eror");
-			}
-			System.out.println(path);
+			} catch (IOException e) { 
+				e.printStackTrace(); 
+				System.out.println("upload eror"); 
+			} 
+			System.out.println(path); 
 			// return "success";
 
-		}
+		} 
 
-		String message = "<script>alert('Bạn đã đăng ký tuyển dụng không thành công, có thể là do bạn chưa đủ 16 tuổi hoặc bạn chưa chọn ảnh!!!');</script>";
+		 String message = "<script>alert('Bạn đã đăng ký tuyển dụng không thành công, có thể là do bạn chưa đủ 16 tuổi hoặc bạn chưa chọn ảnh!!!');</script>";
 
-		return "redirect:/home/cttd/" + maTuyenDung + "?message=" + URLEncoder.encode(message, "UTF-8");
+		return "redirect:/home/cttd/" + maTuyenDung + "?message=" + URLEncoder.encode(message, "UTF-8"); 
 
-	}
+	} 
 
 	// đóng tuyển dụng
 

@@ -23,9 +23,9 @@ import ChamSocBenhNhan.Entity.User.list_EmInBangLuong;
 import ChamSocBenhNhan.Entity.User.list_EmInBangLuongMapper;
 
 @Repository
-public class HomeUsserDao extends BaseDaoUser {
+public class HomeUsserDao extends BaseDaoUser { 
 
-	public List<ListNhanVienvaDichVu> getListCardE() {
+	public List<ListNhanVienvaDichVu> getListCardE() { 
  
 		List<list_EmInBangLuong> list_EmInBl = new ArrayList<list_EmInBangLuong>(); 
 		String sqlEmInBl = "Select bangluong.maHSNV, bangluong.maDKDV, dangkydichvu.ngayBatDau, dangkydichvu.ngayKetThuc from bangluong,dangkydichvu,hosonhanvien where bangluong.maHSNV = hosonhanvien.maHSNV and bangluong.maDKDV = dangkydichvu.maDKDV";
@@ -104,32 +104,32 @@ public class HomeUsserDao extends BaseDaoUser {
 		return list;
 	}
 
-	public List<TuyenDung> getListRecruitment() {
-		List<TuyenDung> list = new ArrayList<TuyenDung>();
-		String sql = "SELECT * FROM tuyendung";
-		list = _jdbcTemplate.query(sql, new TuyenDungMapper());
-		return list;
-	}
+	public List<TuyenDung> getListRecruitment() { 
+		List<TuyenDung> list = new ArrayList<TuyenDung>(); 
+		String sql = "SELECT * FROM tuyendung"; 
+		list = _jdbcTemplate.query(sql, new TuyenDungMapper()); 
+		return list; 
+	} 
 
-	public List<TuyenDung> getRecruitmentById(int id) {
-		return _jdbcTemplate.query("select * from tuyendung where maTuyenDung=" + id + "", new TuyenDungMapper());
-	}
+	public List<TuyenDung> getRecruitmentById(int id) { 
+		return _jdbcTemplate.query("select * from tuyendung where maTuyenDung=" + id + "", new TuyenDungMapper()); 
+	} 
 
-	public Map<ChonDichVu, ChonDichVu> getListValueServiceOfDetailRecruitment() {
-		List<ChonDichVu> listTen = new ArrayList<ChonDichVu>();
-		List<ChonDichVu> listMa = new ArrayList<ChonDichVu>();
-		String sql2 = "SELECT maDichVu FROM dichvu";
-		listMa = _jdbcTemplate.query(sql2, new ChonGiatriDichVuMapper());
-		String sql = "SELECT tenDichVu FROM dichvu ";
-		listTen = _jdbcTemplate.query(sql, new chonDichVuMapper());
-		Map<ChonDichVu, ChonDichVu> phones = new HashMap<ChonDichVu, ChonDichVu>();
-		for (int i = 0; i < listTen.size(); i++) {
-			phones.put(listMa.get(i), listTen.get(i));
+	public Map<ChonDichVu, ChonDichVu> getListValueServiceOfDetailRecruitment() { 
+		List<ChonDichVu> listTen = new ArrayList<ChonDichVu>(); 
+		List<ChonDichVu> listMa = new ArrayList<ChonDichVu>(); 
+		String sql2 = "SELECT maDichVu FROM dichvu"; 
+		listMa = _jdbcTemplate.query(sql2, new ChonGiatriDichVuMapper()); 
+		String sql = "SELECT tenDichVu FROM dichvu "; 
+		listTen = _jdbcTemplate.query(sql, new chonDichVuMapper()); 
+		Map<ChonDichVu, ChonDichVu> phones = new HashMap<ChonDichVu, ChonDichVu>(); 
+		for (int i = 0; i < listTen.size(); i++) { 
+			phones.put(listMa.get(i), listTen.get(i)); 
 
-		}
+		} 
 		// System.out.println(phones);
-		return phones;
-	}
+		return phones; 
+	} 
 
 	public int saveRegisterRecruitment(ChonDichVu dv, ListNhanVienvaDichVu hsnv, String filename) {
 		Date newDate2 = new Date();
@@ -159,4 +159,4 @@ public class HomeUsserDao extends BaseDaoUser {
 
 	}
 
-}
+} 

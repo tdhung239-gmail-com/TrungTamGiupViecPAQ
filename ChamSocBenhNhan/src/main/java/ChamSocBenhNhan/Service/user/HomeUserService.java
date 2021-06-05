@@ -13,7 +13,7 @@ import ChamSocBenhNhan.Entity.User.ListNhanVienvaDichVu;
 import ChamSocBenhNhan.Entity.User.TuyenDung;
 
 @Service
-public interface HomeUserService {   
+public interface HomeUserService {    
 	@Autowired  
 	public List<ListNhanVienvaDichVu> getListCardE(); 
 
@@ -25,14 +25,14 @@ public interface HomeUserService {
 	
 	// tuyển dụng
 	
-	@Autowired
-	public List<TuyenDung> getListReruitment();
+	@Autowired 
+	public List<TuyenDung> getListReruitment(); 
 
+	@Autowired 
+	public List<TuyenDung> getReruitmentById(int id); 
+	 
 	@Autowired
-	public List<TuyenDung> getReruitmentById(int id);
-	
-	@Autowired
-	public Map<ChonDichVu, ChonDichVu> getListValueServiceOfDetailRecruitment();
+	public Map<ChonDichVu, ChonDichVu> getListValueServiceOfDetailRecruitment(); 
 
 	@Autowired
 	public int saveRegisterRecruitment(ChonDichVu emp, ListNhanVienvaDichVu hsnv, String filename);
@@ -43,4 +43,4 @@ public interface HomeUserService {
 	public int saveContent(LienHe emp); 
 
 
-}  
+}   
