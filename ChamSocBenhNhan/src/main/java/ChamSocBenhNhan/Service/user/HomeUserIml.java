@@ -14,7 +14,7 @@ import ChamSocBenhNhan.Entity.User.ListNhanVienvaDichVu;
 import ChamSocBenhNhan.Entity.User.TuyenDung;
 
 @Service
-public class HomeUserIml implements HomeUserService {
+public class HomeUserIml implements HomeUserService { 
 	@Autowired
 	private HomeUsserDao listDao = new HomeUsserDao();
 
@@ -26,9 +26,9 @@ public class HomeUserIml implements HomeUserService {
 		return listDao.getTotalRegisterService();
 	}
 
-	public List<ListNhanVienvaDichVu> getListService() {
-		return listDao.getListService();
-	}
+	public List<ListNhanVienvaDichVu> getListService() { 
+		return listDao.getListService(); 
+	} 
 
 	// tuyển dụng
 
@@ -54,4 +54,4 @@ public class HomeUserIml implements HomeUserService {
 		return listDao.saveLienHe(emp);
 	}
 
-}
+ }

@@ -13,9 +13,9 @@ import ChamSocBenhNhan.Entity.User.ListNhanVienvaDichVu;
 import ChamSocBenhNhan.Entity.User.TuyenDung;
 
 @Service
-public interface HomeUserService {  
-	@Autowired
-	public List<ListNhanVienvaDichVu> getListCardE();
+public interface HomeUserService {   
+	@Autowired  
+	public List<ListNhanVienvaDichVu> getListCardE(); 
 
 	@Autowired
 	public List<ListDangKyDichVu> getTotalRegisterService();
@@ -43,4 +43,4 @@ public interface HomeUserService {
 	public int saveContent(LienHe emp); 
 
 
-} 
+}  

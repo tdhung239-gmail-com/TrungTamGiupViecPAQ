@@ -24,9 +24,9 @@ import ChamSocBenhNhan.Entity.User.ListNhanVienvaDichVu;
 import ChamSocBenhNhan.Service.user.HomeUserIml;
 
 @Controller
-public class HomeUserController extends BaseControlUser {
-	@Autowired
-	private HomeUserIml listhome = new HomeUserIml();
+public class HomeUserController extends BaseControlUser { 
+	@Autowired 
+	private HomeUserIml listhome = new HomeUserIml(); 
 
 	@RequestMapping(value = { "/home" })
 	public ModelAndView home(HttpSession ss) {
@@ -47,13 +47,13 @@ public class HomeUserController extends BaseControlUser {
 		return _mvShare;
 	}
 
-	@RequestMapping(value = { "/home/nhanvien" })
-	public ModelAndView nhanvien(HttpSession ss) {
-		_mvShare.addObject("nhanvienn", listhome.getListCardE());
-		_mvShare.setViewName("user/nhanvien");
-		ss.removeAttribute("limit");
-		return _mvShare;
-	}
+	@RequestMapping(value = { "/home/nhanvien" }) 
+	public ModelAndView nhanvien(HttpSession ss) { 
+		_mvShare.addObject("nhanvienn", listhome.getListCardE()); 
+		_mvShare.setViewName("user/nhanvien"); 
+		ss.removeAttribute("limit"); 
+		return _mvShare; 
+	} 
 
 	// tuyên dụng
 
@@ -142,4 +142,4 @@ public class HomeUserController extends BaseControlUser {
 		return _mvShare;
 	}
 
-}
+} 

@@ -26,27 +26,27 @@ import ChamSocBenhNhan.Entity.User.list_EmInBangLuongMapper;
 public class HomeUsserDao extends BaseDaoUser {
 
 	public List<ListNhanVienvaDichVu> getListCardE() {
-
-		List<list_EmInBangLuong> list_EmInBl = new ArrayList<list_EmInBangLuong>();
+ 
+		List<list_EmInBangLuong> list_EmInBl = new ArrayList<list_EmInBangLuong>(); 
 		String sqlEmInBl = "Select bangluong.maHSNV, bangluong.maDKDV, dangkydichvu.ngayBatDau, dangkydichvu.ngayKetThuc from bangluong,dangkydichvu,hosonhanvien where bangluong.maHSNV = hosonhanvien.maHSNV and bangluong.maDKDV = dangkydichvu.maDKDV";
-		list_EmInBl = _jdbcTemplate.query(sqlEmInBl, new list_EmInBangLuongMapper());
+		list_EmInBl = _jdbcTemplate.query(sqlEmInBl, new list_EmInBangLuongMapper()); 
 
-		List<ListNhanVienvaDichVu> listnv = new ArrayList<ListNhanVienvaDichVu>();
+		List<ListNhanVienvaDichVu> listnv = new ArrayList<ListNhanVienvaDichVu>(); 
 		String sqlnv = "SELECT hosonhanvien.maDichVu,hosonhanvien.maHSNV,dichvu.tenDichVu,hoTen,sdt,namSinh,queQuan,noiCuTruHienTai,hinhanh,tinhTrangLamViec,tinhTrangDuyetHoSo FROM `hosonhanvien`,dichvu WHERE hosonhanvien.maDichVu = dichvu.maDichVu AND hosonhanvien.tinhTrangDuyetHoSo='xong'";
-		listnv = _jdbcTemplate.query(sqlnv, new ListNhanVienMapper());
+		listnv = _jdbcTemplate.query(sqlnv, new ListNhanVienMapper()); 
 
-		for (int i = 0; i < listnv.size(); i++) {
+		for (int i = 0; i < listnv.size(); i++) { 
 
-			String maHSNV = listnv.get(i).toString();
-			String sql_updateEm = "UPDATE `hosonhanvien` SET `tinhTrangLamViec`='ranh' WHERE maHSNV = " + maHSNV + "";
+			String maHSNV = listnv.get(i).toString(); 
+			String sql_updateEm = "UPDATE `hosonhanvien` SET `tinhTrangLamViec`='ranh' WHERE maHSNV = " + maHSNV + ""; 
 			// sau khi anh insert vào thì anh phải cập nhật lại tình trạng làm việc của hsnv
 			// là chưa
-			_jdbcTemplate.update(sql_updateEm);
+			_jdbcTemplate.update(sql_updateEm); 
 		}
 
-		for (int i = 0; i < list_EmInBl.size(); i++) {
+		for (int i = 0; i < list_EmInBl.size(); i++) { 
 
-			String maHSNV = list_EmInBl.get(i).toString().substring(0, list_EmInBl.get(i).toString().indexOf(","));
+			String maHSNV = list_EmInBl.get(i).toString().substring(0, list_EmInBl.get(i).toString().indexOf(",")); 
 
 			// String maDKDV =
 			// list_EmInBl.get(i).toString().substring(list_EmInBl.get(i).toString().indexOf(",")
@@ -54,38 +54,38 @@ public class HomeUsserDao extends BaseDaoUser {
 			// list_EmInBl.get(i).toString().indexOf("-"));
 
 			String ngayBatDau = list_EmInBl.get(i).toString().substring(list_EmInBl.get(i).toString().indexOf("-") + 1,
-					list_EmInBl.get(i).toString().lastIndexOf(","));
+					list_EmInBl.get(i).toString().lastIndexOf(",")); 
 
-			String ngayKetThuc = list_EmInBl.get(i).toString().substring(
+			String ngayKetThuc = list_EmInBl.get(i).toString().substring( 
 					list_EmInBl.get(i).toString().lastIndexOf(",") + 1, list_EmInBl.get(i).toString().length());
-			Date newDate = new Date();
-			java.sql.Date newDateSql = new java.sql.Date(newDate.getTime());
-			String newDateS = newDateSql.toString();
+			Date newDate = new Date(); 
+			java.sql.Date newDateSql = new java.sql.Date(newDate.getTime()); 
+			String newDateS = newDateSql.toString(); 
 
-			if ((Compare.Contanin1DatesIn2Date(newDateS, ngayBatDau, ngayKetThuc))
-					|| (Compare.checkDateEqual(newDateS, ngayBatDau))) {
-				System.out.println("bannnnnnnnnnnnnnn");
+			if ((Compare.Contanin1DatesIn2Date(newDateS, ngayBatDau, ngayKetThuc)) 
+					|| (Compare.checkDateEqual(newDateS, ngayBatDau))) { 
+				System.out.println("bannnnnnnnnnnnnnn"); 
 				String sql_updateEm = "UPDATE `hosonhanvien` SET `tinhTrangLamViec`='ban' WHERE maHSNV = " + maHSNV
-						+ "";
+						+ ""; 
 				// sau khi anh insert vào thì anh phải cập nhật lại tình trạng làm việc của hsnv
 				// là chưa
-				_jdbcTemplate.update(sql_updateEm);
-			} else {
+				_jdbcTemplate.update(sql_updateEm); 
+			} else { 
 				System.out.println("k bannnnnnnnnnnnnnn");
 				String sql_updateEm = "UPDATE `hosonhanvien` SET `tinhTrangLamViec`='ranh' WHERE maHSNV = " + maHSNV
-						+ "";
+						+ ""; 
 				// sau khi anh insert vào thì anh phải cập nhật lại tình trạng làm việc của hsnv
 				// là chưa
-				_jdbcTemplate.update(sql_updateEm);
-			}
+				_jdbcTemplate.update(sql_updateEm); 
+			} 
 
-		}
+		} 
 
-		List<ListNhanVienvaDichVu> list = new ArrayList<ListNhanVienvaDichVu>();
+		List<ListNhanVienvaDichVu> list = new ArrayList<ListNhanVienvaDichVu>(); 
 		String sql = "SELECT hosonhanvien.maDichVu,hosonhanvien.maHSNV,dichvu.tenDichVu,hoTen,sdt,namSinh,queQuan,noiCuTruHienTai,hinhanh,tinhTrangLamViec,tinhTrangDuyetHoSo FROM `hosonhanvien`,dichvu WHERE hosonhanvien.maDichVu = dichvu.maDichVu AND hosonhanvien.tinhTrangDuyetHoSo='xong'";
-		list = _jdbcTemplate.query(sql, new ListNhanVienMapper());
-		return list;
-	}
+		list = _jdbcTemplate.query(sql, new ListNhanVienMapper()); 
+		return list; 
+	} 
 
 	// []
 	public List<ListDangKyDichVu> getTotalRegisterService() {
