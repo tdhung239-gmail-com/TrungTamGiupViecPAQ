@@ -38,8 +38,8 @@ public class ChiTietDichVuDao extends BaseDaoUser {
 		return _jdbcTemplate.query("select * from danhgia where maDichVu=" + maDichVu + "", new ListDanhGiaMapper());
 	}
 
-	public int saverRegister(ListDangKyDichVu p, int maDichVu, int maKhachHang) { 
-		String nu = "chua"; 
+	public int saverRegister(ListDangKyDichVu p, int maDichVu, int maKhachHang) {
+		String nu = "chua";
 		Integer kq = 0;
 		if (maKhachHang == 0) {
 			maKhachHang = 1;
@@ -57,13 +57,14 @@ public class ChiTietDichVuDao extends BaseDaoUser {
 			String timeNew = new SimpleDateFormat("HH:mm").format(newDate2);
 			if (p.getNgayBatDau().after(newDateSql2) && Compare.checkTime(p.getGioBatDau(), "07:00")
 					&& Compare.checkTime("17:00", p.getGioKetThuc())
-					|| (Compare.checkDateEqual(p.getNgayBatDau().toString(), newDateSql2.toString())
-							&& Compare.checkTime(p.getGioBatDau(), timeNew))
-							&& Compare.checkTime(p.getGioBatDau(), "07:00")
-							&& Compare.checkTime("17:00", p.getGioKetThuc())) {
-
+			// || (Compare.checkDateEqual(p.getNgayBatDau().toString(),
+			// newDateSql2.toString())
+			// && Compare.checkTime(p.getGioBatDau(), timeNew))
+			// && Compare.checkTime(p.getGioBatDau(), "07:00")
+			// && Compare.checkTime("17:00", p.getGioKetThuc())) {
+			) {
 				if (Compare.checkTimeThan1Hour(p.getGioKetThuc(), p.getGioBatDau())) {
-					//java.sql.Date sqlStartDate = ChuyenDoi.ChuyenDoiNgay(p.getNgayBatDau());
+					// java.sql.Date sqlStartDate = ChuyenDoi.ChuyenDoiNgay(p.getNgayBatDau());
 
 					p.setNgayKetThuc(p.getNgayBatDau());
 
@@ -96,7 +97,7 @@ public class ChiTietDichVuDao extends BaseDaoUser {
 
 			Date newDate2 = new Date();
 			java.sql.Date newDateSql2 = new java.sql.Date(newDate2.getTime());
-			if (p.getNgayBatDau().before(p.getNgayKetThuc()) && Compare.checkDate(p.getNgayBatDau(), newDateSql2)) {
+			if (p.getNgayBatDau().before(p.getNgayKetThuc()) && p.getNgayBatDau().after(newDateSql2)) {
 				String sqlKhachHang = "insert into khachHang(maKhachHang,tenKhachHang,sdt,diaChi)values('" + maKhachHang
 						+ "','" + p.getTenKhachHang() + "','" + p.getSdt() + "','" + p.getDiaChi() + "')";
 				_jdbcTemplate.update(sqlKhachHang);
@@ -115,10 +116,10 @@ public class ChiTietDichVuDao extends BaseDaoUser {
 			}
 		}
 		return kq;
- 
+
 	}
 
-	public List<ListDangKyDichVu> getDangKyDichVu() { 
+	public List<ListDangKyDichVu> getDangKyDichVu() {
 		List<ListDangKyDichVu> list = new ArrayList<ListDangKyDichVu>();
 
 		list = _jdbcTemplate.query(
@@ -140,9 +141,9 @@ public class ChiTietDichVuDao extends BaseDaoUser {
 
 		return list;
 
-	} 
+	}
 
-	public List<ListDangKyDichVu> getTongThanhTienDangKyDichVu() { 
+	public List<ListDangKyDichVu> getTongThanhTienDangKyDichVu() {
 		List<ListDangKyDichVu> list = new ArrayList<ListDangKyDichVu>();
 
 		list = _jdbcTemplate.query(
@@ -157,7 +158,7 @@ public class ChiTietDichVuDao extends BaseDaoUser {
 						+ " FROM `dangkydichvu`,`dichvu`,`khachhang` WHERE `dangkydichvu`.maDichVu = `dichvu`.maDichVu and `dangkydichvu`.maKhachHang =`khachhang`.maKhachHang",
 				new ListDangKyDichVuMapper());
 
-		return list; 
+		return list;
 	}
 
 	public int saveComment(@RequestParam(value = "profile") CommonsMultipartFile file, HttpSession s,

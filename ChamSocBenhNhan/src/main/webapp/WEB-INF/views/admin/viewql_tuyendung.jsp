@@ -5,82 +5,93 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:if test="${ not empty okee   }">
-<main>
-	${param.message}
-	<div class="container-fluid">
-		<ol class="breadcrumb mb-4">
-			<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-			<li class="breadcrumb-item active">Tuyển Dụng</li>
-		</ol>
+	<main>
+		${param.message}
+		<div class="container-fluid">
+			<ol class="breadcrumb mb-4">
+				<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+				<li class="breadcrumb-item active">Tuyển Dụng</li>
+			</ol>
 
-		<div class="card mb-4">
-			<div class="card-header">
-				<i class="fas fa-table mr-1"></i> DataTable
-			</div>
-			<div class="card-body">
-				<div class="table-responsive">
-					<table class="table table-bordered" style="text-align: justify;" id="dataTable" width="100%"
-						cellspacing="2">
-						<thead>
-							<tr>
-								<th>Mã tuyển dụng</th>
-								<th>Tiêu đề tuyển dụng</th>
-								<th>Mô tả chung</th>
-								<th>Hình ảnh</th>
-								<th>Mô tả công việc</th>
-								<th>Quyền lợi</th>
-								<th>Yêu cầu công việc</th>
-								<th>Mã dịch vụ</th>
-								<th>Chức năng</th>
-							</tr>
-						</thead>
-						<tfoot>
-							<tr>
-								<th>Mã tuyển dụng</th>
-								<th>Tiêu đề tuyển dụng</th>
-								<th>Mô tả chung</th>
-								<th>Hình ảnh</th>
-								<th>Mô tả công việc</th>
-								<th>Quyền lợi</th>
-								<th>Yêu cầu công việc</th>
-								<th>Mã dịch vụ</th>
-								<th>Chức năng</th>
-							</tr>
-						</tfoot>
-						<tbody>
-							<c:forEach var="item" items="${ tuyendung }">
-								<tr>
-									<td style="font-weight: bold;"><label>${ item.maTuyenDung }
-									</label></td>
-									<td><label>${ item.tieuDeTuyenDung } </label></td>
-									<td><label>${ item.moTaChung } </label></td>
-
-									<td><a class="gallery-popup"
-										href="<c:url value="/assets/user/images/tuyendung/${item.hinhAnh}"/>"
-										aria-label="project-img"> <img class="img-fluid"
-											style="width: 300px; height: 100px;"
-											src="<c:url value="/assets/user/images/tuyendung/${item.hinhAnh}"/>"
-											alt="project-img"> <span class="gallery-icon"><i
-												class="fa fa-plus"></i></span>
-									</a></td>
-									<td><label>${ item.moTaCongViec } </label></td>
-									<td><label>${ item.quyenLoi } </label></td>
-									<td><label>${ item.yeuCauCongViec } </label></td>
-									<td><label>${ item.maDichVu } </label></td>
-
-									<td><a href="suaTuyenDung/${item.maTuyenDung}">Edit</a>
-										<a
-										href="xoaTuyenDung/${item.maTuyenDung}">Delete</a></td>
-
+			<div class="card mb-4">
+				<div class="card-header">
+					<i class="fas fa-table mr-1"></i> DataTable
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table table-bordered" style="text-align: justify;"
+							id="dataTable" width="100%" cellspacing="2">
+							<thead>
+								<tr style="text-align: center;">
+									<th>Mã tuyển dụng</th>
+									<th>Tiêu đề tuyển dụng</th>
+									<th>Mô tả chung</th>
+									<th>Hình ảnh</th>
+									<th>Mô tả công việc</th>
+									<th>Quyền lợi</th>
+									<th>Yêu cầu công việc</th>
+									<th>Mã dịch vụ</th>
+									<th>Chức năng</th>
+									<th>Tắt/Bật Tuyển Dụng</th>
 								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-					<a href="them-tuyen-dung">Thêm mới</a>
+							</thead>
+							<tfoot>
+								<tr style="text-align: center;">
+									<th>Mã tuyển dụng</th>
+									<th>Tiêu đề tuyển dụng</th>
+									<th>Mô tả chung</th>
+									<th>Hình ảnh</th>
+									<th>Mô tả công việc</th>
+									<th>Quyền lợi</th>
+									<th>Yêu cầu công việc</th>
+									<th>Mã dịch vụ</th>
+									<th>Chức năng</th>
+									<th>Tắt/Bật Tuyển Dụng</th>
+								</tr>
+							</tfoot>
+							<tbody>
+								<c:forEach var="item" items="${ tuyendung }">
+									<tr>
+										<td style="font-weight: bold; text-align: center;"><label>${ item.maTuyenDung }
+										</label></td>
+										<td><label>${ item.tieuDeTuyenDung } </label></td>
+										<td><label>${ item.moTaChung } </label></td>
+
+										<td><a class="gallery-popup"
+											href="<c:url value="/assets/user/images/tuyendung/${item.hinhAnh}"/>"
+											aria-label="project-img"> <img class="img-fluid"
+												style="width: 300px; height: 100px;"
+												src="<c:url value="/assets/user/images/tuyendung/${item.hinhAnh}"/>"
+												alt="project-img"> <span class="gallery-icon"><i
+													class="fa fa-plus"></i></span>
+										</a></td>
+										<td><label>${ item.moTaCongViec } </label></td>
+										<td><label>${ item.quyenLoi } </label></td>
+										<td><label>${ item.yeuCauCongViec } </label></td>
+										<td><label>${ item.maDichVu } </label></td>
+
+										<td><a href="suaTuyenDung/${item.maTuyenDung}">Edit</a> <a
+											href="xoaTuyenDung/${item.maTuyenDung}">Delete</a></td>
+
+										<td style="text-align: center;"><c:if
+												test="${ item.tatBat == '0' }">
+												<a
+													href="tatBatTuyenDung/${item.maTuyenDung}/${ item.tatBat}">On</a>
+											</c:if> <c:if test="${ item.tatBat == '1' }">
+												<a
+													href="tatBatTuyenDung/${item.maTuyenDung}/${ item.tatBat}">Off</a>
+
+											</c:if></td>
+
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						<a href="them-tuyen-dung">Thêm mới</a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-</main>
+	</main>
 </c:if>

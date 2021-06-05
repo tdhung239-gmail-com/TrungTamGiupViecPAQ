@@ -32,7 +32,7 @@ public class ChiTietDVController extends BaseControlUser {
 		// get max id customer
 		List<ListDangKyDichVu> max = listcttd.getIdCustomer();
 		m.addAttribute("maxCustomer", max);
- 
+
 		// get data commnent
 		String limitCommnet = " ORDER BY maDanhGia DESC LIMIT 3";
 		m.addAttribute("comment", listcttd.getCommentById(maDichVu, limitCommnet));
@@ -65,16 +65,16 @@ public class ChiTietDVController extends BaseControlUser {
 	// save Comment
 	@RequestMapping(value = "/saveComment/{maDichVu}", method = RequestMethod.POST)
 	public String saveComment(@RequestParam(value = "profile") CommonsMultipartFile file, HttpSession s,
-			@RequestParam(value = "profile2") CommonsMultipartFile file2, HttpSession s2,
-			@PathVariable int maDichVu, ListDangKyDichVu emp) throws UnsupportedEncodingException {
+			@RequestParam(value = "profile2") CommonsMultipartFile file2, HttpSession s2, @PathVariable int maDichVu,
+			ListDangKyDichVu emp) throws UnsupportedEncodingException {
 		s.removeAttribute("limit");
-		int kq = listcttd.saveComment(file, s,file2, s2, emp, maDichVu);
+		int kq = listcttd.saveComment(file, s, file2, s2, emp, maDichVu);
 		if (kq == 0) {
 			String message = "<script>alert('Lưu không thành công!!!');</script>";
 			return "redirect:/home/ctdv/" + maDichVu + "?message=" + URLEncoder.encode(message, "UTF-8");
 
 		}
-		
+
 		String message = "<script>alert('Lưu thành công!!!');</script>";
 
 		return "redirect:/home/ctdv/" + maDichVu + "?message=" + URLEncoder.encode(message, "UTF-8");
@@ -88,7 +88,7 @@ public class ChiTietDVController extends BaseControlUser {
 
 		int kq = listcttd.saveRegisterService(emp, maDichVu, maKhachHang);
 		if (kq == 0) {
-			String message = "<script>alert('Bạn nhập ngày không chính xác, mời bạn nhập lại đúng !!!');</script>";
+			String message = "<script>alert('Bạn nhập ngày giờ không chính xác, mời bạn nhập lại đúng ngày lớn hơn ngày hiện tại, giờ nằm trong khung giờ 7:00-17:00 !!!');</script>";
 			try {
 				return "redirect:/home/ctdv/" + maDichVu + "?message=" + URLEncoder.encode(message, "UTF-8");
 			} catch (UnsupportedEncodingException e) {
@@ -105,7 +105,6 @@ public class ChiTietDVController extends BaseControlUser {
 		String message = "<script>alert('Chúc mừng bạn đã đăng ký dịch vụ thành công!!!');</script>";
 
 		return "redirect:/home/chitiethoadon/" + maKhachHang + "?message=" + URLEncoder.encode(message, "UTF-8");
-		
 
 	}
 

@@ -339,7 +339,7 @@
 
 			<div class="col-lg-6">
 
-				<h1 class="display-8"
+				<h1 class="display-8 "
 					style="font-family: Times New Roman; color: #F4A460;">Những
 					con số ấn tượng</h1>
 				</br>
@@ -349,7 +349,7 @@
 					đang là giải pháp dọn nhà tốt nhất và tiện lợi nhất cho phụ nữ
 					Việt.</p>
 				</br> </br>
-				<div class="row" style="text-align: center;">
+				<div class="row " style="text-align: center;">
 				<c:forEach var="item" items="${ tongGioLamcuaNam }">
 					<div class="col-lg-4" style="border-right: solid 1px #DDDDDD;">
 						<h1 class="display-8"

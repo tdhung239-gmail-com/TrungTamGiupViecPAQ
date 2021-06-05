@@ -16,9 +16,7 @@ import ChamSocBenhNhan.Entity.User.TuyenDung;
 public interface HomeUserService {  
 	@Autowired
 	public List<ListNhanVienvaDichVu> getListCardE();
-	@Autowired
-	public List<ListNhanVienvaDichVu> searchNameService(String tenDichVu);
-	
+
 	@Autowired
 	public List<ListDangKyDichVu> getTotalRegisterService();
 	

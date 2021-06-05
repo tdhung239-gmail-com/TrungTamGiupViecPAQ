@@ -8,7 +8,6 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-import ChamSocBenhNhan.Entity.TimKiemTenDichVuMapper;
 import ChamSocBenhNhan.Entity.User.ChonDichVu;
 import ChamSocBenhNhan.Entity.User.ChonGiatriDichVuMapper;
 import ChamSocBenhNhan.Entity.User.LienHe;
@@ -24,7 +23,7 @@ import ChamSocBenhNhan.Entity.User.list_EmInBangLuong;
 import ChamSocBenhNhan.Entity.User.list_EmInBangLuongMapper;
 
 @Repository
-public class HomeUsserDao extends BaseDaoUser { 
+public class HomeUsserDao extends BaseDaoUser {
 
 	public List<ListNhanVienvaDichVu> getListCardE() {
 
@@ -98,20 +97,13 @@ public class HomeUsserDao extends BaseDaoUser {
 
 	}
 
-	public List<ListNhanVienvaDichVu> searchNameService(String tenDichVu) {
+	public List<ListNhanVienvaDichVu> getListService() {
 		List<ListNhanVienvaDichVu> list = new ArrayList<ListNhanVienvaDichVu>();
-		String sql = "SELECT maDichVu,tenDichVu FROM dichvu where tenDichVu like ‘%'" + tenDichVu + "'%’";
-		list = _jdbcTemplate.query(sql, new TimKiemTenDichVuMapper());
+		String sql = "SELECT * FROM dichvu";
+		list = _jdbcTemplate.query(sql, new ListDichVuMapper());
 		return list;
 	}
 
-	public List<ListNhanVienvaDichVu> getListService() { 
-		List<ListNhanVienvaDichVu> list = new ArrayList<ListNhanVienvaDichVu>(); 
-		String sql = "SELECT * FROM dichvu"; 
-		list = _jdbcTemplate.query(sql, new ListDichVuMapper()); 
-		return list; 
-	} 
- 
 	public List<TuyenDung> getListRecruitment() {
 		List<TuyenDung> list = new ArrayList<TuyenDung>();
 		String sql = "SELECT * FROM tuyendung";
@@ -159,12 +151,12 @@ public class HomeUsserDao extends BaseDaoUser {
 
 	}
 
-	public int saveLienHe(LienHe emp) { 
- 
+	public int saveLienHe(LienHe emp) {
+
 		String sql = "insert into lienhe(tenLienHe,Email,thongDiep)values('" + emp.getTenLienHe() + "','"
-				+ emp.getEmail() + "','" + emp.getThongDiep() + "')"; 
-		return _jdbcTemplate.update(sql); 
+				+ emp.getEmail() + "','" + emp.getThongDiep() + "')";
+		return _jdbcTemplate.update(sql);
 
-	} 
+	}
 
-} 
+}

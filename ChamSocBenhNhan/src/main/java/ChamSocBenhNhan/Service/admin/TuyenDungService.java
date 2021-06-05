@@ -23,5 +23,6 @@ public interface TuyenDungService {
 	public TuyenDung getSuaTuyenDung(int maTuyenDung);
 	public int luuSuaTuyenDung(@RequestParam(value = "profile") CommonsMultipartFile file, HttpSession s,TuyenDung p,ChonDichVu dv);
 	public int xoaTuyenDung(int id);
+	public int tatBatTuyenDung(int id,int tatBat);
 
 }

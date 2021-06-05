@@ -97,4 +97,18 @@ public class TuyenDungController extends BaseController {
 
 	}
 
+	@RequestMapping(value = "quan-li/tatBatTuyenDung/{maTuyendung}/{tatBat}", method = RequestMethod.GET)
+	public String tatBatTuyenDung(@PathVariable int maTuyendung, @PathVariable int tatBat) {
+		if (tatBat == 0) {
+			tatBat = 1;
+			nv.tatBatTuyenDung(maTuyendung, tatBat);
+		} else {
+			tatBat = 0;
+			nv.tatBatTuyenDung(maTuyendung, tatBat);
+		}
+
+		return "redirect:/quan-li/tuyen-dung";
+
+	}
+
 }

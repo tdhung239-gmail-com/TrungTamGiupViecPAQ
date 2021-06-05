@@ -26,7 +26,6 @@ public class DangKydichVuController extends BaseController {
 		_mvShare.addObject("listChonDV", dkdv.getListChonDichVu());
 		_mvShare.setViewName("admin/viewquanlydangky_dv");
 		return _mvShare;
-		
 
 	}
 
@@ -96,7 +95,7 @@ public class DangKydichVuController extends BaseController {
 				e.printStackTrace();
 			}
 		} else if (kq == 5) {
-			String message = "<script>alert('Lưu không thành công vì đang tồn tại mã đăng ký dịch vụ này trong bảng lương (bạn có thể xóa dịch vụ này trong bảng lương và cập nhật lại) hoặc bạn đã nhập ngày (ngày phải lớn hơn hoặc bằng ngày ngày hiện tại) giờ không chính xác (giờ lớn hơn giờ hiện tại và giờ kết thúc lớn giờ bắt đầu và số phút bằng nhau)!!!');</script>";
+			String message = "<script>alert('Lưu không thành công vì đang tồn tại mã đăng ký dịch vụ này trong bảng lương (bạn có thể xóa dịch vụ này trong bảng lương và cập nhật lại) hoặc bạn đã nhập ngày giờ không chính xác (ngày phải lớn hơn ngày ngày hiện tại, giờ lớn hơn giờ hiện tại và giờ kết thúc lớn giờ bắt đầu và số phút bằng nhau)!!!');</script>";
 			try {
 				return "redirect:/quan-li/dang-ky-dich-vu/SuaDKDV/" + emp.getMaDKDV() + "/" + emp.getMaDichVu()
 						+ "?message=" + URLEncoder.encode(message, "UTF-8");

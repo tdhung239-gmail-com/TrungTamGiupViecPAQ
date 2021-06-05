@@ -52,5 +52,8 @@ public class TuyenDungIml implements TuyenDungService {
 	public int xoaTuyenDung(int id) {
 		return nv.xoaTuyenDung(id);
 	}
+	public int tatBatTuyenDung(int id,int tatBat) {
+		return nv.tatBatTuyenDung(id,tatBat);
+	}
 
 }

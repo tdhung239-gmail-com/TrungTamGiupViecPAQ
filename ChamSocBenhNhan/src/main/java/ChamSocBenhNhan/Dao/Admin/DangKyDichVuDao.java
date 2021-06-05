@@ -126,11 +126,7 @@ public class DangKyDichVuDao extends BaseDao {
 			java.sql.Date newDateSql2 = new java.sql.Date(newDate2.getTime());
 			String timeNew = new SimpleDateFormat("HH:mm").format(newDate2);
 			if (p.getNgayBatDau().after(newDateSql2) && Compare.checkTime(p.getGioBatDau(), "07:00")
-					&& Compare.checkTime("17:00", p.getGioKetThuc())
-					|| (Compare.checkDateEqual(p.getNgayBatDau().toString(), newDateSql2.toString())
-							&& Compare.checkTime(p.getGioBatDau(), timeNew))
-							&& Compare.checkTime(p.getGioBatDau(), "07:00")
-							&& Compare.checkTime("17:00", p.getGioKetThuc())) {
+					&& Compare.checkTime("17:00", p.getGioKetThuc())) {
 
 				if (Compare.checkTimeThan1Hour(p.getGioKetThuc(), p.getGioBatDau())) {
 
@@ -160,7 +156,7 @@ public class DangKyDichVuDao extends BaseDao {
 
 			Date newDate2 = new Date();
 			java.sql.Date newDateSql2 = new java.sql.Date(newDate2.getTime());
-			if (p.getNgayBatDau().before(p.getNgayKetThuc()) && Compare.checkDate(p.getNgayBatDau(), newDateSql2)) {
+			if (p.getNgayBatDau().before(p.getNgayKetThuc()) && p.getNgayBatDau().after(newDateSql2)) {
 
 				String sql = "insert into dangkydichvu(maDichVu,maKhachHang,diaChiSuDungDichVu,ngayBatDau,ngayKetThuc,gioBatDau,gioKetThuc,tinhTrangThanhToan)values('"
 						+ maDichVu + "','" + p.getMaKhachHang() + "','" + p.getDiaChiSuDungDichVu() + "','"
@@ -213,20 +209,10 @@ public class DangKyDichVuDao extends BaseDao {
 				String sqlCheck = "SELECT bangluong.maHSNV,hoTen,maDichVu,idBangLuong,bangluong.maDKDV,bangluong.tinhTrangThanhToan, 5 as tongThanhTien FROM bangluong,hosonhanvien where bangluong.maDKDV = "
 						+ p.getMaDKDV() + "";
 				List<BangLuong> listMaDKDV_InBL = _jdbcTemplate.query(sqlCheck, new BangLuongMapper());
-				if (listMaDKDV_InBL.isEmpty()
-
-						&& p.getNgayBatDau().after(newDateSql2)
+				if (listMaDKDV_InBL.isEmpty() && p.getNgayBatDau().after(newDateSql2)
 						&& Compare.checkTimeHaveSecond(p.getGioBatDau(), "07:00")
 						&& Compare.checkTimeHaveSecond("17:00", p.getGioKetThuc())
-						&& Compare.checkTimeThan1HourHaveSencond(p.getGioKetThuc(), p.getGioBatDau())
-						|| (listMaDKDV_InBL.isEmpty()
-								&& (Compare.checkDateEqual(p.getNgayBatDau().toString(), newDateSql2.toString())
-										&& Compare.checkTimeHaveSecond(p.getGioBatDau(), timeNew))
-								&& Compare.checkTimeHaveSecond(p.getGioBatDau(), "07:00")
-								&& Compare.checkTimeHaveSecond("17:00", p.getGioKetThuc())
-								&& Compare.checkTimeThan1HourHaveSencond(p.getGioKetThuc(), p.getGioBatDau())
-
-						)) {
+						&& Compare.checkTimeThan1HourHaveSencond(p.getGioKetThuc(), p.getGioBatDau())) {
 					String sql = "update dangkydichvu set maKhachHang='" + p.getMaKhachHang() + "',gioBatDau='"
 							+ p.getGioBatDau() + "',gioKetThuc='" + p.getGioKetThuc() + "',tinhTrangThanhToan='"
 							+ p.getTinhTrangThanhToan() + "', ngayBatDau='" + p.getNgayBatDau() + "',ngayKetThuc='"
@@ -241,18 +227,15 @@ public class DangKyDichVuDao extends BaseDao {
 
 				if (p.getNgayBatDau().after(newDateSql2) && Compare.checkTimeHaveSecond(p.getGioBatDau(), "07:00")
 						&& Compare.checkTimeHaveSecond("17:00", p.getGioKetThuc())
-						&& Compare.checkTimeThan1HourHaveSencond(p.getGioKetThuc(), p.getGioBatDau())
-						|| ((Compare.checkDateEqual(p.getNgayBatDau().toString(), newDateSql2.toString())
-								&& Compare.checkTimeHaveSecond(p.getGioBatDau(), timeNew))
-								&& Compare.checkTimeHaveSecond(p.getGioBatDau(), "07:00")
-								&& Compare.checkTimeHaveSecond("17:00", p.getGioKetThuc())
-								&& Compare.checkTimeThan1HourHaveSencond(p.getGioKetThuc(), p.getGioBatDau()))) {
+						&& Compare.checkTimeThan1HourHaveSencond(p.getGioKetThuc(), p.getGioBatDau())) {
 					String sql = "update dangkydichvu set maKhachHang='" + p.getMaKhachHang() + "',gioBatDau='"
 							+ p.getGioBatDau() + "',gioKetThuc='" + p.getGioKetThuc() + "',tinhTrangThanhToan='"
 							+ p.getTinhTrangThanhToan() + "', ngayBatDau='" + p.getNgayBatDau() + "',ngayKetThuc='"
 							+ p.getNgayBatDau() + "',diaChiSuDungDichVu='" + p.getDiaChiSuDungDichVu()
 							+ "' where maDKDV=" + p.getMaDKDV() + "";
 					kq = _jdbcTemplate.update(sql);
+					// nhỏ hơn ngày hiện tại mà ngày bắt cũ giống get ngày bắt đầu thì cho sửa thanh
+					// toán,địa chỉ
 				} else if (p.getNgayBatDau().toString().equals(ngayBatDauCu)) {
 					String sql = "update dangkydichvu set maKhachHang='" + p.getMaKhachHang() + "',tinhTrangThanhToan='"
 							+ p.getTinhTrangThanhToan() + "',diaChiSuDungDichVu='" + p.getDiaChiSuDungDichVu()
@@ -279,8 +262,8 @@ public class DangKyDichVuDao extends BaseDao {
 				String sqlCheck = "SELECT bangluong.maHSNV,hoTen,maDichVu,idBangLuong,bangluong.maDKDV,bangluong.tinhTrangThanhToan, 5 as tongThanhTien FROM bangluong,hosonhanvien where bangluong.maDKDV = "
 						+ p.getMaDKDV() + "";
 				List<BangLuong> listMaDKDV_InBL = _jdbcTemplate.query(sqlCheck, new BangLuongMapper());
-				if (listMaDKDV_InBL.isEmpty() && Compare.checkDate(p.getNgayBatDau(), newDateSql2)
-						&& Compare.checkDate(p.getNgayKetThuc(), p.getNgayBatDau())) {
+				if (listMaDKDV_InBL.isEmpty() && p.getNgayBatDau().after(newDateSql2)
+						&& p.getNgayKetThuc().after(p.getNgayBatDau())) {
 					String sql = "update dangkydichvu set maKhachHang='" + p.getMaKhachHang() + "', ngayBatDau='"
 							+ p.getNgayBatDau() + "',ngayKetThuc='" + p.getNgayKetThuc() + "',diaChiSuDungDichVu='"
 							+ p.getDiaChiSuDungDichVu() + "' ,tinhTrangThanhToan='" + p.getTinhTrangThanhToan()

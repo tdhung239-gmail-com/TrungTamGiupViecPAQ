@@ -9,6 +9,7 @@ public class TuyenDung {
 	private String moTaCongViec;
 	private String quyenLoi;
 	private String yeuCauCongViec;
+	private Integer tatBat;
 	private Integer maDichVu;
 
 	public TuyenDung() {
@@ -16,7 +17,7 @@ public class TuyenDung {
 	}
 
 	public TuyenDung(Integer maTuyenDung, String tieuDeTuyenDung, String moTaChung, String hinhAnh, String moTaCongViec,
-			String quyenLoi, String yeuCauCongViec, Integer maDichVu) {
+			String quyenLoi, String yeuCauCongViec, Integer maDichVu, Integer tatBat) {
 		super();
 		this.maTuyenDung = maTuyenDung;
 		this.tieuDeTuyenDung = tieuDeTuyenDung;
@@ -26,6 +27,7 @@ public class TuyenDung {
 		this.quyenLoi = quyenLoi;
 		this.yeuCauCongViec = yeuCauCongViec;
 		this.maDichVu = maDichVu;
+		this.tatBat = tatBat;
 	}
 
 	public Integer getMaTuyenDung() {
@@ -90,6 +92,14 @@ public class TuyenDung {
 
 	public void setMaDichVu(Integer maDichVu) {
 		this.maDichVu = maDichVu;
+	}
+
+	public Integer getTatBat() {
+		return tatBat;
+	}
+
+	public void setTatBat(Integer tatBat) {
+		this.tatBat = tatBat;
 	}
 
 	@Override

@@ -60,6 +60,11 @@
 	href="<c:url value="/assets/user/css/dangkydv.css"/>">
 <link rel="stylesheet"
 	href="<c:url value="/assets/user/css/nhanvien.css"/>">
+<link rel="stylesheet"
+	href="<c:url value="/assets/user/css/bg_loop_animation.css"/>">
+
+
+
 
 
 <style type="text/css">

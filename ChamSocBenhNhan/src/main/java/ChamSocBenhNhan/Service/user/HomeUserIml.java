@@ -14,16 +14,12 @@ import ChamSocBenhNhan.Entity.User.ListNhanVienvaDichVu;
 import ChamSocBenhNhan.Entity.User.TuyenDung;
 
 @Service
-public class HomeUserIml implements HomeUserService { 
+public class HomeUserIml implements HomeUserService {
 	@Autowired
 	private HomeUsserDao listDao = new HomeUsserDao();
 
 	public List<ListNhanVienvaDichVu> getListCardE() {
 		return listDao.getListCardE();
-	}
-
-	public List<ListNhanVienvaDichVu> searchNameService(String tenDichVu) {
-		return listDao.searchNameService(tenDichVu);
 	}
 
 	public List<ListDangKyDichVu> getTotalRegisterService() {

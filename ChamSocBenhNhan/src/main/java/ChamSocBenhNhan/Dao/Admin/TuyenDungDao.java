@@ -65,12 +65,20 @@ public class TuyenDungDao extends BaseDao {
 
 	public int luuThemTuyenDung(@RequestParam(value = "profile") CommonsMultipartFile file, HttpSession s,
 			ChonDichVu dv, TuyenDung td) {
-
+		List<TuyenDung> list = new ArrayList<TuyenDung>();
+		String sqlMaDV = "SELECT * FROM tuyendung";
+		list = _jdbcTemplate.query(sqlMaDV, new TuyenDungMapper());
+		int check = 0;
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).toString().equals(dv.getMaDichVu().toString())) {
+				check++;
+			}
+		}
 		byte[] data = file.getBytes();
 		String path = s.getServletContext().getRealPath("/") + "assets" + File.separator + "user" + File.separator
 				+ "images" + File.separator + "tuyendung" + File.separator + file.getOriginalFilename();
 		String fileName;
-		if (path != "") {
+		if (path != "" && check == 0) {
 			try {
 				FileOutputStream fos = new FileOutputStream(path);
 				fos.write(data);
@@ -78,10 +86,10 @@ public class TuyenDungDao extends BaseDao {
 				System.out.println("file upload");
 				fileName = file.getOriginalFilename();
 
-				String sql = "insert into tuyendung(tieuDeTuyenDung,moTaChung,hinhAnh,moTaCongViec,quyenLoi,yeuCauCongViec,maDichVu)values('"
+				String sql = "insert into tuyendung(tieuDeTuyenDung,moTaChung,hinhAnh,moTaCongViec,quyenLoi,yeuCauCongViec,maDichVu,tatBat)values('"
 						+ td.getTieuDeTuyenDung() + "','" + td.getMoTaChung() + "','" + fileName + "','"
 						+ td.getMoTaCongViec() + "','" + td.getQuyenLoi() + "','" + td.getYeuCauCongViec() + "','"
-						+ dv.getMaDichVu() + "')";
+						+ dv.getMaDichVu() + "','1')";
 				return _jdbcTemplate.update(sql);
 
 			} catch (IOException e) {
@@ -104,34 +112,80 @@ public class TuyenDungDao extends BaseDao {
 	public int luuSuaTuyenDung(@RequestParam(value = "profile") CommonsMultipartFile file, HttpSession s, TuyenDung p,
 			ChonDichVu dv) {
 
-		byte[] data = file.getBytes();
-		String path = s.getServletContext().getRealPath("/") + "assets" + File.separator + "user" + File.separator
-				+ "images" + File.separator + "nhanvien" + File.separator + file.getOriginalFilename();
-		String fileName = null;
-		if (path != "") {
-			try {
-				FileOutputStream fos = new FileOutputStream(path);
-				fos.write(data);
-				fos.close();
-				System.out.println("file upload");
-				fileName = file.getOriginalFilename();
+		List<TuyenDung> listCheckMaDVTaiMaTD = new ArrayList<TuyenDung>();
+		String sqllistCheckMaDVTaiMaTD = "SELECT * FROM tuyendung where maTuyenDung='" + p.getMaTuyenDung() + "'";
+		listCheckMaDVTaiMaTD = _jdbcTemplate.query(sqllistCheckMaDVTaiMaTD, new TuyenDungMapper());
+		if (listCheckMaDVTaiMaTD.get(0).toString().equals(dv.getMaDichVu().toString())) {
 
-				String sql = "update tuyendung set tieuDeTuyenDung='" + p.getTieuDeTuyenDung() + "', moTaChung='"
-						+ p.getMoTaChung() + "',hinhAnh='" + fileName + "',moTaCongViec='" + p.getMoTaCongViec()
-						+ "',quyenLoi='" + p.getQuyenLoi() + "',yeuCauCongViec='" + p.getYeuCauCongViec()
-						+ "',maDichVu='" + dv.getMaDichVu() + "' where maTuyenDung=" + p.getMaTuyenDung() + "";
-				return _jdbcTemplate.update(sql);
+			byte[] data = file.getBytes();
+			String path = s.getServletContext().getRealPath("/") + "assets" + File.separator + "user" + File.separator
+					+ "images" + File.separator + "nhanvien" + File.separator + file.getOriginalFilename();
+			String fileName = null;
+			if (path != "") {
+				try {
+					FileOutputStream fos = new FileOutputStream(path);
+					fos.write(data);
+					fos.close();
+					System.out.println("file upload");
+					fileName = file.getOriginalFilename();
 
-			} catch (IOException e) {
-				e.printStackTrace();
-				System.out.println("upload eror");
+					String sql = "update tuyendung set tieuDeTuyenDung='" + p.getTieuDeTuyenDung() + "', moTaChung='"
+							+ p.getMoTaChung() + "',hinhAnh='" + fileName + "',moTaCongViec='" + p.getMoTaCongViec()
+							+ "',quyenLoi='" + p.getQuyenLoi() + "',yeuCauCongViec='" + p.getYeuCauCongViec()
+							+ "',maDichVu='" + dv.getMaDichVu() + "' where maTuyenDung=" + p.getMaTuyenDung() + "";
+					return _jdbcTemplate.update(sql);
 
-				String sql = "update tuyendung set tieuDeTuyenDung='" + p.getTieuDeTuyenDung() + "', moTaChung='"
-						+ p.getMoTaChung() + "',moTaCongViec='" + p.getMoTaCongViec() + "',quyenLoi='" + p.getQuyenLoi()
-						+ "',yeuCauCongViec='" + p.getYeuCauCongViec() + "',maDichVu='" + dv.getMaDichVu()
-						+ "' where maTuyenDung=" + p.getMaTuyenDung() + "";
-				return _jdbcTemplate.update(sql);
+				} catch (IOException e) {
+					e.printStackTrace();
+					System.out.println("upload eror");
+
+					String sql = "update tuyendung set tieuDeTuyenDung='" + p.getTieuDeTuyenDung() + "', moTaChung='"
+							+ p.getMoTaChung() + "',moTaCongViec='" + p.getMoTaCongViec() + "',quyenLoi='"
+							+ p.getQuyenLoi() + "',yeuCauCongViec='" + p.getYeuCauCongViec() + "',maDichVu='"
+							+ dv.getMaDichVu() + "' where maTuyenDung=" + p.getMaTuyenDung() + "";
+					return _jdbcTemplate.update(sql);
+				}
 			}
+		} else {
+			List<TuyenDung> list = new ArrayList<TuyenDung>();
+			String sqlMaDV = "SELECT * FROM tuyendung";
+			list = _jdbcTemplate.query(sqlMaDV, new TuyenDungMapper());
+			int check = 0;
+			for (int i = 0; i < list.size(); i++) {
+				if (list.get(i).toString().equals(dv.getMaDichVu().toString())) {
+					check++;
+				}
+			}
+			byte[] data = file.getBytes();
+			String path = s.getServletContext().getRealPath("/") + "assets" + File.separator + "user" + File.separator
+					+ "images" + File.separator + "nhanvien" + File.separator + file.getOriginalFilename();
+			String fileName = null;
+			if (path != "" && check == 0) {
+				try {
+					FileOutputStream fos = new FileOutputStream(path);
+					fos.write(data);
+					fos.close();
+					System.out.println("file upload");
+					fileName = file.getOriginalFilename();
+
+					String sql = "update tuyendung set tieuDeTuyenDung='" + p.getTieuDeTuyenDung() + "', moTaChung='"
+							+ p.getMoTaChung() + "',hinhAnh='" + fileName + "',moTaCongViec='" + p.getMoTaCongViec()
+							+ "',quyenLoi='" + p.getQuyenLoi() + "',yeuCauCongViec='" + p.getYeuCauCongViec()
+							+ "',maDichVu='" + dv.getMaDichVu() + "' where maTuyenDung=" + p.getMaTuyenDung() + "";
+					return _jdbcTemplate.update(sql);
+
+				} catch (IOException e) {
+					e.printStackTrace();
+					System.out.println("upload eror");
+
+					String sql = "update tuyendung set tieuDeTuyenDung='" + p.getTieuDeTuyenDung() + "', moTaChung='"
+							+ p.getMoTaChung() + "',moTaCongViec='" + p.getMoTaCongViec() + "',quyenLoi='"
+							+ p.getQuyenLoi() + "',yeuCauCongViec='" + p.getYeuCauCongViec() + "',maDichVu='"
+							+ dv.getMaDichVu() + "' where maTuyenDung=" + p.getMaTuyenDung() + "";
+					return _jdbcTemplate.update(sql);
+				}
+			}
+
 		}
 		return 0;
 
@@ -140,6 +194,12 @@ public class TuyenDungDao extends BaseDao {
 	public int xoaTuyenDung(int id) {
 
 		String sql = "delete from tuyendung where maTuyenDung=" + id + "";
+		return _jdbcTemplate.update(sql);
+
+	}
+
+	public int tatBatTuyenDung(int id, int tatBat) {
+		String sql = "update tuyendung set tatBat=" + tatBat + " where maTuyenDung=" + id + "";
 		return _jdbcTemplate.update(sql);
 
 	}

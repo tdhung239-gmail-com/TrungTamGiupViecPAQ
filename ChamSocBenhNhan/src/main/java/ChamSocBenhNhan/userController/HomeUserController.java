@@ -24,42 +24,21 @@ import ChamSocBenhNhan.Entity.User.ListNhanVienvaDichVu;
 import ChamSocBenhNhan.Service.user.HomeUserIml;
 
 @Controller
-public class HomeUserController extends BaseControlUser {  
-	@Autowired  
-	private HomeUserIml listhome = new HomeUserIml();  
+public class HomeUserController extends BaseControlUser {
+	@Autowired
+	private HomeUserIml listhome = new HomeUserIml();
 
-	@RequestMapping(value = { "/home" }) 
-	public ModelAndView home(HttpSession ss) { 
+	@RequestMapping(value = { "/home" })
+	public ModelAndView home(HttpSession ss) {
 		_mvShare.addObject("nhanvienn", listhome.getListCardE());
-		ss.setAttribute("listdichvu", listhome.getListService()); 
-		ss.setAttribute("listtuyendung", listhome.getListReruitment()); 
+		ss.setAttribute("listdichvu", listhome.getListService());
+		ss.setAttribute("listtuyendung", listhome.getListReruitment());
 		_mvShare.addObject("totalRegisterService", listhome.getTotalRegisterService());
 		_mvShare.setViewName("user/index");
 		ss.removeAttribute("limit");
-		return _mvShare; 
-
-	} 
-	
-	@RequestMapping(value = { "/home/search" })
-	public ModelAndView searchService(String emp) {
-		if (listhome.searchNameService(emp)!=null) {
-			String message = "<script>alert('Gửi liên hệ thành công!!!');</script>";
-			try {
-				_mvShare.setViewName("redirect:/home/lienhe?message=" + URLEncoder.encode(message, "UTF-8"));
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
-		} else {
-			String message = "<script>alert('Gửi liên hệ không thành công!!!');</script>";
-			try {
-				_mvShare.setViewName("redirect:/home/lienhe?message=" + URLEncoder.encode(message, "UTF-8"));
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
-		}
 		return _mvShare;
-	}
 
+	}
 
 	@RequestMapping(value = { "/home/gioithieu" })
 	public ModelAndView gioithieu(HttpSession ss) {
@@ -77,7 +56,7 @@ public class HomeUserController extends BaseControlUser {
 	}
 
 	// tuyên dụng
-	
+
 	@RequestMapping(value = { "/home/cttd/{maTuyenDung}" })
 	public String chitiettuyendung(HttpSession ss, @PathVariable int maTuyenDung, Model m) {
 		// _mvShare.addObject("cttdd", listhome.getListChiTietTuyenDung());
@@ -109,9 +88,8 @@ public class HomeUserController extends BaseControlUser {
 				if (listhome.saveRegisterRecruitment(dv, hsnv, fileName) == 1) {
 					String message = "<script>alert('Chúc mừng bạn đã đăng ký tuyển dụng thành công!!!');</script>";
 
-					return "redirect:/home/cttd/" + maTuyenDung + "?message="
-							+ URLEncoder.encode(message, "UTF-8");
-				}else if ( listhome.saveRegisterRecruitment(dv, hsnv, fileName) == 5) {
+					return "redirect:/home/cttd/" + maTuyenDung + "?message=" + URLEncoder.encode(message, "UTF-8");
+				} else if (listhome.saveRegisterRecruitment(dv, hsnv, fileName) == 5) {
 					String message = "<script>alert('Bạn đã đăng ký tuyển dụng không thành công, nhập số điện thoại phải từ 10-11 số !!!');</script>";
 
 					return "redirect:/home/cttd/" + maTuyenDung + "?message=" + URLEncoder.encode(message, "UTF-8");
@@ -132,36 +110,36 @@ public class HomeUserController extends BaseControlUser {
 		return "redirect:/home/cttd/" + maTuyenDung + "?message=" + URLEncoder.encode(message, "UTF-8");
 
 	}
-	
+
 	// đóng tuyển dụng
-	
-	@RequestMapping(value = { "/home/lienhe" }) 
-	public ModelAndView lienhe(HttpSession ss) { 
-		ss.removeAttribute("limit"); 
-		_mvShare.addObject("command", new LienHe()); 
-		_mvShare.setViewName("user/lienhe"); 
-		return _mvShare; 
-	} 
 
-	@RequestMapping(value = { "/home/lienhe/save" }) 
-	public ModelAndView saveLienhe(LienHe emp) { 
-		int kq = listhome.saveContent(emp); 
-		if (kq != 0) { 
-			String message = "<script>alert('Gửi liên hệ thành công!!!');</script>"; 
-			try { 
-				_mvShare.setViewName("redirect:/home/lienhe?message=" + URLEncoder.encode(message, "UTF-8")); 
-			} catch (UnsupportedEncodingException e) { 
-				e.printStackTrace(); 
-			} 
-		} else { 
-			String message = "<script>alert('Gửi liên hệ không thành công!!!');</script>"; 
-			try { 
-				_mvShare.setViewName("redirect:/home/lienhe?message=" + URLEncoder.encode(message, "UTF-8")); 
-			} catch (UnsupportedEncodingException e) { 
-				e.printStackTrace(); 
-			} 
-		} 
-		return _mvShare; 
-	} 
+	@RequestMapping(value = { "/home/lienhe" })
+	public ModelAndView lienhe(HttpSession ss) {
+		ss.removeAttribute("limit");
+		_mvShare.addObject("command", new LienHe());
+		_mvShare.setViewName("user/lienhe");
+		return _mvShare;
+	}
 
-} 
+	@RequestMapping(value = { "/home/lienhe/save" })
+	public ModelAndView saveLienhe(LienHe emp) {
+		int kq = listhome.saveContent(emp);
+		if (kq != 0) {
+			String message = "<script>alert('Gửi liên hệ thành công!!!');</script>";
+			try {
+				_mvShare.setViewName("redirect:/home/lienhe?message=" + URLEncoder.encode(message, "UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		} else {
+			String message = "<script>alert('Gửi liên hệ không thành công!!!');</script>";
+			try {
+				_mvShare.setViewName("redirect:/home/lienhe?message=" + URLEncoder.encode(message, "UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
+		return _mvShare;
+	}
+
+}
