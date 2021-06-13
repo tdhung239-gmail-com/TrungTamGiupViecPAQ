@@ -204,7 +204,7 @@
 							<c:forEach var="item" items="${ ctdv }">
 								<!-- tên khách hàng -->
 								<tr>
-									<td style="padding-left: 100px;">Tên Khách Hàng<span
+									<td style="padding-left: 100px;font-style: italic; font-weight: bold;">Tên Khách Hàng<span
 										class="text-danger"> *</span></td>
 								</tr>
 								<tr>
@@ -216,7 +216,7 @@
 
 									<!-- sđt -->
 								<tr>
-									<td style="padding-left: 100px;">Phone<span
+									<td style="padding-left: 100px;font-style: italic; font-weight: bold;">Số Điện Thoại<span
 										class="text-danger"> *</span></td>
 								</tr>
 								<tr>
@@ -227,7 +227,7 @@
 
 									<!-- địa chỉ -->
 								<tr>
-									<td style="padding-left: 100px;">Địa Chỉ<span
+									<td style="padding-left: 100px;font-style: italic; font-weight: bold;">Địa Chỉ Khách hàng<span
 										class="text-danger"> *</span></td>
 								</tr>
 								<tr>
@@ -238,22 +238,55 @@
 
 									<!-- địa chỉ sử dụng dịch vụ -->
 								<tr>
-									<td style="padding-left: 100px;">Địa Chỉ Sử Dụng Dịch Vụ<span
+									<td style="padding-left: 100px; font-style: italic; font-weight: bold;">Nhập Địa Chỉ Sử Dụng Dịch Vụ Trong Khu Vực ĐÀ NẴNG<span
+										class="text-danger"> *</span></td>
+								</tr>
+								<tr>
+									<td style="padding-left: 100px;font-style: italic;">Chọn Quận<span
+										class="text-danger"> *</span></td>
+								</tr>
+								<tr>
+                     				 <td style="padding-left: 100px;">
+                     					 <form:select id="city" onchange="ChangeCityList()" required="required"	path="diaChiQuan" >
+  											<option value="">-- Chọn Quận --</option> 
+  											<option value="Cẩm Lệ">Cẩm Lệ</option> 
+ 											<option value="Hải Châu">Hải Châu</option> 
+ 										 	<option value="Liên Chiểu">Liên Chiểu</option> 
+    										<option value="Ngũ Hành Sơn">Ngũ Hành Sơn</option> 
+      										<option value="Sơn Trà">Sơn Trà</option> 
+       									<option value="Thanh Khê">Thanh Khê</option> 
+										</form:select>
+									</td>
+								
+								<tr>
+								<tr>
+									<td style="padding-left: 100px;font-style: italic;">Chọn Phường<span class="text-danger"> *</span></td>
+								</tr>
+								
+								<tr>
+									<td style="padding-left: 100px;">
+										<form:select id="citymodel" path="diaChiPhuong">
+										<option value="">-- Chọn Phường --</option> 
+											</form:select> 
+									</td>
+								<tr>
+								<tr>
+									<td style="padding-left: 100px;font-style: italic;">Nhập Địa Chỉ Kiệt<span
 										class="text-danger"> *</span></td>
 								</tr>
 								<tr>
 									<td style="padding-left: 100px;"><form:input
-											path="diaChiSuDungDichVu" required="required" size="62" /></td>
+											path="diaChiKiet" required="required" size="62" /></td>
 								<tr>
 									<!-- đóng địa chỉ sử dụng dịch vụ -->
 
 									<!-- hieeurn thị tiêu đề ngày bắt đầu, giờ bắt đầu -->
 								<tr>
-									<td style="padding-left: 100px;">Ngày bắt đầu<span
+									<td style="padding-left: 100px;font-style: italic; font-weight: bold;">Ngày bắt đầu<span
 										class="text-danger"> *</span> <!-- x --> <c:if
 											test="${ item.phiDichVuTheoGio ==0   }">
 										</c:if> <c:if test="${item.phiDichVuTheoGio !=0  }">
-											<label style="margin-left: 320px;"> Giờ bắt đầu <span
+											<label style="margin-left: 320px;font-style: italic; font-weight: bold;" > Giờ bắt đầu <span
 												class="text-danger"> *</span></label>
 										</c:if>
 									</td>
@@ -275,14 +308,14 @@
 
 								<!-- hieeurn thị tiêu đề ngày kết thúc, giờ kết thúc -->
 								<tr>
-									<td style="padding-left: 100px;"><c:if
+									<td style="padding-left: 100px;font-style: italic; font-weight: bold;"><c:if
 											test="${ item.phiDichVuTheoGio ==0  }">
 									Ngày kết thúc<span class="text-danger"> *</span>
 										</c:if> <c:if test="${item.phiDichVuTheoGio !=0 }">
   									 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
 									</c:if> <!-- gio --> <c:if test="${ item.phiDichVuTheoGio ==0   }"></c:if>
 										<c:if test="${item.phiDichVuTheoGio !=0  }">
-											<label style="margin-left: 320px;"> Giờ kết thúc <span
+											<label style="margin-left: 320px;font-style: italic; font-weight: bold;"> Giờ kết thúc <span
 												class="text-danger"> *</span></label>
 										</c:if></td>
 								</tr>
@@ -323,7 +356,33 @@
 	</div>
 	<!-- Row end -->
 </div>
+<script>
+var citysAndModels = {};
+citysAndModels['Cẩm Lệ'] = ['Hòa An', 'Hòa Phát', 'Hòa Thọ Đông', 'Hòa Thọ Tây', 'Hòa Xuân'];
+citysAndModels['Hải Châu'] = ['Bình Hiên', 'Bình Thuận', 'Hải Châu 1', 'Hải Châu 2', 'Hòa Cường Bắc', 'Hòa Cường Nam', 'Thạch Thang', 'Thanh Bình', 'Phước Ninh'];
+citysAndModels['Liên Chiểu'] = ['Hòa Hiệp Bắc', 'Hòa Hiệp Nam', 'Hòa Khánh Bắc', 'Hòa Khánh Nam', 'Hòa Minh'];
+citysAndModels['Ngũ Hành Sơn'] = ['Hòa Hải', 'Hòa Quý', 'Khuê Mỹ', 'Mỹ An'];
+citysAndModels['Sơn Trà'] = ['An Hải Bắc', 'An Hải Đông', 'An Hải Tây', 'Mân Thái', 'Nại Hiên Đông','Thọ Quang'];
+citysAndModels['Thanh Khê'] = ['An Khê', 'Chính Gián', 'Hòa Khê', 'Thạc Gián', 'Tân Chính', 'Thanh Khê Đông', 'Thanh Khê Tây', 'Vĩnh Trung', 'Xuân Hà'];
 
+function ChangeCityList() {
+	
+  var cityList = document.getElementById("city");
+  var modelList = document.getElementById("citymodel");
+  var vlcity = cityList.options[cityList.selectedIndex].value;
+  
+  while (modelList.options.length) {
+    modelList.remove(0);
+  }
+  var citys = citysAndModels[vlcity];
+    var i;
+    for (i = 0; i < citys.length; i++) {
+      var city = new Option(citys[i]);
+      modelList.options.add(city);
+  }
+} 
+
+</script>
 <!--đóng đăng ký dịch vụ-->
 
 <!--Những con số ấn tượng -->
@@ -388,7 +447,7 @@
 <!--  comment  -->
 <section id="ts-features" class="ts-features">
 	<div class="container"
-		style="box-shadow: 0 6px 12px rgba(0, 0, 0, 12); border-radius: 10px 10px; background: black;">
+		style="box-shadow: 0 6px 12px rgba(100, 100, 100, 12); border-radius: 10px 10px; background: #D3D3D3;">
 		<div class="row ">
 			<div class="col-lg-12"
 				style="border-bottom: solid 1px #DDDDDD; bottom: 10px;">
@@ -401,12 +460,12 @@
 
 				<c:if test="${ limit=='commentAll'  }">
 					<a
-						style="float: right; font-size: 23px; color: white; font-family: Times New Roman; margin-top: 28px;"
+						style="float: right; font-size: 23px; color: black; font-family: Times New Roman; margin-top: 28px;"
 						href="${idDichVu}/recordCommentAll">>> Thu gọn đánh giá<<</a>
 				</c:if>
 				<c:if test="${ limit!='commentAll'  }">
 					<a
-						style="float: right; font-size: 23px; color: white; font-family: Times New Roman; margin-top: 28px; color: #FDC830;"
+						style="float: right; font-size: 23px; color: black; font-family: Times New Roman; margin-top: 28px;"
 						href="${idDichVu}/commentAll">>>Xem tất cả đánh giá<<</a>
 				</c:if>
 
@@ -425,10 +484,10 @@
 					placeholder="enter name" />
 				<form:textarea path="noiDung" required="required" rows="4"
 					cols="100" placeholder="add comment" />
-				<label style="font-size: 19px; color: white;"> <label
+				<label style="font-size: 19px; color: black;"> <label
 					style="color: red;">*</label>Thêm ảnh:
 				</label> &nbsp &nbsp &nbsp &nbsp <input type="file" name="profile" /> </br> <label
-					style="font-size: 19px; color: white;"> <label
+					style="font-size: 19px; color: black;"> <label
 					style="color: red;">*</label>Thêm video:
 				</label> &nbsp &nbsp  <input type="file"
 					name="profile2" /> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
@@ -453,13 +512,13 @@
 					<p
 						style="font-size: 23px; font-weight: bold; color: orange; font-weight: 600;">-
 						${item.hoTen} :</p>
-					<p style="font-size: 20px; font-weight: 600;">${item.noiDung}</p>
+					<p style="font-size: 20px; font-weight: 600; margin-left: 15px;">${item.noiDung}</p>
 					<c:if test="${item.hinhAnh != ' '  }">
 						<section id="ts-features" class="ts-features">
 							<div class="container">
 								<img
 									src="<c:url value="/assets/user/images/imageComment/${item.hinhAnh}"/>"
-									style="box-shadow: 0px 0px 5px 5px; height: 600px; width: 1000px; border-radius: 30px 30px;"
+									style="box-shadow: 0px 0px 3px 3px; height: 600px; width: 1000px; border-radius: 30px 30px;"
 									alt="HinhAnhDanhGiaGiupViec">
 							</div>
 						</section>
@@ -489,13 +548,13 @@
 </section>
 <!--  comment close -->
 
-
-<button data-id="${ item.ida}" class="btn btn-mini btn-danger s"
+${param.message}
+<!-- <button data-id="${ item.ida}" class="btn btn-mini btn-danger s"
 	type="button">
 	<span class="icon-remove"></span>
 </button>
  
-${param.message}
+
 
 <content tag="script"> <script>
 	$(".s").on("click", function() {
@@ -504,4 +563,4 @@ ${param.message}
 		alert(h);
 		alert(hh);
 	});
-</script> </content>
+</script> </content> -->

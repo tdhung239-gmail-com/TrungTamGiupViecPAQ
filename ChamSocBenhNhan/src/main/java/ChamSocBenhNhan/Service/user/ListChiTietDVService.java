@@ -38,12 +38,12 @@ public interface ListChiTietDVService {
 	@Autowired
 	public List<ListDangKyDichVu> getRegisterServiceForCustomer(int maKhachHang); 
 
-	@Autowired
+	/* @Autowired
 	public List<ListDangKyDichVu> getDangKyDichVu();
 
 	@Autowired
 	public List<ListDangKyDichVu> getTongThanhTienDangKyDichVu();
-	
+	*/
 	//Những con số ấn tượng
 	
 	public List<BangLuong> getGioLamViecTrongNam();

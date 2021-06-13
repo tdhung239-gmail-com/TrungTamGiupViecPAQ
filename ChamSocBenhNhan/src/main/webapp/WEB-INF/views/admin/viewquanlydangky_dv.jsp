@@ -10,7 +10,7 @@
 		${param.message}
 		<div class="container-fluid">
 			<ol class="breadcrumb mb-4">
-				<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+				<li class="breadcrumb-item"><a href="<c:url value="/quan-li/${okee }/${okee2 }"/>">Dashboard</a></li>
 				<li class="breadcrumb-item active">Bảng đăng ký dịch vụ</li>
 			</ol>
 
@@ -131,12 +131,13 @@
 										</c:if> <c:if test="${item.tinhTrangThanhToan != 'chua'  }">
 											 đã thanh toán
 										</c:if></label></td>
-										<td><label><a class="funtion"
-												style="border-radius: 10px 10px; background: black; color: white; padding: 5px 5px; box-shadow: 0 6px 12px 0 rgb(0 0 0/ 20%); text-decoration: none;"
-												href="SuaDKDV/${item.maDKDV}/${item.maDichVu}">Cập nhật</a>
-												&nbsp  <a class="funtion"
+										<td><a class="funtion"
+												style="text-align:justify; border-radius: 10px 10px; background: black; color: white; padding: 5px 5px; box-shadow: 0 6px 12px 0 rgb(0 0 0/ 20%); text-decoration: none;"
+												href="SuaDKDV/${item.maDKDV}/${item.maDichVu}">Update</a>
+												</br> </br><label> <a class="funtion"
 												style="border-radius: 10px 10px; background: black; color: white; padding: 5px 5px; text-decoration: none; box-shadow: 0 6px 12px 0 rgb(0 0 0/ 20%);"
-												href="xoaDKDV/${item.maDKDV}">Xóa</a> </label> <label><a
+												href="xoaDKDV/${item.maDKDV}">Xóa</a> </label>
+												 <label><a
 												style="text-decoration: none;"
 												href="/ChamSocBenhNhan/quan-li/khach-hang/${item.maKhachHang}">Xem
 													hồ sơ khách hàng</a> </label></td>

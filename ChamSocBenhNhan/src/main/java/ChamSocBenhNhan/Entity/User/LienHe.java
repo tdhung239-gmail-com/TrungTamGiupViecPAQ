@@ -1,17 +1,21 @@
 package ChamSocBenhNhan.Entity.User;
 
+import java.math.BigDecimal;
+
 public class LienHe {
 	private String tenLienHe;
 	private String email;
+	private BigDecimal sdt;
 	private String thongDiep;
 	public LienHe() {
 		// TODO Auto-generated constructor stub
 	}
-	public LienHe(String tenLienHe, String email, String thongDiep) {
+	public LienHe(String tenLienHe, String email, String thongDiep,BigDecimal sdt) {
 		super();
 		this.tenLienHe = tenLienHe;
 		this.email = email;
 		this.thongDiep = thongDiep;
+		this.sdt=sdt;
 	}
 	public String getTenLienHe() {
 		return tenLienHe;
@@ -24,6 +28,12 @@ public class LienHe {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public BigDecimal getSdt() {
+		return sdt;
+	}
+	public void setSdt(BigDecimal sdt) {
+		this.sdt = sdt;
 	}
 	public String getThongDiep() {
 		return thongDiep;

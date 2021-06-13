@@ -56,6 +56,14 @@ ${param.message}
 					path="hinhanh" /></td>
 			<tr>
 			<tr>
+				<td style="font-size: 18px;">Chọn tình trạng làm việc : &nbsp &nbsp
+				</td>
+				<td style="font-size: 18px; width: 120px;"><form:select
+						path="tinhTrangLamViec" items="${chonTinhTrangLV}">
+
+					</form:select></td>
+			</tr>
+			<tr>
 				<td style="font-size: 18px;">Chọn dịch vụ : &nbsp &nbsp
 				</td>
 				<td style="font-size: 18px; width: 120px;"><form:select

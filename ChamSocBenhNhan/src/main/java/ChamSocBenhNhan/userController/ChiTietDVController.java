@@ -43,6 +43,7 @@ public class ChiTietDVController extends BaseControlUser {
 		m.addAttribute("tongKhachHangDuocPhucVu", listcttd.getTongSoKhachHangDuocPhucVu());
 
 		// enter and get data form
+
 		m.addAttribute("command", new ListDangKyDichVu());
 
 		return "user/chitietdichvu";
@@ -88,7 +89,7 @@ public class ChiTietDVController extends BaseControlUser {
 
 		int kq = listcttd.saveRegisterService(emp, maDichVu, maKhachHang);
 		if (kq == 0) {
-			String message = "<script>alert('Bạn nhập ngày giờ không chính xác, mời bạn nhập lại đúng ngày lớn hơn ngày hiện tại, giờ nằm trong khung giờ 7:00-17:00 !!!');</script>";
+			String message = "<script>alert('Bạn nhập ngày giờ không chính xác, mời bạn nhập lại đúng ngày lớn hơn ngày hiện tại, ngày kết thúc lớn hơn ngày bắt đầu, giờ nằm trong khung giờ 7:00-17:00 !!!');</script>";
 			try {
 				return "redirect:/home/ctdv/" + maDichVu + "?message=" + URLEncoder.encode(message, "UTF-8");
 			} catch (UnsupportedEncodingException e) {
@@ -116,7 +117,7 @@ public class ChiTietDVController extends BaseControlUser {
 		return "user/tt_dondangky_dv";
 	}
 
-	// bảng quản ký đăng ký dịch vụ
+	/* bảng quản ký đăng ký dịch vụ
 
 	@RequestMapping(value = "/home/save/1")
 	public String showform(Model m) {
@@ -126,6 +127,6 @@ public class ChiTietDVController extends BaseControlUser {
 		m.addAttribute("sum", sum);
 		m.addAttribute("command", new ListDangKyDichVu());
 		return "user/view";
-	}
+	} */
 
 }

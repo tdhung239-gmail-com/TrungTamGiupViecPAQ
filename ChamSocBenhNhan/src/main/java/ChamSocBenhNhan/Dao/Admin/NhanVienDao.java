@@ -151,7 +151,7 @@ public class NhanVienDao extends BaseDao {
 							String sql = "update hosonhanvien set hoTen='" + p.getHoTen() + "', namSinh='"
 									+ p.getNamSinh() + "',queQuan='" + p.getQueQuan() + "',sdt='" + p.getSdt()
 									+ "',noiCuTruHienTai='" + p.getNoiCuTruHienTai() + "',hinhanh='" + fileName
-									+ "',maDichVu='" + dv.getMaDichVu() + "' where maHSNV=" + p.getMaHSNV() + "";
+									+ "',tinhTrangLamViec='" + p.getTinhTrangLamViec() + "',maDichVu='" + dv.getMaDichVu() + "' where maHSNV=" + p.getMaHSNV() + "";
 							return _jdbcTemplate.update(sql); 
 						} else { 
 
@@ -162,7 +162,7 @@ public class NhanVienDao extends BaseDao {
 								String sql = "update hosonhanvien set hoTen='" + p.getHoTen() + "', namSinh='"
 										+ p.getNamSinh() + "',queQuan='" + p.getQueQuan() + "',sdt='" + p.getSdt()
 										+ "',noiCuTruHienTai='" + p.getNoiCuTruHienTai() + "',hinhanh='" + fileName
-										+ "',maDichVu='" + dv.getMaDichVu() + "' where maHSNV=" + p.getMaHSNV() + "";
+										+ "',tinhTrangLamViec='" + p.getTinhTrangLamViec() + "',maDichVu='" + dv.getMaDichVu() + "' where maHSNV=" + p.getMaHSNV() + "";
 								return _jdbcTemplate.update(sql); 
 							} else { 
 								return 11; 
@@ -190,7 +190,7 @@ public class NhanVienDao extends BaseDao {
 							String sql = "update hosonhanvien set hoTen='" + p.getHoTen() + "', namSinh='"
 									+ p.getNamSinh() + "',queQuan='" + p.getQueQuan() + "',sdt='" + p.getSdt()
 									+ "',noiCuTruHienTai='" + p.getNoiCuTruHienTai() + "',hinhanh='" + p.getHinhanh()
-									+ "',maDichVu='" + dv.getMaDichVu() + "' where maHSNV=" + p.getMaHSNV() + "";
+									+ "',tinhTrangLamViec='" + p.getTinhTrangLamViec() + "',maDichVu='" + dv.getMaDichVu() + "' where maHSNV=" + p.getMaHSNV() + "";
 							return _jdbcTemplate.update(sql); 
 						} else { 
 							String sqlCheck = "SELECT bangluong.maHSNV,hoTen,maDichVu,idBangLuong,bangluong.maDKDV,bangluong.tinhTrangThanhToan, 5 as tongThanhTien FROM bangluong,hosonhanvien where hosonhanvien.maHSNV = bangluong.maHSNV and bangluong.maHSNV = "
@@ -200,7 +200,7 @@ public class NhanVienDao extends BaseDao {
 								String sql = "update hosonhanvien set hoTen='" + p.getHoTen() + "', namSinh='"
 										+ p.getNamSinh() + "',queQuan='" + p.getQueQuan() + "',sdt='" + p.getSdt()
 										+ "',noiCuTruHienTai='" + p.getNoiCuTruHienTai() + "',hinhanh='"
-										+ p.getHinhanh() + "',maDichVu='" + dv.getMaDichVu() + "' where maHSNV="
+										+ p.getHinhanh() + "',tinhTrangLamViec='" + p.getTinhTrangLamViec() + "',maDichVu='" + dv.getMaDichVu() + "' where maHSNV="
 										+ p.getMaHSNV() + ""; 
 								return _jdbcTemplate.update(sql); 
 							} else { 

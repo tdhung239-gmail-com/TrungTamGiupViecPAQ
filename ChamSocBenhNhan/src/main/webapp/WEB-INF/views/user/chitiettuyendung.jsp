@@ -19,8 +19,9 @@
 <c:forEach var="item" items="${ cttd }">
 
 	<c:if test="${ item.tatBat == '0' }">
-									<h1 style="text-align: center;color: red;margin: 80px;">Hiện tại trung tâm PAQ không tuyển dụng dịch vụ này!!!</h1> 
-											</c:if>
+		<h1 style="text-align: center; color: red; margin: 80px;">Hiện
+			tại trung tâm PAQ không tuyển dụng dịch vụ này!!!</h1>
+	</c:if>
 	<c:if test="${ item.tatBat == '1' }">
 									
 											
@@ -119,10 +120,12 @@ ${param.message}
 
 								<c:forEach var="item" items="${ cttd }">
 									<c:set var="idTuyenDung" value="${item.maTuyenDung}" />
+										<c:set var="maDichVu" value="${item.maDichVu}" />
+									
 								</c:forEach>
 
 								<form:form method="post" enctype="multipart/form-data"
-									action="/ChamSocBenhNhan/home/cttd/save/${idTuyenDung }">
+									action="/ChamSocBenhNhan/home/cttd/save/${idTuyenDung }/${maDichVu}">
 
 									<table style="width: 100%; text-align: left;">
 										<!-- X -->
@@ -172,7 +175,7 @@ ${param.message}
 											<td style=""><input type="file" required="required"
 												name="profile" /></td>
 										<tr>
-										<tr>
+											<!-- <tr>
 											<td style="">Chọn dịch vụ <span class="text-danger">
 													*</span></td>
 										</tr>
@@ -183,9 +186,8 @@ ${param.message}
 													style=" font-size: 18px; width: 230px;">
 
 												</form:select></td>
-										</tr>
-										<!-- đóng địa chỉ sử dụng dịch vụ -->
-
+										</tr>  -->
+											<!-- đóng địa chỉ sử dụng dịch vụ -->
 									</table>
 
 									<div class="row justify-content-center">

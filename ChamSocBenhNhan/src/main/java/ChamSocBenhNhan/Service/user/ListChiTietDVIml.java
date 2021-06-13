@@ -18,7 +18,7 @@ import ChamSocBenhNhan.Entity.User.ListNhanVienvaDichVu;
 public class ListChiTietDVIml implements ListChiTietDVService {
 	@Autowired
 	private ChiTietDichVuDao listcttd = new ChiTietDichVuDao();
-
+	
 	public List<ListNhanVienvaDichVu> getServiceById(int id) {
 		return listcttd.getServiceById(id);
 	}
@@ -54,7 +54,7 @@ public class ListChiTietDVIml implements ListChiTietDVService {
 		
 	}
 
-	// bảng quản ký đăng ký dịch vụ
+	/* bảng quản ký đăng ký dịch vụ
 	public List<ListDangKyDichVu> getDangKyDichVu() {
 		return listcttd.getDangKyDichVu();
 		
@@ -63,7 +63,7 @@ public class ListChiTietDVIml implements ListChiTietDVService {
 	public List<ListDangKyDichVu> getTongThanhTienDangKyDichVu() {
 		return listcttd.getTongThanhTienDangKyDichVu();
 		
-	}
+	} */
 	
 	
 	//Những con số ấn tượng

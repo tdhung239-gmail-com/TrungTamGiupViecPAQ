@@ -58,7 +58,7 @@
 										<h5
 											style="color: black; font-family: Times New Roman; font-size: 18px;">
 											<c:if test="${ item.tinhTrangLamViec == 'ranh' }">
-									- Hiện tại: Đang rãnh
+									- Hiện tại: Đang rảnh
 											</c:if>
 											<c:if test="${ item.tinhTrangLamViec != 'ranh' }">
 									- Hiện tại: Đang bận

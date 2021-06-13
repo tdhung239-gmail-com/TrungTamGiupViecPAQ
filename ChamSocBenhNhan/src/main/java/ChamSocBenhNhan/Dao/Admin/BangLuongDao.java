@@ -220,7 +220,7 @@ public class BangLuongDao extends BaseDao {
 				String sqlCheckIdDKDVInBL = "SELECT bangluong.maHSNV,hoTen,maDichVu,idBangLuong,bangluong.maDKDV,bangluong.tinhTrangThanhToan, 5 as tongThanhTien FROM bangluong,hosonhanvien where hosonhanvien.maHSNV = bangluong.maHSNV and bangluong.maDKDV = "
 						+ p.getMaDKDV() + " and bangluong.maHSNV=" + p.getMaHSNV() + " and bangluong.maDKDV!="
 						+ maDKDVcu + "";
-				List<BangLuong> listCheckIdDKDVInBL = _jdbcTemplate.query(sqlCheckIdDKDVInBL, new BangLuongMapper());
+				List<BangLuong> listCheckIdDKDVOfEInBL = _jdbcTemplate.query(sqlCheckIdDKDVInBL, new BangLuongMapper());
 
 				// check tồn tại nhân viên đã đc phân công trong bảng lương, nếu chưa tồn tại
 				// thêm thắng
@@ -235,7 +235,7 @@ public class BangLuongDao extends BaseDao {
 					}
 					return 10;
 				}
-				if (!CheckIdExistDKDV.isEmpty() && listCheckIdDKDVInBL.isEmpty()) {
+				if (!CheckIdExistDKDV.isEmpty() && listCheckIdDKDVOfEInBL.isEmpty()) {
 
 					String sqlCheckDateOfDKDV = "SELECT ngayBatDau, ngayKetThuc FROM dangkydichvu where dangkydichvu.maDKDV = "
 							+ p.getMaDKDV() + "";

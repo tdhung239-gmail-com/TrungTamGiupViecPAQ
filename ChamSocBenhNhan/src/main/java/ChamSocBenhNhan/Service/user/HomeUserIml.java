@@ -44,8 +44,8 @@ public class HomeUserIml implements HomeUserService {
 		return listDao.getListValueServiceOfDetailRecruitment(); 
 	} 
 
-	public int saveRegisterRecruitment(ChonDichVu dv, ListNhanVienvaDichVu hsnv, String filename) { 
-		return listDao.saveRegisterRecruitment(dv, hsnv, filename); 
+	public int saveRegisterRecruitment(ChonDichVu dv, ListNhanVienvaDichVu hsnv, String filename,int maDichVu) { 
+		return listDao.saveRegisterRecruitment(dv, hsnv, filename,maDichVu); 
 	} 
 
 	// đóng tuyên dụng

@@ -35,7 +35,7 @@ public interface HomeUserService {
 	public Map<ChonDichVu, ChonDichVu> getListValueServiceOfDetailRecruitment();  
 
 	@Autowired
-	public int saveRegisterRecruitment(ChonDichVu emp, ListNhanVienvaDichVu hsnv, String filename);
+	public int saveRegisterRecruitment(ChonDichVu emp, ListNhanVienvaDichVu hsnv, String filename, int maDichVu);
 	
 	// đóng tuyển dụng
 	

@@ -62,6 +62,7 @@ public class NhanVienController extends BaseController {
 	@RequestMapping("/quan-li/nhan-vien/suaNhanVien/{maHSNV}") 
 	public String getSuaNhanVien(@PathVariable int maHSNV, Model m) { 
 		m.addAttribute("chonDichVu", nv.getChonDichVu()); 
+		m.addAttribute("chonTinhTrangLV", nv.getChonTinhTrangLamViec()); 
 		m.addAttribute("command", nv.getSuaNhanVien(maHSNV)); 
 		return "admin/suanhanvien"; 
 	}

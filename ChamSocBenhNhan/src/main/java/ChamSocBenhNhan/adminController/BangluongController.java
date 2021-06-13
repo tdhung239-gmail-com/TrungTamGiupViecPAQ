@@ -45,7 +45,7 @@ public class BangluongController extends BaseController {
 			return "redirect:/quan-li/bang-luong/them-bang-luong?message=" + URLEncoder.encode(message, "UTF-8");
 
 		} else if (kq == 10) {
-			String message = "<script>alert('Thêm không thành công, mời bạn kiểm tra nhập lại mã đăng ký dịch vụ của khách hàng không có bị rỗng !!!');</script>";
+			String message = "<script>alert('Thêm không thành công, mời bạn kiểm tra nhập lại mã đăng ký dịch vụ của khách hàng có tồn tại không, hoặc không bận làm dịch vụ khác !!!');</script>";
 
 			return "redirect:/quan-li/bang-luong/them-bang-luong?message=" + URLEncoder.encode(message, "UTF-8");
 		} else if (kq == 11) {
@@ -77,12 +77,12 @@ public class BangluongController extends BaseController {
 					+ URLEncoder.encode(message, "UTF-8");
 
 		} else if (kq == 10) {
-			String message = "<script>alert('Cập nhật không thành công, mời bạn kiểm tra nhập lại mã đăng ký dịch vụ của khách hàng không trùng với dịch vụ khác mà nhân viên này đang làm hoặc không có bị rỗng !!!');</script>";
+			String message = "<script>alert('Cập nhật không thành công, mời bạn kiểm tra nhập lại mã đăng ký dịch vụ của khách hàng không trùng với dịch vụ khác mà nhân viên này đang làm hoặc không có tồn tại dịch vụ này !!!');</script>";
 
 			return "redirect:/quan-li/bang-luong/edit/" + emp.getIdBangLuong() + "?message="
 					+ URLEncoder.encode(message, "UTF-8");
 		} else if (kq == 11) {
-			String message = "<script>alert('Cập nhật không thành công, mời bạn chọn lại dịch vụ đúng mà nhân viên đang làm !!!');</script>";
+			String message = "<script>alert('Cập nhật không thành công, mời bạn chọn lại dịch vụ đúng mà nhân viên đang làm hoặc kiểm tra dịch vụ này có tồn tại không!!!');</script>";
 
 			return "redirect:quan-li/bang-luong/edit/" + emp.getIdBangLuong() + "?message="
 					+ URLEncoder.encode(message, "UTF-8");

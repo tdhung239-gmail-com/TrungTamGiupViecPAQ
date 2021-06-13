@@ -9,7 +9,7 @@
 		${param.message}
 		<div class="container-fluid">
 			<ol class="breadcrumb mb-4">
-				<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+				<li class="breadcrumb-item"><a href="<c:url value="/quan-li/${okee }/${okee2 }"/>">Dashboard</a></li>
 				<li class="breadcrumb-item active">Tuyển Dụng</li>
 			</ol>
 

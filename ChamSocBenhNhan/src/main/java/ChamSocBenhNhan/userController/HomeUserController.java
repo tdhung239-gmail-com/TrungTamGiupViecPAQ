@@ -69,9 +69,9 @@ public class HomeUserController extends BaseControlUser {
 		return "user/chitiettuyendung";  
 	} 
  
-	@RequestMapping(value = "/home/cttd/save/{maTuyenDung}", method = RequestMethod.POST) 
+	@RequestMapping(value = "/home/cttd/save/{maTuyenDung}/{maDichVu}", method = RequestMethod.POST) 
 	public String saveChiTietTuyenDung(@RequestParam(value = "profile") CommonsMultipartFile file, HttpSession s,
-			ChonDichVu dv, ListNhanVienvaDichVu hsnv, @PathVariable int maTuyenDung) 
+			ChonDichVu dv, ListNhanVienvaDichVu hsnv, @PathVariable int maTuyenDung, @PathVariable int maDichVu) 
 			throws UnsupportedEncodingException { 
 
 		byte[] data = file.getBytes(); 
@@ -85,11 +85,11 @@ public class HomeUserController extends BaseControlUser {
 				fos.close(); 
 				System.out.println("file upload"); 
 				fileName = file.getOriginalFilename(); 
-				if (listhome.saveRegisterRecruitment(dv, hsnv, fileName) == 1) { 
+				if (listhome.saveRegisterRecruitment(dv, hsnv, fileName,maDichVu) == 1) { 
 					String message = "<script>alert('Chúc mừng bạn đã đăng ký tuyển dụng thành công!!!');</script>";  
 
 					return "redirect:/home/cttd/" + maTuyenDung + "?message=" + URLEncoder.encode(message, "UTF-8"); 
-				} else if (listhome.saveRegisterRecruitment(dv, hsnv, fileName) == 5) {
+				} else if (listhome.saveRegisterRecruitment(dv, hsnv, fileName,maDichVu) == 5) {
 					String message = "<script>alert('Bạn đã đăng ký tuyển dụng không thành công, nhập số điện thoại phải từ 10-11 số !!!');</script>"; 
 
 					return "redirect:/home/cttd/" + maTuyenDung + "?message=" + URLEncoder.encode(message, "UTF-8"); 
@@ -124,15 +124,16 @@ public class HomeUserController extends BaseControlUser {
 	@RequestMapping(value = { "/home/lienhe/save" })
 	public ModelAndView saveLienhe(LienHe emp) {
 		int kq = listhome.saveContent(emp);
-		if (kq != 0) {
+	
+		if (kq == 1) {
 			String message = "<script>alert('Gửi liên hệ thành công!!!');</script>";
 			try {
 				_mvShare.setViewName("redirect:/home/lienhe?message=" + URLEncoder.encode(message, "UTF-8"));
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
-		} else {
-			String message = "<script>alert('Gửi liên hệ không thành công!!!');</script>";
+		}else {
+			String message = "<script>alert('Gửi liên hệ không thành công, số điện thoại nhập vào phải đủ từ khoảng 9 đến 12 số!!!');</script>";
 			try {
 				_mvShare.setViewName("redirect:/home/lienhe?message=" + URLEncoder.encode(message, "UTF-8"));
 			} catch (UnsupportedEncodingException e) {

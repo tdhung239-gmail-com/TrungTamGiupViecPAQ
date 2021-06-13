@@ -105,10 +105,21 @@
 								</div>
 							</div>
 						</div>
+						<div class="row">
+							
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Phone</label>
+
+									<form:input class="form-control form-control-email" placeholder="Add Phone"  path="sdt"
+										size="62" type="phone"  required="required" />
+								</div>
+							</div>
+						</div>
 						<div class="form-group">
 							<label>Message</label>
 							<form:textarea class="form-control form-control-message" path="thongDiep"
-								rows="10" name="message" placeholder="Add Message" />
+								rows="10" name="message" placeholder="Add Message" required="required" />
 						</div>
 						<div class="text-right">
 							<br>
@@ -123,6 +134,7 @@
 		</div>
 		<!-- Conatiner end -->
 	</section>
+	
 	${param.message}
 	<!-- Main container end -->
 </div>

@@ -9,7 +9,7 @@
 	${param.message}
 	<div class="container-fluid">
 		<ol class="breadcrumb mb-4">
-			<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+			<li class="breadcrumb-item"><a href="<c:url value="/quan-li/${okee }/${okee2 }"/>">Dashboard</a></li>
 			<li class="breadcrumb-item active">Bảng lương</li>
 		</ol>
 
@@ -40,7 +40,7 @@
 							<tr>
 								<th>ID bảng lương</th>
 								<th>Mã nhân viên</th>
-								<th>Tên nhân biên</th>
+								<th>Tên nhân viên</th>
 								<th>Mã đăng kí dịch vụ</th>
 								<th>Tổng tiền</th>
 								<th>Tình trạng thanh toán</th>
