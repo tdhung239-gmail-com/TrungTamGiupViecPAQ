@@ -13,24 +13,24 @@ import ChamSocBenhNhan.Entity.Admin.BangLuong;
 import ChamSocBenhNhan.Entity.User.ListDangKyDichVu;
 import ChamSocBenhNhan.Entity.User.ListNhanVienvaDichVu;
 
-@Service
-public interface ListChiTietDVService {
+@Service 
+public interface ListChiTietDVService { 
 	@Autowired
 	public List<ListNhanVienvaDichVu> getServiceById(int id); 
 
 	@Autowired
 	public List<ListDangKyDichVu> getIdCustomer();
 
-	@Autowired
-	public int saveComment(@RequestParam(value = "profile") CommonsMultipartFile file, HttpSession s,
-			@RequestParam(value = "profile2") CommonsMultipartFile file2, HttpSession s2, ListDangKyDichVu emp,
-			Integer maDichVu);
+	@Autowired 
+	public int saveComment(@RequestParam(value = "profile") CommonsMultipartFile file, HttpSession s, 
+			@RequestParam(value = "profile2") CommonsMultipartFile file2, HttpSession s2, ListDangKyDichVu emp, 
+			Integer maDichVu); 
+
+	@Autowired 
+	public List<ListDangKyDichVu> getSizeCommentById(int maDichVu); 
 
 	@Autowired
-	public List<ListDangKyDichVu> getSizeCommentById(int maDichVu);
-
-	@Autowired
-	public List<ListDangKyDichVu> getCommentById(int id, String limit);
+	public List<ListDangKyDichVu> getCommentById(int id, String limit); 
 	
 	@Autowired
 	public int saveRegisterService(ListDangKyDichVu emp, int maDichVu, int maKhachHang); 
@@ -49,4 +49,4 @@ public interface ListChiTietDVService {
 	public List<BangLuong> getGioLamViecTrongNam();
 	public List<BangLuong> getTongSoKhachHangDuocPhucVu();
 
-}
+} 

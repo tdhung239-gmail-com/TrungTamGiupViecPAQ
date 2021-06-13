@@ -14,29 +14,29 @@ import ChamSocBenhNhan.Entity.Admin.BangLuong;
 import ChamSocBenhNhan.Entity.User.ListDangKyDichVu;
 import ChamSocBenhNhan.Entity.User.ListNhanVienvaDichVu;
 
-@Service
-public class ListChiTietDVIml implements ListChiTietDVService {
-	@Autowired
-	private ChiTietDichVuDao listcttd = new ChiTietDichVuDao();
+@Service 
+public class ListChiTietDVIml implements ListChiTietDVService { 
+	@Autowired 
+	private ChiTietDichVuDao listcttd = new ChiTietDichVuDao(); 
 	
 	public List<ListNhanVienvaDichVu> getServiceById(int id) {
 		return listcttd.getServiceById(id);
 	}
 
-	public int saveComment(@RequestParam(value = "profile") CommonsMultipartFile file, HttpSession s,
-			@RequestParam(value = "profile2") CommonsMultipartFile file2, HttpSession s2, ListDangKyDichVu emp,
-			Integer maDichVu) {
-		return listcttd.saveComment(file, s, file2, s2, emp, maDichVu);
-	}
+	public int saveComment(@RequestParam(value = "profile") CommonsMultipartFile file, HttpSession s, 
+			@RequestParam(value = "profile2") CommonsMultipartFile file2, HttpSession s2, ListDangKyDichVu emp, 
+			Integer maDichVu) { 
+		return listcttd.saveComment(file, s, file2, s2, emp, maDichVu); 
+	} 
 
-	public List<ListDangKyDichVu> getSizeCommentById(int maDichVu) {
-		return listcttd.getSizeCommentById(maDichVu);
-	}
+	public List<ListDangKyDichVu> getSizeCommentById(int maDichVu) { 
+		return listcttd.getSizeCommentById(maDichVu); 
+	} 
 
-	public List<ListDangKyDichVu> getCommentById(int id, String limit) {
-		// TODO Auto-generated method stub
-		return listcttd.getCommentById(id, limit);
-	}
+	public List<ListDangKyDichVu> getCommentById(int id, String limit) { 
+		// TODO Auto-generated method stub 
+		return listcttd.getCommentById(id, limit); 
+	} 
 	
 
 	public int saveRegisterService(ListDangKyDichVu emp, int maDichVu, int maKhachHang) {
@@ -74,4 +74,4 @@ public class ListChiTietDVIml implements ListChiTietDVService {
 		return listcttd.getTongSoKhachHangDuocPhucVu();
 	}
 
-}
+} 

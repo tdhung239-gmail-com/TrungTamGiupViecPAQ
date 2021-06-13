@@ -33,21 +33,21 @@ import ChamSocBenhNhan.Entity.User.ListNhanVienMapper;
 import ChamSocBenhNhan.Entity.User.ListNhanVienvaDichVu;
 import ChamSocBenhNhan.Entity.User.chonDichVuMapper;
 
-@Repository
-public class ChiTietDichVuDao extends BaseDaoUser {
+@Repository 
+public class ChiTietDichVuDao extends BaseDaoUser { 
 	
 	public List<ListNhanVienvaDichVu> getServiceById(int id) {
 		return _jdbcTemplate.query("select * from dichvu where maDichVu=" + id + "", new ListDichVuMapper());
 	}
 
-	public List<ListDangKyDichVu> getCommentById(int id, String limit) {
-		return _jdbcTemplate.query("select * from danhgia where maDichVu=" + id + "" + limit + "",
-				new ListDanhGiaMapper());
-	}
+	public List<ListDangKyDichVu> getCommentById(int id, String limit) { 
+		return _jdbcTemplate.query("select * from danhgia where maDichVu=" + id + "" + limit + "", 
+				new ListDanhGiaMapper()); 
+	} 
 
-	public List<ListDangKyDichVu> getSizeCommentById(int maDichVu) {
-		return _jdbcTemplate.query("select * from danhgia where maDichVu=" + maDichVu + "", new ListDanhGiaMapper());
-	}
+	public List<ListDangKyDichVu> getSizeCommentById(int maDichVu) { 
+		return _jdbcTemplate.query("select * from danhgia where maDichVu=" + maDichVu + "", new ListDanhGiaMapper()); 
+	} 
 
 	public int saverRegister(ListDangKyDichVu p, int maDichVu, int maKhachHang) {
 		String tinhTrang = "chua";

@@ -18,14 +18,14 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import ChamSocBenhNhan.Entity.User.ListDangKyDichVu;
 import ChamSocBenhNhan.Service.user.ListChiTietDVIml;
 
-@Controller
-public class ChiTietDVController extends BaseControlUser {
+@Controller 
+public class ChiTietDVController extends BaseControlUser { 
+ 
+	@Autowired 
+	private ListChiTietDVIml listcttd = new ListChiTietDVIml(); 
 
-	@Autowired
-	private ListChiTietDVIml listcttd = new ListChiTietDVIml();
-
-	@RequestMapping(value = "/home/ctdv/{maDichVu}")
-	public String ctdv(@PathVariable int maDichVu, Model m) {
+	@RequestMapping(value = "/home/ctdv/{maDichVu}") 
+	public String ctdv(@PathVariable int maDichVu, Model m) {  
 		// get data service by id
 		m.addAttribute("ctdv", listcttd.getServiceById(maDichVu));
 
@@ -34,11 +34,11 @@ public class ChiTietDVController extends BaseControlUser {
 		m.addAttribute("maxCustomer", max);
 
 		// get data commnent
-		String limitCommnet = " ORDER BY maDanhGia DESC LIMIT 3";
-		m.addAttribute("comment", listcttd.getCommentById(maDichVu, limitCommnet));
-		String limitCommnetAll = " ";
-		m.addAttribute("commentAll", listcttd.getCommentById(maDichVu, limitCommnetAll));
-		m.addAttribute("sizeCommentAll", listcttd.getSizeCommentById(maDichVu));
+		String limitCommnet = " ORDER BY maDanhGia DESC LIMIT 3"; 
+		m.addAttribute("comment", listcttd.getCommentById(maDichVu, limitCommnet)); 
+		String limitCommnetAll = " "; 
+		m.addAttribute("commentAll", listcttd.getCommentById(maDichVu, limitCommnetAll)); 
+		m.addAttribute("sizeCommentAll", listcttd.getSizeCommentById(maDichVu)); 
 		m.addAttribute("tongGioLamcuaNam", listcttd.getGioLamViecTrongNam());
 		m.addAttribute("tongKhachHangDuocPhucVu", listcttd.getTongSoKhachHangDuocPhucVu());
 
@@ -47,22 +47,22 @@ public class ChiTietDVController extends BaseControlUser {
 		m.addAttribute("command", new ListDangKyDichVu());
 
 		return "user/chitietdichvu";
-	}
+	} 
 
 	// get data commnentAll
 	@RequestMapping(value = "/home/ctdv/{maDichVu}/commentAll")
-	public String ctdvCommentAll(@PathVariable int maDichVu, HttpSession ss) {
-		ss.setAttribute("limit", "commentAll");
-		return "redirect:/home/ctdv/" + maDichVu + "";
-	}
+	public String ctdvCommentAll(@PathVariable int maDichVu, HttpSession ss) { 
+		ss.setAttribute("limit", "commentAll"); 
+		return "redirect:/home/ctdv/" + maDichVu + ""; 
+	} 
 
 	// get data recordCommentAll
-	@RequestMapping(value = "/home/ctdv/{maDichVu}/recordCommentAll")
-	public String ctdvrecordCommentAll(@PathVariable int maDichVu, HttpSession ss) {
-		ss.removeAttribute("limit");
-		return "redirect:/home/ctdv/" + maDichVu + "";
+	@RequestMapping(value = "/home/ctdv/{maDichVu}/recordCommentAll") 
+	public String ctdvrecordCommentAll(@PathVariable int maDichVu, HttpSession ss) { 
+		ss.removeAttribute("limit"); 
+		return "redirect:/home/ctdv/" + maDichVu + ""; 
 	}
-
+ 
 	// save Comment
 	@RequestMapping(value = "/saveComment/{maDichVu}", method = RequestMethod.POST)
 	public String saveComment(@RequestParam(value = "profile") CommonsMultipartFile file, HttpSession s,

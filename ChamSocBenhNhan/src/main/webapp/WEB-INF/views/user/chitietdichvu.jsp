@@ -445,110 +445,110 @@ function ChangeCityList() {
 
 
 <!--  comment  -->
-<section id="ts-features" class="ts-features">
-	<div class="container"
-		style="box-shadow: 0 6px 12px rgba(100, 100, 100, 12); border-radius: 10px 10px; background: #D3D3D3;">
-		<div class="row ">
-			<div class="col-lg-12"
-				style="border-bottom: solid 1px #DDDDDD; bottom: 10px;">
-				<h1 class="display-8"
-					style="margin: 20px; float: left; font-family: Times New Roman; color: #F4A460;">(${sizeCommentAll.size()})
-					Đánh giá</h1>
-				<c:forEach var="item" items="${ ctdv }">
-					<c:set var="idDichVu" value="${item.maDichVu}" />
-				</c:forEach>
-
-				<c:if test="${ limit=='commentAll'  }">
-					<a
-						style="float: right; font-size: 23px; color: black; font-family: Times New Roman; margin-top: 28px;"
-						href="${idDichVu}/recordCommentAll">>> Thu gọn đánh giá<<</a>
-				</c:if>
+<section id="ts-features" class="ts-features"> 
+ 	<div class="container"
+ 		style="box-shadow: 0 6px 12px rgba(100, 100, 100, 12); border-radius: 10px 10px; background: #D3D3D3;">
+	  	<div class="row ">
+	 		<div class="col-lg-12"
+	 			style="border-bottom: solid 1px #DDDDDD; bottom: 10px;">
+	 			<h1 class="display-8"
+  					style="margin: 20px; float: left; font-family: Times New Roman; color: #F4A460;">(${sizeCommentAll.size()})
+ 					Đánh giá</h1>
+ 				<c:forEach var="item" items="${ ctdv }">
+ 					<c:set var="idDichVu" value="${item.maDichVu}" />
+ 				</c:forEach>
+ 
+		 		<c:if test="${ limit=='commentAll'  }">
+		 			<a
+	  					style="float: right; font-size: 23px; color: black; font-family: Times New Roman; margin-top: 28px;"
+	 					href="${idDichVu}/recordCommentAll">>> Thu gọn đánh giá<<</a>
+	 			</c:if>
 				<c:if test="${ limit!='commentAll'  }">
-					<a
-						style="float: right; font-size: 23px; color: black; font-family: Times New Roman; margin-top: 28px;"
-						href="${idDichVu}/commentAll">>>Xem tất cả đánh giá<<</a>
-				</c:if>
+	 				<a
+	 					style="float: right; font-size: 23px; color: black; font-family: Times New Roman; margin-top: 28px;"
+  						href="${idDichVu}/commentAll">>>Xem tất cả đánh giá<<</a>
+ 				</c:if>
+ 
+ 
+ 			</div>
+ 		</div>
+ 		<c:forEach var="item" items="${ ctdv }">
+ 			<c:set var="idDichVu" value="${item.maDichVu}" />
+ 		</c:forEach>
+ 		<form:form method="post"
+ 			action="/ChamSocBenhNhan/saveComment/${idDichVu}"
+ 			enctype="multipart/form-data">
+ 
+		 	<div class="form-group">
+			 	<form:input path="hoTen" size="49" required="required"
+			 		placeholder="enter name" />
+			 	<form:textarea path="noiDung" required="required" rows="4"
+			 		cols="100" placeholder="add comment" />
+			 	<label style="font-size: 19px; color: black;"> <label
+			 		style="color: red;">*</label>Thêm ảnh:
+			 	</label> &nbsp &nbsp &nbsp &nbsp <input type="file" name="profile" /> </br> <label
+				 	style="font-size: 19px; color: black;"> <label
+				 	style="color: red;">*</label>Thêm video:
+				</label> &nbsp &nbsp  <input type="file" 
+					name="profile2" />  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+				<button 
+				 	style="background: red; background: linear-gradient(90deg, #faf0cd, #fab397);">Đánh
+					giá</button> 
+			</div> 
+		</form:form> 
+		<div class="row"> 
+			<div class="col-lg-12" 
+				style="text-align: justify; margin-left: 40px;"> 
+
+				<!--  comment  --> 
+				<c:if test="${ limit=='commentAll'  }"> 
+					<c:set var="idComment" value="${ commentAll }" /> 
+				</c:if> 
+				<c:if test="${ limit!='commentAll'  }"> 
+					<c:set var="idComment" value="${ comment }" /> 
+				</c:if> 
+				<c:forEach var="item" items="${ idComment }"> 
+
+					<p 
+						style="font-size: 23px; font-weight: bold; color: orange;  font-weight: 600;">-
+						${item.hoTen} :</p> 
+					<p style="font-size: 20px; font-weight: 600; margin-left: 15px;">${item.noiDung}</p> 
+					<c:if test="${item.hinhAnh != ' '  }"> 
+						<section id="ts-features" class="ts-features"> 
+							<div class="container"> 
+								<img 
+									src="<c:url value="/assets/user/images/imageComment/${item.hinhAnh}"/>" 
+									style="box-shadow: 0px 0px 3px 3px; height: 600px; width: 1000px; border-radius: 30px 30px;" 
+									alt="HinhAnhDanhGiaGiupViec"> 
+							</div> 
+						</section> 
+					</c:if>  
+
+					<c:if test="${item.hinhAnh == 'NULL'  }"></c:if> 
 
 
-			</div>
-		</div>
-		<c:forEach var="item" items="${ ctdv }">
-			<c:set var="idDichVu" value="${item.maDichVu}" />
-		</c:forEach>
-		<form:form method="post"
-			action="/ChamSocBenhNhan/saveComment/${idDichVu}"
-			enctype="multipart/form-data">
-
-			<div class="form-group">
-				<form:input path="hoTen" size="49" required="required"
-					placeholder="enter name" />
-				<form:textarea path="noiDung" required="required" rows="4"
-					cols="100" placeholder="add comment" />
-				<label style="font-size: 19px; color: black;"> <label
-					style="color: red;">*</label>Thêm ảnh:
-				</label> &nbsp &nbsp &nbsp &nbsp <input type="file" name="profile" /> </br> <label
-					style="font-size: 19px; color: black;"> <label
-					style="color: red;">*</label>Thêm video:
-				</label> &nbsp &nbsp  <input type="file"
-					name="profile2" /> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-				<button
-					style="background: red; background: linear-gradient(90deg, #faf0cd, #fab397);">Đánh
-					giá</button>
-			</div>
-		</form:form>
-		<div class="row">
-			<div class="col-lg-12"
-				style="text-align: justify; margin-left: 40px;">
-
-				<!--  comment  -->
-				<c:if test="${ limit=='commentAll'  }">
-					<c:set var="idComment" value="${ commentAll }" />
-				</c:if>
-				<c:if test="${ limit!='commentAll'  }">
-					<c:set var="idComment" value="${ comment }" />
-				</c:if>
-				<c:forEach var="item" items="${ idComment }">
-
-					<p
-						style="font-size: 23px; font-weight: bold; color: orange; font-weight: 600;">-
-						${item.hoTen} :</p>
-					<p style="font-size: 20px; font-weight: 600; margin-left: 15px;">${item.noiDung}</p>
-					<c:if test="${item.hinhAnh != ' '  }">
-						<section id="ts-features" class="ts-features">
-							<div class="container">
-								<img
-									src="<c:url value="/assets/user/images/imageComment/${item.hinhAnh}"/>"
-									style="box-shadow: 0px 0px 3px 3px; height: 600px; width: 1000px; border-radius: 30px 30px;"
-									alt="HinhAnhDanhGiaGiupViec">
-							</div>
-						</section>
-					</c:if>
-
-					<c:if test="${item.hinhAnh == 'NULL'  }"></c:if>
+					<c:if test="${not empty item.video }"> 
+						<video 
+							src="<c:url value="/assets/user/images/imageComment/${item.video}"/>" 
+							width="1050" height="500" controls> 
+						</video> 
+					</c:if> 
 
 
-					<c:if test="${not empty item.video }">
-						<video
-							src="<c:url value="/assets/user/images/imageComment/${item.video}"/>"
-							width="1050" height="500" controls>
-						</video>
-					</c:if>
+				</c:forEach> 
 
 
-				</c:forEach>
-
-
-			</div>
+			</div> 
 			<!-- Col end -->
-		</div>
+		</div> 
 		<!-- Row end -->
-	</div>
+	</div> 
 	<!-- Container end -->
 
-</section>
+</section> 
 <!--  comment close -->
 
-${param.message}
+${param.message} 
 <!-- <button data-id="${ item.ida}" class="btn btn-mini btn-danger s"
 	type="button">
 	<span class="icon-remove"></span>
