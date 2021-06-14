@@ -1,0 +1,48 @@
+.items {
+	width: 90%;
+	margin: 0px auto;
+	margin-top: 20px;
+	border-radius: 10px 10px;
+}
+
+.overlay :hover {
+	-webkit-transform: perspective(1px) scale3d(1.15, 1.15, 1);
+	transform: perspective(1px) scale3d(1.15, 1.15, 1s);
+	transition: all 400ms;
+	
+}
+
+
+
+.slick-slide img {
+	width: 100%;
+	
+}
+
+.containerr {
+	position: relative;
+	
+}
+
+.image {
+	display: block;
+	border-radius: 10px 10px;
+	
+}
+
+
+.overlay {
+	position: absolute;
+	width:94%;
+	height:94%;
+	border-radius:10px 10px;
+	bottom: 14px;
+	color: white;
+	left:15px;
+	margin-right: 30px;
+	background: rgb(0, 0, 0); 
+	background: rgba(0, 0, 0, 0.4); 
+	padding-left: 60px;
+	padding-top: 180px;
+	
+}

@@ -103,6 +103,14 @@ public class ChiTietDVController extends BaseControlUser {
 				e.printStackTrace();
 			}
 		}
+		 else if (kq == 15) {
+				String message = "<script>alert('đăng ký không thành công, bạn nhập phải số điện thoại từ 10 số!!!');</script>";
+				try {
+					return "redirect:/home/ctdv/" + maDichVu + "?message=" + URLEncoder.encode(message, "UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+			}
 		String message = "<script>alert('Chúc mừng bạn đã đăng ký dịch vụ thành công!!!');</script>";
 
 		return "redirect:/home/chitiethoadon/" + maKhachHang + "?message=" + URLEncoder.encode(message, "UTF-8");

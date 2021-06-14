@@ -90,7 +90,7 @@ public class HomeUserController extends BaseControlUser {
 
 					return "redirect:/home/cttd/" + maTuyenDung + "?message=" + URLEncoder.encode(message, "UTF-8"); 
 				} else if (listhome.saveRegisterRecruitment(dv, hsnv, fileName,maDichVu) == 5) {
-					String message = "<script>alert('Bạn đã đăng ký tuyển dụng không thành công, nhập số điện thoại phải từ 10-11 số !!!');</script>"; 
+					String message = "<script>alert('Bạn đã đăng ký tuyển dụng không thành công, nhập số điện thoại phải từ 10 số !!!');</script>"; 
 
 					return "redirect:/home/cttd/" + maTuyenDung + "?message=" + URLEncoder.encode(message, "UTF-8"); 
 
@@ -133,7 +133,7 @@ public class HomeUserController extends BaseControlUser {
 				e.printStackTrace();
 			}
 		}else {
-			String message = "<script>alert('Gửi liên hệ không thành công, số điện thoại nhập vào phải đủ từ khoảng 9 đến 12 số!!!');</script>";
+			String message = "<script>alert('Gửi liên hệ không thành công, số điện thoại nhập vào phải đủ từ 10 số!!!');</script>";
 			try {
 				_mvShare.setViewName("redirect:/home/lienhe?message=" + URLEncoder.encode(message, "UTF-8"));
 			} catch (UnsupportedEncodingException e) {

@@ -80,7 +80,9 @@ public class ChiTietDichVuDao extends BaseDaoUser {
 					// java.sql.Date sqlStartDate = ChuyenDoi.ChuyenDoiNgay(p.getNgayBatDau());
 
 					p.setNgayKetThuc(p.getNgayBatDau());
-
+					if(p.getSdt().toString().length()>=9) {
+						
+					
 					String sqlKhachHang = "insert into khachHang(maKhachHang,tenKhachHang,sdt,diaChi)values('"
 							+ maKhachHang + "','" + p.getTenKhachHang() + "','" + p.getSdt() + "','" + p.getDiaChi()
 							+ "')";
@@ -91,6 +93,9 @@ public class ChiTietDichVuDao extends BaseDaoUser {
 							+ p.getGioKetThuc() + "','" + tinhTrang + "')";
 					kq = _jdbcTemplate.update(sql);
 					System.out.println(kq);
+					}else {
+						return 15;
+					}
 
 					// check auto nhân viên làm dịch vụ mà khách hàng đăng ký
 					String sqlMaxMaDKDV = "SELECT Max(maDKDV) as maDKDV  from dangkydichvu";
@@ -252,6 +257,7 @@ public class ChiTietDichVuDao extends BaseDaoUser {
 			Date newDate2 = new Date();
 			java.sql.Date newDateSql2 = new java.sql.Date(newDate2.getTime());
 			if (p.getNgayBatDau().before(p.getNgayKetThuc()) && p.getNgayBatDau().after(newDateSql2)) {
+				if(p.getSdt().toString().length()>=9) {
 				String sqlKhachHang = "insert into khachHang(maKhachHang,tenKhachHang,sdt,diaChi)values('" + maKhachHang
 						+ "','" + p.getTenKhachHang() + "','" + p.getSdt() + "','" + p.getDiaChi() + "')";
 				_jdbcTemplate.update(sqlKhachHang);
@@ -260,7 +266,10 @@ public class ChiTietDichVuDao extends BaseDaoUser {
 						+ "','" + p.getNgayKetThuc() + "','" + p.getGioBatDau() + "' ,'" + p.getGioKetThuc() + "','"
 						+ tinhTrang + "')";
 				kq = _jdbcTemplate.update(sql);
-
+				}
+				else {
+					return 15;
+				}
 				// check auto nhân viên làm dịch vụ mà khách hàng đăng ký
 				String sqlMaxMaDKDV = "SELECT Max(maDKDV) as maDKDV  from dangkydichvu";
 				List<ListDangKyDichVu> MaxDKDV = _jdbcTemplate.query(sqlMaxMaDKDV, new CheckIdExistDKDV());

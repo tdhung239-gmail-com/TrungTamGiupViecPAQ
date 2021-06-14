@@ -1,0 +1,42 @@
+.cardd {
+    padding: 30px 40px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2)
+}
+
+.blue-text {
+    color: #00BCD4
+}
+
+.form-control-label {
+    margin-bottom: 0
+}
+
+input,
+textarea,
+button {
+    padding: 8px 15px;
+    border-radius: 5px ;
+    margin: 5px 0px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    font-size: 18px;
+    font-weight: 300
+}
+
+
+
+.btn-block {
+    text-transform: uppercase;
+    font-size: 15px ;
+    font-weight: 400;
+    height: 43px;
+    cursor: pointer;
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+.btn-block:hover {
+    color: #fff;
+}

@@ -1,0 +1,99 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
+	prefix="decorator"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:if test="${ not empty okee   }">
+<main>
+${param.message}
+	<div class="container-fluid">
+		<ol class="breadcrumb mb-4">
+			<li class="breadcrumb-item"><a href="<c:url value="/quan-li/${okee }/${okee2 }"/>">Dashboard</a></li>
+			<li class="breadcrumb-item active">Nhân Viên</li>
+		</ol>
+
+		<div class="card mb-4">
+			<div class="card-header">
+				<i class="fas fa-table mr-1"></i> DataTable
+			</div>
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-bordered" id="dataTable" width="100%"
+						cellspacing="2">
+						<thead>
+							<tr>
+								<th>Mã nhân viên</th>
+								<th>Tên nhân viên</th>
+								<th>Chuyên dịch vụ</th>
+								<th>SDT</th>
+								<th>Năm sinh</th>
+								<th>Quê quán</th>
+								<th>Nơi cư trú hiện tại</th>
+								<th>Hình ảnh</th>
+								<th>Tình trạng làm việc</th>
+								<th>Tình trạng duyệt hồ sơ</th>
+								<th>Chức năng</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<th>Mã nhân viên</th>
+								<th>Tên nhân viên</th>
+								<th>Chuyên dịch vụ</th>
+								<th>SDT</th>
+								<th>Năm sinh</th>
+								<th>Quê quán</th>
+								<th>Nơi cư trú hiện tại</th>
+								<th>Hình ảnh</th>
+								<th>Tình trạng làm việc</th>
+								<th>Tình trạng duyệt hồ sơ</th>
+								<th>Chức năng</th>
+							</tr>
+						</tfoot>
+						<tbody>
+							<c:forEach var="item" items="${ nhanvienn }">
+								<tr>
+									<td  style="font-weight: bold;text-align: center;"><label>${ item.maHSNV } </label></td>
+									<td><label>${ item.hoTen } </label></td>
+									<td><label>${ item.tenDichVu } </label></td>
+									<td><label>${ item.sdt } </label></td>
+									<td><label> <fmt:formatDate pattern="dd-MM-yyy"
+												value="${ item.namSinh }" />
+									</label></td>
+									<td><label>${ item.queQuan } </label></td>
+									<td><label>${ item.noiCuTruHienTai } </label></td>
+
+									<td><a class="gallery-popup"
+										href="<c:url value="/assets/user/images/nhanvien/${ item.hinhanh }"/>"
+										aria-label="project-img"> <img class="img-fluid"
+											style="width: 100px; height: 100px;"
+											src="<c:url value="/assets/user/images/nhanvien/${ item.hinhanh }"/>"
+											alt="project-img"> <span class="gallery-icon"><i
+												class="fa fa-plus"></i></span>
+									</a></td>
+									<td><label> <c:if
+												test="${ item.tinhTrangLamViec == 'ranh'}"> rãnh</c:if> <c:if
+												test="${ item.tinhTrangLamViec != 'ranh'}"> bận</c:if>
+									</label></td>
+									<td><label> <c:if
+												test="${ item.tinhTrangDuyetHoSo == 'xong'}"> xong</c:if> <c:if
+												test="${ item.tinhTrangDuyetHoSo != 'xong'}"> chưa</c:if>
+									</label></td>
+
+
+									<td><a href="suaNhanVien/${item.maHSNV}">Edit</a> &nbsp &nbsp &nbsp &nbsp<a
+										href="xoaNhanVien/${item.maHSNV}">Delete</a></td>
+
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					<a href="them-nhan-vien">Thêm mới</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</main>
+</c:if>

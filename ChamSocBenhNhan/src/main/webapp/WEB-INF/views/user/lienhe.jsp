@@ -111,8 +111,8 @@
 								<div class="form-group">
 									<label>Phone</label>
 
-									<form:input class="form-control form-control-email" placeholder="Add Phone"  path="sdt"
-										size="62" type="phone"  required="required" />
+									<form:input class="form-control form-control-email"  path="sdt"
+										size="62" placeholder="0273456789" type="tel" pattern="^(0[1-9][0-9]{8}|1[89]00[0-9]{4})$" required="required" />
 								</div>
 							</div>
 						</div>

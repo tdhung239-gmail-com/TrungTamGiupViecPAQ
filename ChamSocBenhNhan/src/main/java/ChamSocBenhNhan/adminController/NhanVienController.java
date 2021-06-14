@@ -46,9 +46,16 @@ public class NhanVienController extends BaseController {
 	public String luuThemNhanVien(@RequestParam(value = "profile") CommonsMultipartFile file, HttpSession s,
 			ChonDichVu dv, ListNhanVienvaDichVu hsnv) throws UnsupportedEncodingException { 
 
-		if (nv.luuNhanVien(file, s, dv, hsnv) > 0) { 
+		if (nv.luuNhanVien(file, s, dv, hsnv) ==1) { 
 			System.out.println("tc");
 			String message = "<script>alert('Chúc mừng bạn đã thêm mới nhân viên thành công!!!');</script>"; 
+
+			return "redirect:/quan-li/nhan-vien/all?message=" + URLEncoder.encode(message, "UTF-8"); 
+		}
+
+		if (nv.luuNhanVien(file, s, dv, hsnv) ==5) { 
+			System.out.println("tc");
+			String message = "<script>alert('Thêm không thành công, bạn phải nhập số điện thoại từ 10 số!!!');</script>"; 
 
 			return "redirect:/quan-li/nhan-vien/all?message=" + URLEncoder.encode(message, "UTF-8"); 
 		}
@@ -87,7 +94,7 @@ public class NhanVienController extends BaseController {
 		}
 		
 		else if (kq == 5) { 
-			String message = "<script>alert('Sửa không thành công, nhập số điện thoại phải từ 10-11 số !!!');</script>"; 
+			String message = "<script>alert('Sửa không thành công, nhập số điện thoại phải từ 10 số !!!');</script>"; 
 			return "redirect:/quan-li/nhan-vien/suaNhanVien/" + emp.getMaHSNV() + "?message=" 
 					+ URLEncoder.encode(message, "UTF-8"); 
 

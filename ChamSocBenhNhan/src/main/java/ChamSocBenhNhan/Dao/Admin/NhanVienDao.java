@@ -90,8 +90,8 @@ public class NhanVienDao extends BaseDao {
 				fileName = file.getOriginalFilename(); 
 				Date newDate2 = new Date(); 
 				java.sql.Date newDateSql2 = new java.sql.Date(newDate2.getTime()); 
-				if (hsnv.getSdt().toString().length() >= 9 || hsnv.getSdt().toString().length() <= 11) { 
-
+				if (hsnv.getSdt().toString().length() >= 9 ) { 
+					System.out.println(hsnv.getSdt().toString().length());
 					if (Compare.checkDateThan16Year(hsnv.getNamSinh(), newDateSql2)) { 
 						String sql = "insert into hosonhanvien(hoTen,namSinh,sdt,queQuan,noiCuTruHienTai,hinhanh, tinhTrangLamViec, tinhTrangDuyetHoSo,maDichVu)values('"
 								+ hsnv.getHoTen() + "','" + hsnv.getNamSinh() + "','" + hsnv.getSdt() + "','"
@@ -142,7 +142,7 @@ public class NhanVienDao extends BaseDao {
 				fos.close(); 
 				System.out.println("file upload"); 
 				fileName = file.getOriginalFilename(); 
-				if (p.getSdt().toString().length() >= 9 || p.getSdt().toString().length() <= 11) { 
+				if (p.getSdt().toString().length() >= 9) { 
 
 					if (Compare.checkDateThan16Year(p.getNamSinh(), newDateSql2)) { 
 
@@ -181,7 +181,7 @@ public class NhanVienDao extends BaseDao {
 			} catch (IOException e) { 
 				e.printStackTrace(); 
 				System.out.println("upload eror");
-				if (p.getSdt().toString().length() >= 9 || p.getSdt().toString().length() <= 11) { 
+				if (p.getSdt().toString().length() >= 9) { 
 
 					if (Compare.checkDateThan16Year(p.getNamSinh(), newDateSql2)) { 
 

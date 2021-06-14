@@ -146,11 +146,11 @@ ${param.message}
 													required="required" cssStyle="width:230px;" /></td>
 										</tr>
 										<tr>
-											<td style="">Phone<span class="text-danger"> *</span></td>
+											<td style="">Số điện thoại<span class="text-danger"> *</span></td>
 										</tr>
 										<tr>
 											<td style=""><form:input required="required"
-													maxlength="11" type="tel" path="sdt" size="43" /></td>
+													 placeholder="0273456789" type="tel" pattern="^(0[1-9][0-9]{8}|1[89]00[0-9]{4})$" path="sdt" size="43" /></td>
 										<tr>
 										<tr>
 											<td style="">Quê quán<span class="text-danger"> *</span></td>

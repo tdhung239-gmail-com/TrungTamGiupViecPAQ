@@ -221,7 +221,7 @@
 								</tr>
 								<tr>
 									<td style="padding-left: 100px;"><form:input path="sdt"
-											maxlength="11" type="tel" size="62" required="required" /></td>
+											placeholder="0273456789" type="tel" pattern="^(0[1-9][0-9]{8}|1[89]00[0-9]{4})$" size="62" required="required" /></td>
 								<tr>
 									<!-- đóng sđt -->
 

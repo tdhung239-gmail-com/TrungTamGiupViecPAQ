@@ -76,9 +76,15 @@ public class KhachHangDao extends BaseDao {
 		} else {
 			maxId++;
 		}
-		String sql = "insert into khachhang(maKhachHang,tenKhachHang,sdt,diaChi)values('" + maxId + "','"
-				+ kh.getTenKhachHang() + "','" + kh.getSdt() + "','" + kh.getDiaChi() + "')";
-		return _jdbcTemplate.update(sql);
+		if(kh.getSdt().toString().length()>=9) {
+			String sql = "insert into khachhang(maKhachHang,tenKhachHang,sdt,diaChi)values('" + maxId + "','"
+					+ kh.getTenKhachHang() + "','" + kh.getSdt() + "','" + kh.getDiaChi() + "')";
+			return _jdbcTemplate.update(sql);
+		}
+		else {
+			return 5;
+		}
+		
 
 	}
 
@@ -91,9 +97,14 @@ public class KhachHangDao extends BaseDao {
 
 	public int luuSuaKhachHang(ListDangKyDichVu p) {
 		// if(sđt khogn phải kiểu ỉnt)
+		if(p.getSdt().toString().length()>=9) {
 		String sql = "update khachhang set tenKhachHang='" + p.getTenKhachHang() + "', sdt='" + p.getSdt()
 				+ "',diaChi='" + p.getDiaChi() + "' where maKhachHang=" + p.getMaKhachHang() + "";
 		return _jdbcTemplate.update(sql);
+		}
+		else {
+			return 5;
+		}
 
 	}
 

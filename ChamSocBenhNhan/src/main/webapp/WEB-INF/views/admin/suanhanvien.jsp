@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <ol class="breadcrumb mb-4">
-	<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+	<li class="breadcrumb-item"><a href="<c:url value="/quan-li/${okee }/${okee2 }"/>">Dashboard</a></li>
 	<li class="breadcrumb-item active">Cập nhật lại nhân viên</li>
 </ol>
 ${param.message}
@@ -31,7 +31,7 @@ ${param.message}
 			</tr>
 			<tr>
 				<td style="font-size: 18px;">Nhập số điện thoại :&nbsp &nbsp</td>
-				<td><form:input path="sdt" size="30" required="required" maxlength="11" type="tel" /></td>
+				<td><form:input path="sdt" size="30" required="required"  minlength="9" maxlength="10" type="tel" /></td>
 			</tr>
 			<tr>
 				<td style="font-size: 18px;">Nhập năm sinh :&nbsp &nbsp</td>
