@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-	<a class="navbar-brand" href=" <c:url value="/quan-li/${okee }/${okee2 }"/> ">Start Bootstrap</a>
+	<a class="navbar-brand" href=" <c:url value="/quan-li/${okee }/1a1234Wq6cho4htue7${okee2 }"/> ">Start Bootstrap</a>
 	<button class="btn btn-link btn-sm order-1 order-lg-0"
 		id="sidebarToggle" >
 		<i class="fas fa-bars"></i>

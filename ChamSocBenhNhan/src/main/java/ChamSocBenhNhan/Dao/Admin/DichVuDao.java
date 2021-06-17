@@ -131,7 +131,7 @@ public class DichVuDao extends BaseDao {
 				}
 				String sql = "update dichvu set tenDichVu='" + p.getTenDichVu() + "', gioiThieuDichVu='"
 						+ p.getGioiThieuDichVu() + "',hinhAnhDichVu='" + fileName + "',dieuKienLyLich='"
-						+ p.getDieuKienLyLich() + "',kyNang='" + p.getKyNang() + "',luongTheoThang='"
+						+ p.getDieuKienLyLich() + "',kyNang='" + p.getKyNang() + "',luongTheoNgay='" + p.getLuongTheoNgay() + "',luongTheoGio='" + p.getLuongTheoGio() + "',luongTheoThang='"
 						+ p.getLuongTheoThang() + "',phiDichVuTheoGio='" + p.getPhiDichVuTheoGio()
 						+ "',phiDichVuTheoNgay='" + p.getPhiDichVuTheoNgay() + "',phiDichVuTheoThang='"
 						+ p.getPhiDichVuTheoThang() + "' where maDichVu=" + p.getMaDichVu() + "";

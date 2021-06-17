@@ -9,7 +9,7 @@
 
 	<div class="container-fluid">
 		<ol class="breadcrumb mb-4">
-			<li class="breadcrumb-item"><a href="<c:url value="/quan-li/${okee }/${okee2 }"/>">Dashboard</a></li>
+			<li class="breadcrumb-item"><a href="<c:url value="/quan-li/${okee }/1a1234Wq6cho4htue7${okee2 }"/>">Dashboard</a></li>
 			<li class="breadcrumb-item active">Bảng lương</li>
 		</ol>
 

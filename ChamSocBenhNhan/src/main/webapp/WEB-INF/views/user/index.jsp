@@ -149,7 +149,7 @@
 							<span class="counterUp"
 								data-count="${totalRegisterService.size() }"></span>
 						</h2>
-						<h3 class="ts-facts-title">Tổng Khách Hàng Đăng Ký Dịch Vụ</h3>
+						<h3 class="ts-facts-title">Tổng Đăng Ký Dịch Vụ Của Khách Hàng</h3>
 					</div>
 				</div>
 

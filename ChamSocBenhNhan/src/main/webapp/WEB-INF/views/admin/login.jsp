@@ -58,9 +58,9 @@
 										<div
 											class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
 
-											<a class="small" href="password.html">Forgot Password?</a>
+											<a class="small" href="password.html"></a>
 
-											<button class="btn btn-primary s2" type="button">
+											<button class="btn btn-primary s2" style="margin:0 auto;" type="button">
 												<span>Login</span>
 											</button>
 										</div>
@@ -68,7 +68,6 @@
 								</div>
 								<div class="card-footer text-center">
 									<div class="small">
-										<a href="register.html">Need an account? Sign up!</a>
 									</div>
 								</div>
 							</div>
@@ -82,11 +81,7 @@
 				<div class="container-fluid">
 					<div
 						class="d-flex align-items-center justify-content-between small">
-						<div class="text-muted">Copyright &copy; Your Website 2021</div>
-						<div>
-							<a href="#">Privacy Policy</a> &middot; <a href="#">Terms
-								&amp; Conditions</a>
-						</div>
+						
 					</div>
 				</div>
 			</footer>
@@ -108,7 +103,7 @@
 			if (h == '' || n == '') {
 				alert(m);
 			} else {
-				window.location = "quan-li/" + h + "/" + n;
+				window.location = "quan-li/" + h + "/1a1234Wq6cho4htue7" + n ;
 			}
 
 		});

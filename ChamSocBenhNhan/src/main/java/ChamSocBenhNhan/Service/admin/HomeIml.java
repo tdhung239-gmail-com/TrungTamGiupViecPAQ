@@ -46,7 +46,7 @@ public class HomeIml implements HomeService {
 	public TaiKhoan getSuaTaiKhoan(String TenTaiKhoan) { 
 		return slidesDao.getSuaTaiKhoan(TenTaiKhoan); 
 	}
-	public int luuSuaTaiKhoan(TaiKhoan p, String t, int m) { 
+	public int luuSuaTaiKhoan(TaiKhoan p, String t, String m) { 
 		return slidesDao.luuSuaTaiKhoan(p,t,m); 
 	} 
 	

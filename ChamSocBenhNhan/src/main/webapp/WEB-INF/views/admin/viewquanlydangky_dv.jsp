@@ -10,7 +10,8 @@
 		${param.message}
 		<div class="container-fluid">
 			<ol class="breadcrumb mb-4">
-				<li class="breadcrumb-item"><a href="<c:url value="/quan-li/${okee }/${okee2 }"/>">Dashboard</a></li>
+				<li class="breadcrumb-item"><a
+					href="<c:url value="/quan-li/${okee }/1a1234Wq6cho4htue7${okee2 }"/>">Dashboard</a></li>
 				<li class="breadcrumb-item active">Bảng đăng ký dịch vụ</li>
 			</ol>
 
@@ -39,7 +40,7 @@
 									<th>Phí DV</th>
 									<th>Tổng tiền</th>
 									<th>Tình trạng thanh toán</th>
-									<th>Chức năng</th>
+									<th >Chức năng</th>
 
 								</tr>
 
@@ -132,13 +133,16 @@
 											 đã thanh toán
 										</c:if></label></td>
 										<td><a class="funtion"
-												style="text-align:justify; border-radius: 10px 10px; background: black; color: white; padding: 5px 5px; box-shadow: 0 6px 12px 0 rgb(0 0 0/ 20%); text-decoration: none;"
-												href="SuaDKDV/${item.maDKDV}/${item.maDichVu}">Update</a>
-												</br> </br><label> <a class="funtion"
+											style="text-align: justify; border-radius: 10px 10px; background: black; color: white; padding: 5px 5px; box-shadow: 0 6px 12px 0 rgb(0 0 0/ 20%); text-decoration: none;"
+											href="SuaDKDV/${item.maDKDV}/${item.maDichVu}">Chỉnh sửa</a>
+											</br> </br> <label> <a class="funtion"
 												style="border-radius: 10px 10px; background: black; color: white; padding: 5px 5px; text-decoration: none; box-shadow: 0 6px 12px 0 rgb(0 0 0/ 20%);"
-												href="xoaDKDV/${item.maDKDV}">Xóa</a> </label>
-												 <label><a
-												style="text-decoration: none;"
+												href="xoaDKDV/${item.maDKDV}">Xóa</a>
+												
+												<br>
+												<br>
+										</label> <label><a
+												
 												href="/ChamSocBenhNhan/quan-li/khach-hang/${item.maKhachHang}">Xem
 													hồ sơ khách hàng</a> </label></td>
 									</tr>

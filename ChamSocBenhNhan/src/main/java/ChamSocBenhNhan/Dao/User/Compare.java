@@ -157,19 +157,31 @@ public class Compare {
 		Integer daydateend = Integer.parseInt(
 				dateend.toString().substring(dateend.toString().lastIndexOf("-") + 1, dateend.toString().length()));
 
-		if ((year > yeardatestart || year.equals(yeardatestart)) && (year < yeardateend || year.equals(yeardateend))) {
-			if ((month > monthdatestart || month.equals(monthdatestart))
-					&& (month < monthdateend || month.equals(monthdateend))) {
-				if ((day > daydatestart || day.equals(daydatestart)) && (day < daydateend || day.equals(daydateend))) {
-
+		if (year.equals(yeardatestart) || year.equals(yeardateend)) {
+			if(month.equals(monthdatestart) && month.equals(monthdateend)) {
+				if((day.equals(daydatestart)||day>daydatestart)&&(day.equals(daydateend)||day<daydateend)) {
 					return true;
-				} else {
+				}else {
 					return false;
 				}
-			} else {
+			}else if(month.equals(monthdatestart)) {
+				if((day.equals(daydatestart)||day>daydatestart)) {
+					return true;
+				}else {
+					return false;
+				}
+			}
+			else if(month.equals(monthdateend)) {
+				if((day.equals(daydateend)||day<daydateend)) {
+					return true;
+				}else {
+					return false;
+				}
+			}
+			else {
 				return false;
 			}
-		} else {
+		}else {
 			return false;
 		}
 

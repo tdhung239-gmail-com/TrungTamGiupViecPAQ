@@ -209,7 +209,7 @@
 								</tr>
 								<tr>
 									<td style="padding-left: 100px;"><form:input
-											path="tenKhachHang" size="62" required="required" /></td>
+											path="tenKhachHang" size="62" required="required"   pattern="^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+[,.]?[ ]?|[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+['-]?)+$" /></td>
 								<tr>
 
 									<!-- đóng tên khách hàng -->
@@ -231,7 +231,7 @@
 										class="text-danger"> *</span></td>
 								</tr>
 								<tr>
-									<td style="padding-left: 100px;"><form:input path="diaChi"
+									<td style="padding-left: 100px;"><form:input path="diaChi"   pattern="^([0-9a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+[,.]?[ ]?|[0-9a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ/-]+['-]?)+$"
 											required="required" size="62" /></td>
 								<tr>
 									<!-- đóng địa chỉ -->
@@ -276,7 +276,7 @@
 								</tr>
 								<tr>
 									<td style="padding-left: 100px;"><form:input
-											path="diaChiKiet" required="required" size="62" /></td>
+											path="diaChiKiet" required="required" size="62" pattern="^([0-9a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+[,.]?[ ]?|[0-9a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ-/]+['-]?)+$" /></td>
 								<tr>
 									<!-- đóng địa chỉ sử dụng dịch vụ -->
 
@@ -415,7 +415,7 @@ function ChangeCityList() {
 							style="font-family: Times New Roman; color: #66FFFF;">  <fmt:formatNumber value="${item.tongThanhTien}"
 													type="NUMBER" /></h1>
 						<p style="font-family: Times New Roman; font-size: 18px;">Giờ
-							làm/năm</p>
+							làm của nhân viên / năm hiện tại</p>
 					</div>
 					</c:forEach>
 					<c:forEach var="item" items="${ tongKhachHangDuocPhucVu }">
@@ -481,10 +481,15 @@ function ChangeCityList() {
  
 		 	<div class="form-group">
 			 	<form:input path="hoTen" size="49" required="required"
+			 	pattern="^([0-9a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+[,.]?[ ]?|[0-9a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ/-]+['-]?)+$"
 			 		placeholder="enter name" />
-			 	<form:textarea path="noiDung" required="required" rows="4"
+			 	<form:textarea path="noiDung" required="required" rows="4" 
+			 	pattern="^([0-9a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+[,.]?[ ]?|[0-9a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ/-]+['-]?)+$"
+			 	
 			 		cols="100" placeholder="add comment" />
-			 	<label style="font-size: 19px; color: black;"> <label
+			 		<br><label style="font-size: 19px; color: black;">
+			 
+			  <label
 			 		style="color: red;">*</label>Thêm ảnh:
 			 	</label> &nbsp &nbsp &nbsp &nbsp <input type="file" name="profile" /> </br> <label
 				 	style="font-size: 19px; color: black;"> <label

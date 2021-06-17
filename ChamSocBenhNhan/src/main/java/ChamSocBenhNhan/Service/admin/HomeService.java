@@ -20,6 +20,6 @@ public interface HomeService {
 	public  Map<Integer, Integer>   getListTongThanhTienDangKyDichVu(); 
 	public void locThongKe(chonThangNam ctn); 
 	public TaiKhoan getSuaTaiKhoan(String TenTaiKhoan); 
-	public int luuSuaTaiKhoan(TaiKhoan p, String t , int m); 
+	public int luuSuaTaiKhoan(TaiKhoan p, String t , String m); 
 	 
 } 

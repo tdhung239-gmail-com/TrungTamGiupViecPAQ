@@ -3,6 +3,8 @@ package ChamSocBenhNhan.adminController;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +25,8 @@ public class BangluongController extends BaseController {
 	private BangLuongIml blIml = new BangLuongIml();
 
 	@RequestMapping(value = { "/quan-li/bang-luong" })
-	public ModelAndView QLBangLuong() {
+	public ModelAndView QLBangLuong(HttpSession ss) {
+		ss.removeAttribute("tbbl"); 
 		_mvShare.addObject("bangluong", blIml.getViewQlBangLuong());
 		_mvShare.setViewName("admin/viewqlbangluong");
 		return _mvShare;

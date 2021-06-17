@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <ol class="breadcrumb mb-4">
-	<li class="breadcrumb-item"><a href="<c:url value="/quan-li/${okee }/${okee2 }"/>">Dashboard</a></li>
+	<li class="breadcrumb-item"><a href="<c:url value="/quan-li/${okee }/1a1234Wq6cho4htue7${okee2 }"/>">Dashboard</a></li>
 	<li class="breadcrumb-item active">Cập nhật lại dữ liệu tài khoản</li>
 </ol>
 ${param.message}
@@ -26,9 +26,21 @@ ${param.message}
 				<td><form:hidden size="40" path="TenTaiKhoan" required="required" /></td>
 			</tr>
 			<tr>
-				<td style="font-size: 18px;">Mật khẩu :&nbsp
+				<td style="font-size: 18px;">Mật khẩu Cũ:&nbsp
 					&nbsp</td>
-				<td><form:input size="40" type="password" path="MatKhau"
+				<td><form:input size="40" type="password" path="MatKhauCu"  minlength="6" maxlength="20" 
+						required="required" /></td>
+			</tr>
+			<tr>
+				<td style="font-size: 18px;">Mật khẩu Mới:&nbsp
+					&nbsp</td>
+				<td><form:input size="40" type="password" path="MatKhauMoi"  minlength="6" maxlength="20" 
+						required="required" /></td>
+			</tr>
+			<tr>
+				<td style="font-size: 18px;">Xác Nhận Mật khẩu Mới:&nbsp
+					&nbsp</td>
+				<td><form:input size="40" type="password" path="XacNhanMatKhauMoi"  minlength="6" maxlength="20" 
 						required="required" /></td>
 			</tr>
 
@@ -38,7 +50,7 @@ ${param.message}
 
 				<th colspan="2"><a
 					style="margin-left: 23%; text-decoration: none; font-weight: bold; padding: 10px; color: red; border-radius: 10px 10px; font-size: 20px; background: linear-gradient(90deg, #FFEFD5, #FFEBCD); border: white; box-shadow: 0 6px 12px 0 rgb(0 0 0/ 20%);"
-					href="/ChamSocBenhNhan/quan-li/${okee }/${okee2 }">Trở về</a> <input
+					href="/ChamSocBenhNhan/quan-li/${okee }/1a1234Wq6cho4htue7${okee2 }">Trở về</a> <input
 					style="margin-left: 10%; margin-top: 40px; font-weight: bold; padding: 10px; color: red; border-radius: 10px 10px; font-size: 20px; background: linear-gradient(90deg, #FFEFD5, #FFEBCD); border: white; box-shadow: 0 6px 12px 0 rgb(0 0 0/ 20%);"
 					type="submit" value="Cập nhật" /></th>
 			</tr>

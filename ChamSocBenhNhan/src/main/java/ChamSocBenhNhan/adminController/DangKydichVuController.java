@@ -3,6 +3,8 @@ package ChamSocBenhNhan.adminController;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +23,8 @@ public class DangKydichVuController extends BaseController {
 
 	// *
 	@RequestMapping(value = { "/quan-li/dang-ky-dich-vu/{maDKDV}" })
-	public ModelAndView getViewQLDangKyDichVu(@PathVariable String maDKDV) {
+	public ModelAndView getViewQLDangKyDichVu(@PathVariable String maDKDV, HttpSession ss) {
+		ss.removeAttribute("tbdkdv");
 		_mvShare.addObject("qldkdv", dkdv.getViewQLDangKyDichVu(maDKDV));
 		_mvShare.addObject("listChonDV", dkdv.getListChonDichVu());
 		_mvShare.setViewName("admin/viewquanlydangky_dv");

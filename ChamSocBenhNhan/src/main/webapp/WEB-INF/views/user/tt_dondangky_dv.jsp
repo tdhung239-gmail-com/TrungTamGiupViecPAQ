@@ -29,7 +29,7 @@
 
 				<h3
 					style="color: red; font-family: Times New Roman; margin-top: 10px;">Trung
-					tâm cho thuê người giúp việc FAQ</h3>
+					tâm cho thuê người giúp việc PAQ</h3>
 
 				<p style="font-size: 20px; font-weight: 600;">- Địa chỉ : 56/32
 					Nguyễn Thành Hãn/ Đà Nẵng</p>
@@ -62,13 +62,16 @@
 				<tr>
 					<th rowspan="2">Tên dịch vụ</th>
 					<c:if test="${item.gioBatDau =='00:00:00'   }">
-						<th colspan="4">Thời gian làm việc</th>
+						<th colspan="2">Thời gian làm việc</th>
+						<th colspan="2">Tổng thời gian</th>
 					</c:if>
-					<c:if test="${item.gioBatDau !='00:00:00'   }">
+					<c:if test="${item.gioBatDau!='00:00:00'   }">
 						<th colspan="3">Thời gian làm việc</th>
+						<th colspan="1">Tổng thời gian</th>
 
 					</c:if>
-					<th colspan="3">Tổng thời gian</th>
+
+
 					<th rowspan="2">Phí dịch vụ</th>
 					<th rowspan="2">Tổng tiền</th>
 
@@ -77,27 +80,25 @@
 					<c:if test="${item.gioBatDau =='00:00:00'  }">
 						<th>Ngày bắt đầu</th>
 						<th>Ngày kết thúc</th>
+						<th>Tổng tháng </br>(30 ngày)
+						</th>
+						<th>Tổng ngày</th>
 					</c:if>
 					<c:if test="${item.gioBatDau !='00:00:00' }">
 						<th>Ngày làm việc</th>
+						<th>Giờ bắt đầu</th>
+						<th>Giờ kết thúc</th>
+						<th>Tổng giờ</th>
 					</c:if>
 
-					<th>Giờ bắt đầu</th>
-					<th>Giờ kết thúc</th>
 
-					<th>Tổng tháng </br>(30 ngày)
-					</th>
-					<th>Tổng ngày</th>
-					<th>Tổng giờ</th>
+
+
+
 				</tr>
 				<tr>
 
 					<td><label>${ item.tenDichVu}</label></td>
-
-					<!-- Ngày bắt đầu -->
-
-
-					<!-- Ngày kết thúc -->
 
 					<c:if test="${item.gioBatDau =='00:00:00'   }">
 						<td><fmt:formatDate pattern="dd-MM-yyy"
@@ -105,6 +106,7 @@
 						<td><fmt:formatDate pattern="dd-MM-yyy"
 								value="${ item.ngayKetThuc }" /></td>
 					</c:if>
+					
 					<c:if test="${item.gioBatDau !='00:00:00'   }">
 						<td><fmt:formatDate pattern="dd-MM-yyy"
 								value="${ item.ngayBatDau }" /></td>
@@ -112,47 +114,43 @@
 
 					<!-- Giờ bắt đầu -->
 					<c:if test="${item.gioBatDau == '00:00:00'  }">
-						<td><label>NULL</label></td>
+
 					</c:if>
 					<c:if test="${item.gioBatDau !='00:00:00'  }">
 						<td><label>${ item.gioBatDau }</label></td>
 					</c:if>
 					<!-- giờ kết thúc -->
 					<c:if test="${item.gioKetThuc == '00:00:00'  }">
-						<td><label>NULL</label></td>
+
 					</c:if>
 					<c:if test="${item.gioKetThuc !='00:00:00'  }">
 						<td><label>${ item.gioKetThuc }</label></td>
 					</c:if>
 
-					<!--  Tổng tháng -->
-					<c:if
-						test="${item.luongTheoThang == '0' && item.luongTheoNgay != '0'|| item.luongTheoThang == '0' && item.luongTheoGio != '0'  }">
-						<td><label>NULL</label></td>
+					<!--  Tổng time -->
+					<c:if test="${item.gioBatDau != '00:00:00'  }">
+						<td><label>${ item.tongThoiGianTheoGio} giờ </label></td>
 					</c:if>
-					<c:if
-						test="${item.luongTheoThang != '0' && item.luongTheoNgay == '0'|| item.luongTheoThang != '0' && item.luongTheoGio == '0'  }">
+					<c:if test="${item.luongTheoGio == '0'  }">
+
+					</c:if>
+					<c:if test="${ item.luongTheoNgay != '0' }">
 						<td><label>${ item.tongThoiGianTheoThang} tháng</label></td>
+
+						<td><label> ${ item.tongThoiGianTheoNgay} ngày </label></td>
 					</c:if>
-
-
-
-					<!-- Tổng ngày -->
-					<c:if test="${item.luongTheoThang == '0'  }">
-						<td><label>${ item.tongThoiGianTheoNgay} ngày</label></td>
-					</c:if>
-					<c:if test="${item.luongTheoThang != '0'  }">
+					<c:if test="${item.luongTheoThang != '0' }">
+						<td><label>${ item.tongThoiGianTheoThang} tháng</label></td>
 						<td><label>có ${ item.tongThoiGianTheoNgay} ngày dư
-								của dich vụ này (tháng)</label></td>
+								của dich vụ này (tính theo tháng)</label></td>
 					</c:if>
 
-					<!-- Tổng giờ -->
-					<c:if test="${item.tongThoiGianTheoGio == '0'  }">
-						<td><label>NULL</label></td>
-					</c:if>
-					<c:if test="${item.tongThoiGianTheoGio != '0'  }">
-						<td><label>${ item.tongThoiGianTheoGio} giờ</label></td>
-					</c:if>
+
+
+
+
+
+
 					<!-- Tổng phí DV -->
 					<td><label> <fmt:formatNumber
 								value="${item.phiDichVu}" type="currency" />

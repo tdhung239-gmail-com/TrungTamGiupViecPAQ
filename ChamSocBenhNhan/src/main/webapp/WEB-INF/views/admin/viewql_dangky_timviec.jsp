@@ -9,7 +9,8 @@
 	${param.message}
 	<div class="container-fluid">
 		<ol class="breadcrumb mb-4">
-			<li class="breadcrumb-item"><a href="<c:url value="/quan-li/${okee }/${okee2 }"/>">Dashboard</a></li>
+			<li class="breadcrumb-item"><a
+				href="<c:url value="/quan-li/${okee }/1a1234Wq6cho4htue7${okee2 }"/>">Dashboard</a></li>
 			<li class="breadcrumb-item active">Đăng ký tìm việc</li>
 		</ol>
 
@@ -24,7 +25,7 @@
 						<thead>
 							<tr>
 								<th>Mã nhân viên</th>
-								<th>Tên nhân biên</th>
+								<th>Tên nhân viên</th>
 								<th>Chuyên dịch vụ</th>
 								<th>SDT</th>
 								<th>Năm sinh</th>
@@ -40,7 +41,7 @@
 						<tfoot>
 							<tr>
 								<th>Mã nhân viên</th>
-								<th>Tên nhân biên</th>
+								<th>Tên nhân viên</th>
 								<th>Chuyên dịch vụ</th>
 								<th>SDT</th>
 								<th>Năm sinh</th>
@@ -59,7 +60,8 @@
 									<td style="font-weight: bold;"><label>${ item.maHSNV }
 									</label></td>
 									<td><label>${ item.hoTen } </label></td>
-									<td><label>${ item.tenDichVu } (${ item.maDichVu } ) </label></td>
+									<td><label>${ item.tenDichVu } (${ item.maDichVu })
+									</label></td>
 									<td><label>${ item.sdt } </label></td>
 									<td><label> <fmt:formatDate pattern="dd-MM-yyy"
 												value="${ item.namSinh }" />
@@ -76,7 +78,7 @@
 												class="fa fa-plus"></i></span>
 									</a></td>
 									<td><label> <c:if
-												test="${ item.tinhTrangLamViec == 'ranh'}"> rãnh</c:if> <c:if
+												test="${ item.tinhTrangLamViec == 'ranh'}"> rảnh</c:if> <c:if
 												test="${ item.tinhTrangLamViec != 'ranh'}"> bận</c:if>
 									</label></td>
 									<td><label> <c:if
@@ -84,8 +86,12 @@
 												test="${ item.tinhTrangDuyetHoSo != 'xong'}"> chưa</c:if>
 									</label></td>
 
-									<td><a href="duyetDKTV/${item.maHSNV}">Duyệt hồ sơ</a></td>
-									<td><a href="xoaDKTV/${item.maHSNV}">Xóa</a></td>
+									<td><a
+										style="text-align: justify; border-radius: 10px 10px; background: black; color: white; padding: 5px 5px; box-shadow: 0 6px 12px 0 rgb(0 0 0/ 20%); text-decoration: none;"
+										href="duyetDKTV/${item.maHSNV}">Duyệt hồ sơ</a></td>
+									<td><a
+										style="text-align: justify; border-radius: 10px 10px; background: black; color: white; padding: 5px 5px; box-shadow: 0 6px 12px 0 rgb(0 0 0/ 20%); text-decoration: none;"
+										href="xoaDKTV/${item.maHSNV}">Xóa</a></td>
 
 								</tr>
 							</c:forEach>

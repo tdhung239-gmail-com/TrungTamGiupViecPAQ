@@ -9,7 +9,8 @@
 		${param.message}
 		<div class="container-fluid">
 			<ol class="breadcrumb mb-4">
-				<li class="breadcrumb-item"><a href="<c:url value="/quan-li/${okee }/${okee2 }"/>">Dashboard</a></li>
+				<li class="breadcrumb-item"><a
+					href="<c:url value="/quan-li/${okee }/1a1234Wq6cho4htue7${okee2 }"/>">Dashboard</a></li>
 				<li class="breadcrumb-item active">Tuyển Dụng</li>
 			</ol>
 
@@ -31,7 +32,7 @@
 									<th>Quyền lợi</th>
 									<th>Yêu cầu công việc</th>
 									<th>Mã dịch vụ</th>
-									<th>Chức năng</th>
+									<th width="80px">Chức năng</th>
 									<th>Tắt/Bật Tuyển Dụng</th>
 								</tr>
 							</thead>
@@ -70,15 +71,21 @@
 										<td><label>${ item.yeuCauCongViec } </label></td>
 										<td><label>${ item.maDichVu } </label></td>
 
-										<td><a href="suaTuyenDung/${item.maTuyenDung}">Edit</a> <a
-											href="xoaTuyenDung/${item.maTuyenDung}">Delete</a></td>
+										<td><a
+											style="text-align: justify; border-radius: 10px 10px; background: black; color: white; padding: 5px 5px; box-shadow: 0 6px 12px 0 rgb(0 0 0/ 20%); text-decoration: none;"
+											href="suaTuyenDung/${item.maTuyenDung}">Chỉnh Sửa</a> <br>
+											<br> <a
+											style="text-align: justify; border-radius: 10px 10px; background: black; color: white; padding: 5px 5px; box-shadow: 0 6px 12px 0 rgb(0 0 0/ 20%); text-decoration: none;"
+											href="xoaTuyenDung/${item.maTuyenDung}">Xoá</a></td>
 
 										<td style="text-align: center;"><c:if
 												test="${ item.tatBat == '0' }">
 												<a
+													style="text-align: justify; border-radius: 10px 10px; background: black; color: white; padding: 5px 5px; box-shadow: 0 6px 12px 0 rgb(0 0 0/ 20%); text-decoration: none;"
 													href="tatBatTuyenDung/${item.maTuyenDung}/${ item.tatBat}">On</a>
 											</c:if> <c:if test="${ item.tatBat == '1' }">
 												<a
+													style="text-align: justify; border-radius: 10px 10px; background: black; color: white; padding: 5px 5px; box-shadow: 0 6px 12px 0 rgb(0 0 0/ 20%); text-decoration: none;"
 													href="tatBatTuyenDung/${item.maTuyenDung}/${ item.tatBat}">Off</a>
 
 											</c:if></td>
@@ -87,7 +94,9 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						<a href="them-tuyen-dung">Thêm mới</a>
+						<a
+							style="text-align: justify; border-radius: 10px 10px; background: black; color: white; padding: 5px 5px; box-shadow: 0 6px 12px 0 rgb(0 0 0/ 20%); text-decoration: none;"
+							href="them-tuyen-dung">Thêm mới</a>
 					</div>
 				</div>
 			</div>

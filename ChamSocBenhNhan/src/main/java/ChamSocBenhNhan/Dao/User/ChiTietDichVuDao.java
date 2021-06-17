@@ -228,13 +228,13 @@ public class ChiTietDichVuDao extends BaseDaoUser {
 						System.out.println("pro");
 					} else {
 						System.out.println("lieen he" + MaxMaDKDVMoi);
-						String thongdiep = "Warnning tại mã đăng ký dich vụ (" + MaxMaDKDVMoi + "): Khách hàng "
+						String thongdiep = "Warning tại mã đăng ký dich vụ (" + MaxMaDKDVMoi + "): Khách hàng "
 								+ p.getTenKhachHang()
 								+ " đã đăng ký dịch vụ thành công nhưng chưa chọn được nhân viên phù hợp";
 						String sqllienhe = "insert into lienhe(tenLienHe,Email,sdt,thongDiep)values('" + p.getTenKhachHang()
 								+ "','NULL','"+p.getSdt()+"','" + thongdiep + "')";
 						_jdbcTemplate.update(sqllienhe);
-						return 1;
+						return 20;
 					}
 					// check auto nhân viên làm dịch vụ mà khách hàng đăng ký
 
@@ -399,13 +399,13 @@ public class ChiTietDichVuDao extends BaseDaoUser {
 					System.out.println("pro");
 				} else {
 					System.out.println("lieen he" + MaxMaDKDVMoi);
-					String thongdiep = "Warnning tại mã đăng ký dich vụ (" + MaxMaDKDVMoi + "): Khách hàng "
+					String thongdiep = "Warning tại mã đăng ký dich vụ (" + MaxMaDKDVMoi + "): Khách hàng "
 							+ p.getTenKhachHang()
 							+ " đã đăng ký dịch vụ thành công nhưng chưa chọn được nhân viên phù hợp";
 					String sqllienhe = "insert into lienhe(tenLienHe,Email,sdt,thongDiep)values('" + p.getTenKhachHang()
 							+ "','NULL','" + p.getSdt() + "','" + thongdiep + "')";
 					_jdbcTemplate.update(sqllienhe);
-					return 1;
+					return 20;
 				}
 
 				// đóng check auto nhân viên làm dịch vụ mà khách hàng đăng ký
@@ -585,12 +585,15 @@ public class ChiTietDichVuDao extends BaseDaoUser {
 
 	// Những con số ấn tượng
 	public List<BangLuong> getGioLamViecTrongNam() {
+		Date newDate2 = new Date(); 
+		java.sql.Date newDateSql2 = new java.sql.Date(newDate2.getTime()); 
+		Integer yearnow = Integer.parseInt(newDateSql2.toString().substring(0, newDateSql2.toString().indexOf("-"))); 
 		return _jdbcTemplate.query(
 				"select bangluong.idBangLuong, bangluong.maHSNV, hosonhanvien.hoTen, bangluong.maDKDV,dangkydichvu.maDichVu, bangluong.tinhTrangThanhToan,"
 						+ "sum(IF(luongTheothang!=0,DATEDIFF(ngayKetThuc,ngayBatDau)*8,"
 						+ "0+IF(luongTheoNgay!=0,8* DATEDIFF(ngayKetThuc,ngayBatDau),"
 						+ "0+(IF(luongTheoGio!=0,Hour(gioKetThuc)-Hour(gioBatDau),0))))) " + "as tongThanhTien"
-						+ " from bangluong,hosonhanvien,dangkydichvu,dichvu where dichvu.maDichVu=dangkydichvu.maDichVu and bangluong.maDKDV=dangkydichvu.maDKDV and bangluong.maHSNV=hosonhanvien.maHSNV",
+						+ " from bangluong,hosonhanvien,dangkydichvu,dichvu where dichvu.maDichVu=dangkydichvu.maDichVu and bangluong.maDKDV=dangkydichvu.maDKDV and bangluong.maHSNV=hosonhanvien.maHSNV and Year(ngayBatDau) = "+yearnow+" ",
 				new BangLuongMapper());
 	}
 

@@ -24,7 +24,7 @@ public class HomeAdminController extends BaseController {
 	@Autowired 
 	private HomeIml b1 = new HomeIml(); 
 
-	@RequestMapping(value = "/quan-li/{taiKhoan}/{matKhau}", method = RequestMethod.GET)   
+	@RequestMapping(value = "/quan-li/{taiKhoan}/1a1234Wq6cho4htue7{matKhau}", method = RequestMethod.GET)   
 	public ModelAndView checkLogin(@PathVariable(value = "taiKhoan") String taiKhoan, 
 			@PathVariable(value = "matKhau") String matKhau, TaiKhoanMapper map, HttpSession ss) {  
 		if (b1.dologin(taiKhoan, matKhau) != null) {  
@@ -46,11 +46,11 @@ public class HomeAdminController extends BaseController {
 
 	} 
 
-	@RequestMapping(value = "/locThongKe/{taiKhoan}/{matKhau}", method = RequestMethod.POST)  
+	@RequestMapping(value = "/locThongKe/{taiKhoan}/1a1234Wq6cho4htue7{matKhau}", method = RequestMethod.POST)  
 	public String locThongKe(chonThangNam ctn, @PathVariable(value = "taiKhoan") String taiKhoan,  
 			@PathVariable(value = "matKhau") String matKhau) {  
 		b1.locThongKe(ctn);  
-		return "redirect:/quan-li/" + taiKhoan + "/" + matKhau + "";  
+		return "redirect:/quan-li/" + taiKhoan + "/1a1234Wq6cho4htue7" + matKhau + "";  
 	}
  
 	@RequestMapping(value = "/404/", method = RequestMethod.GET) 
@@ -72,15 +72,15 @@ public class HomeAdminController extends BaseController {
 
 	@RequestMapping(value = "/luuSuaTaiKhoan/{TenTaiKhoan}/{MatKhau}", method = RequestMethod.POST)
 	public String luuSuaTaiKhoan(@ModelAttribute("emp") TaiKhoan emp, @PathVariable String TenTaiKhoan,
-			@PathVariable int MatKhau) throws UnsupportedEncodingException { 
+			@PathVariable String MatKhau) throws UnsupportedEncodingException { 
 		int kq = b1.luuSuaTaiKhoan(emp, TenTaiKhoan, MatKhau); 
 		if (kq > 0) { 
 			String message = "<script>alert('Cập nhật thành công!!!');</script>"; 
-			return "redirect:/quan-li/" + TenTaiKhoan + "/" + emp.getMatKhau() + "?message="
+			return "redirect:/quan-li/" + TenTaiKhoan + "/1a1234Wq6cho4htue7" + emp.getMatKhauMoi() +"?message="
 					+ URLEncoder.encode(message, "UTF-8"); 
 		} else { 
-			String message = "<script>alert('cập nhật không thành công !!!');</script>";
-			return "redirect:/quan-li/" + TenTaiKhoan + "/" + emp.getMatKhau() + "?message="
+			String message = "<script>alert('cập nhật không thành công, bạn phải đúng mật khẩu cũ và đúng xác nhận mật khẩu mới !!!');</script>";
+			return "redirect:/quan-li/suaTaiKhoan/" + TenTaiKhoan + "?message="
 					+ URLEncoder.encode(message, "UTF-8"); 
 
 		} 

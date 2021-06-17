@@ -9,7 +9,8 @@
 		${param.message}
 		<div class="container-fluid">
 			<ol class="breadcrumb mb-4">
-				<li class="breadcrumb-item"><a href="<c:url value="/quan-li/${okee }/${okee2 }"/>">Dashboard</a></li>
+				<li class="breadcrumb-item"><a
+					href="<c:url value="/quan-li/${okee }/1a1234Wq6cho4htue7${okee2 }"/>">Dashboard</a></li>
 				<li class="breadcrumb-item active">Liên Hệ</li>
 			</ol>
 
@@ -55,7 +56,9 @@
 										<td><label>${ item.thongdiep } </label></td>
 										<td><label>${ item.sdt } </label></td>
 
-										<td><a href="/ChamSocBenhNhan/quan-li/xoaLienHe/${item.malienhe}">Delete</a></td>
+										<td><a
+											style="text-align: justify; border-radius: 10px 10px; background: black; color: white; padding: 5px 5px; box-shadow: 0 6px 12px 0 rgb(0 0 0/ 20%); text-decoration: none;"
+											href="/ChamSocBenhNhan/quan-li/xoaLienHe/${item.malienhe}">Xoá</a></td>
 
 									</tr>
 								</c:forEach>

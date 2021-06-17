@@ -3,6 +3,8 @@ package ChamSocBenhNhan.adminController;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -84,7 +86,8 @@ public class KhachHangController extends BaseController {
 	}
 
 	@RequestMapping(value = { "/quan-li/lien-he" })
-	public ModelAndView getViewQlLienHe() {
+	public ModelAndView getViewQlLienHe(HttpSession ss) {
+		ss.removeAttribute("tblh"); 
 		_mvShare.addObject("lienhe", nv.getViewQlLienHe());
 		_mvShare.setViewName("admin/viewquanli_lienhe");
 		return _mvShare;

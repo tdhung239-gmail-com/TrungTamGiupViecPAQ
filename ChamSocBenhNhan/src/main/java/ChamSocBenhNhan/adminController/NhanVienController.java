@@ -121,9 +121,11 @@ public class NhanVienController extends BaseController {
 		} 
 
 	} 
+	// Đăng ký tìm việc
 
 	@RequestMapping(value = { "/quan-li/dangky-timviec" })
-	public ModelAndView getViewQLDangKyTimViec() {
+	public ModelAndView getViewQLDangKyTimViec(HttpSession ss) {
+		ss.removeAttribute("tbdktv"); 
 		_mvShare.addObject("dktv", nv.getViewQLDangKyTimViec());
 		_mvShare.setViewName("admin/viewql_dangky_timviec");
 		return _mvShare;

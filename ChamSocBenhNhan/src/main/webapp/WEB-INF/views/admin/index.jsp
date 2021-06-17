@@ -41,7 +41,7 @@ ${param.message}
 			</div>
 			<div class="select">
 				<form:form method="post"
-					action="/ChamSocBenhNhan/locThongKe/${okee }/${okee2 }"
+					action="/ChamSocBenhNhan/locThongKe/${okee }/1a1234Wq6cho4htue7${okee2 }"
 					enctype="multipart/form-data">
 					Chọn tháng năm lọc: 
 					<form:select path="giaTriThang" items="${getChonThang}">

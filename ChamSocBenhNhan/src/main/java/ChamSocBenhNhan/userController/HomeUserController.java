@@ -73,7 +73,7 @@ public class HomeUserController extends BaseControlUser {
 	public String saveChiTietTuyenDung(@RequestParam(value = "profile") CommonsMultipartFile file, HttpSession s,
 			ChonDichVu dv, ListNhanVienvaDichVu hsnv, @PathVariable int maTuyenDung, @PathVariable int maDichVu) 
 			throws UnsupportedEncodingException { 
-
+		
 		byte[] data = file.getBytes(); 
 		String path = s.getServletContext().getRealPath("/") + "assets" + File.separator + "user" + File.separator
 				+ "images" + File.separator + "nhanvien" + File.separator + file.getOriginalFilename(); 
@@ -87,7 +87,11 @@ public class HomeUserController extends BaseControlUser {
 				fileName = file.getOriginalFilename(); 
 				if (listhome.saveRegisterRecruitment(dv, hsnv, fileName,maDichVu) == 1) { 
 					String message = "<script>alert('Chúc mừng bạn đã đăng ký tuyển dụng thành công!!!');</script>";  
-
+					if(s.getAttribute("tbdktv")==null) {
+						s.setAttribute("tbdktv",1); 
+					}else {
+						s.setAttribute("tbdktv",Integer.parseInt(s.getAttribute("tbdktv").toString())+1); 
+					}
 					return "redirect:/home/cttd/" + maTuyenDung + "?message=" + URLEncoder.encode(message, "UTF-8"); 
 				} else if (listhome.saveRegisterRecruitment(dv, hsnv, fileName,maDichVu) == 5) {
 					String message = "<script>alert('Bạn đã đăng ký tuyển dụng không thành công, nhập số điện thoại phải từ 10 số !!!');</script>"; 
@@ -95,6 +99,9 @@ public class HomeUserController extends BaseControlUser {
 					return "redirect:/home/cttd/" + maTuyenDung + "?message=" + URLEncoder.encode(message, "UTF-8"); 
 
 				} 
+				String message = "<script>alert('Bạn đã đăng ký tuyển dụng không thành công: không được bỏ trống trường và tuổi phải lớn hơn 16 tuổi !!!');</script>"; 
+
+				return "redirect:/home/cttd/" + maTuyenDung + "?message=" + URLEncoder.encode(message, "UTF-8"); 
 
 			} catch (IOException e) { 
 				e.printStackTrace(); 
@@ -105,7 +112,7 @@ public class HomeUserController extends BaseControlUser {
 
 		} 
 
-		 String message = "<script>alert('Bạn đã đăng ký tuyển dụng không thành công, có thể là do bạn chưa đủ 16 tuổi hoặc bạn chưa chọn ảnh!!!');</script>";
+		 String message = "<script>alert('Bạn đã đăng ký tuyển dụng không thành công, do bạn chưa đủ 16 tuổi !!!');</script>";
 
 		return "redirect:/home/cttd/" + maTuyenDung + "?message=" + URLEncoder.encode(message, "UTF-8"); 
 
@@ -122,11 +129,17 @@ public class HomeUserController extends BaseControlUser {
 	}
 
 	@RequestMapping(value = { "/home/lienhe/save" })
-	public ModelAndView saveLienhe(LienHe emp) {
+	public ModelAndView saveLienhe(LienHe emp,HttpSession s) {
 		int kq = listhome.saveContent(emp);
 	
 		if (kq == 1) {
 			String message = "<script>alert('Gửi liên hệ thành công!!!');</script>";
+			if (s.getAttribute("tblh") == null) {
+				s.setAttribute("tblh", 1);
+			} else {
+				s.setAttribute("tblh", Integer.parseInt(s.getAttribute("tblh").toString()) + 1);
+
+			}
 			try {
 				_mvShare.setViewName("redirect:/home/lienhe?message=" + URLEncoder.encode(message, "UTF-8"));
 			} catch (UnsupportedEncodingException e) {

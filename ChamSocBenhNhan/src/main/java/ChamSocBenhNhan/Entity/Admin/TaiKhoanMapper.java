@@ -9,8 +9,8 @@ public class TaiKhoanMapper implements RowMapper<TaiKhoan> {
 
 	public TaiKhoan mapRow(ResultSet rs, int rowNum) throws SQLException {
 		TaiKhoan taiKhoan = new TaiKhoan();
-		taiKhoan.setTenTaiKoan(rs.getString("TenTaiKhoan")); // giong vs sql
-		taiKhoan.setMatKhau(rs.getInt("MatKhau"));
+		taiKhoan.setTenTaiKhoan(rs.getString("tenTaiKhoan"));
+		taiKhoan.setMatKhau(rs.getString("matKhau"));
 		return taiKhoan;
 	}
 }

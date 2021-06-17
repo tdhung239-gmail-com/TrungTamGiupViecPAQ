@@ -37,7 +37,8 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">Core</div>
-						<a class="nav-link"  href=" <c:url value="/quan-li/${okee }/${okee2 }"/> ">
+						<a class="nav-link"
+							href=" <c:url value="/quan-li/${okee }/1a1234Wq6cho4htue7${okee2 }"/> ">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> Dashboard
@@ -59,36 +60,54 @@
 							<nav class="sb-sidenav-menu-nested nav accordion"
 								id="sidenavAccordionPages">
 								<a class="nav-link collapsed"
-									href="<c:url value="/quan-li/bang-luong"/>"> Bảng Lương</a> <a
-									class="nav-link collapsed"
+									href="<c:url value="/quan-li/bang-luong"/>"> Bảng Lương <c:if
+										test="${tbbl !=NULL  }">
+										<p style="color: red;">(${tbbl })</p>
+									</c:if> <c:if test="${tbbl ==NULL  }"></c:if>
+								</a> <a class="nav-link collapsed"
 									href="<c:url value="/quan-li/nhan-vien/all"/>"> Nhân Viên </a>
 								<a class="nav-link collapsed"
 									href="<c:url value="/quan-li/dang-ky-dich-vu/all"/>"> Đăng
-									ký Dịch Vụ </a> <a class="nav-link collapsed"
+									ký Dịch Vụ <c:if test="${tbdkdv !=NULL  }">
+										<p style="color: red;">(${tbdkdv })</p>
+									</c:if> <c:if test="${tbdktv ==NULL  }"></c:if>
+
+								</a> <a class="nav-link collapsed"
 									href="<c:url value="/quan-li/khach-hang/all"/>"> Khách Hàng</a>
-									<a class="nav-link collapsed"
-									href="<c:url value="/quan-li/lien-he"/>"> Liên Hệ</a>
-									<a class="nav-link collapsed"
-									href="<c:url value="/quan-li/danh-gia"/>"> Đánh Giá	</a>
-									<a class="nav-link collapsed"
-									href="<c:url value="/quan-li/tuyen-dung"/>"> Tuyển Dụng</a>
-									<a class="nav-link collapsed"
-									href="<c:url value="/quan-li/dangky-timviec"/>"> Đăng Ký Tìm Việc</a>
-									<a class="nav-link collapsed"
+								<a class="nav-link collapsed"
+									href="<c:url value="/quan-li/lien-he"/>"> Liên Hệ <c:if
+										test="${tblh !=NULL  }">
+										<p style="color: red;">(${tblh })</p>
+									</c:if> <c:if test="${tblh ==NULL  }"></c:if></a> <a
+									class="nav-link collapsed"
+									href="<c:url value="/quan-li/danh-gia"/>"> Đánh Giá<c:if
+										test="${tbdg !=NULL  }">
+										<p style="color: red;">(${tbdg })</p>
+									</c:if> <c:if test="${tbdg ==NULL  }"></c:if> </a> <a
+									class="nav-link collapsed"
+									href="<c:url value="/quan-li/tuyen-dung"/>"> Tuyển Dụng </a> <a
+									class="nav-link collapsed"
+									href="<c:url value="/quan-li/dangky-timviec"/>"> Đăng Ký
+									Tìm Việc <c:if test="${tbdktv !=NULL  }">
+										<p style="color: red;">(${tbdktv })
+										</p>
+									</c:if> <c:if test="${tbdktv ==NULL  }"></c:if>
+								</a> <a class="nav-link collapsed"
 									href="<c:url value="/quan-li/dich-vu"/>"> Dịch Vụ</a>
 
 
 							</nav>
 						</div>
 						<div class="sb-sidenav-menu-heading">Addons</div>
-						<a class="nav-link"  href=" <c:url value="/quan-li/${okee }/${okee2 }"/> ">
+						<a class="nav-link"
+							href=" <c:url value="/quan-li/${okee }/1a1234Wq6cho4htue7${okee2 }"/> ">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
 							</div> Charts
 						</a>
 					</div>
 				</div>
-				
+
 			</nav>
 		</div>
 		<div id="layoutSidenav_content">
