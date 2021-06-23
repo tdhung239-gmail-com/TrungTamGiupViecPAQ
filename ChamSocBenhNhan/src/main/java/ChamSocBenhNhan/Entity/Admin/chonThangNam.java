@@ -5,6 +5,7 @@ public class chonThangNam {
 	private Integer giaTriThang;
 	private String tenNam;
 	private Integer giaTriNam;
+	private Integer maHSNV;
 	public chonThangNam() {
 		// TODO Auto-generated constructor stub
 	}
@@ -31,6 +32,12 @@ public class chonThangNam {
 	}
 	public void setGiaTriNam(Integer giaTriNam) {
 		this.giaTriNam = giaTriNam;
+	}
+	public Integer getMaHSNV() {
+		return maHSNV;
+	}
+	public void setMaHSNV(Integer maHSNV) {
+		this.maHSNV = maHSNV;
 	}
 	
 }

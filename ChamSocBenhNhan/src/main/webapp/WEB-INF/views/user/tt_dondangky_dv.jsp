@@ -129,7 +129,7 @@
 
 					<!--  Tổng time -->
 					<c:if test="${item.gioBatDau != '00:00:00'  }">
-						<td><label>${ item.tongThoiGianTheoGio} giờ </label></td>
+						<td><label>${ item.tongThoiGianTheoGio} </label></td>
 					</c:if>
 					<c:if test="${item.luongTheoGio == '0'  }">
 

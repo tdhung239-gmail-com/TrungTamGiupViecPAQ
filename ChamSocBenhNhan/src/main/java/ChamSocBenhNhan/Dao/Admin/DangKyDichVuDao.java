@@ -36,14 +36,14 @@ public class DangKyDichVuDao extends BaseDao {
 					+ "luongTheoNgay,luongTheoThang,ngayBatDau,ngayKetThuc,gioBatDau,gioKetThuc,phiDichVuTheoThang,phiDichVuTheoNgay,phiDichVuTheoGio,tinhTrangThanhToan"
 					+ ",IF(luongTheoNgay!=0, DATEDIFF(ngayKetThuc,ngayBatDau), IF(luongTheoThang!=0,DATEDIFF(ngayKetThuc,ngayBatDau)%30,0)) as tongThoiGianTheoNgay"
 					+ ",IF(luongTheothang!=0,DATEDIFF(ngayKetThuc, ngayBatDau)/30, 0) as tongThoiGianTheoThang"
-					+ ",IF(luongTheoGio!=0,Hour(gioKetThuc)-Hour(gioBatDau),0)as tongThoiGianTheoGio"
+					+ ",IF(luongTheoGio!=0, TIMEDIFF(gioKetThuc,gioBatDau),0)as tongThoiGianTheoGio"
 
 					+ ",IF(luongTheothang!=0,phiDichVuTheoThang,0+IF(luongTheoNgay!=0,phiDichVuTheoNgay,0+(IF(luongTheoGio!=0,phiDichVuTheoGio,0)))) "
 					+ " as phiDichVu"
 
 					+ ",IF(luongTheothang!=0,DATEDIFF(ngayKetThuc,ngayBatDau)/30*luongTheoThang + ROUND(luongTheoThang/30,0)* DATEDIFF(ngayKetThuc,ngayBatDau)%30 + phiDichVuTheoThang,"
 					+ "0+IF(luongTheoNgay!=0,luongTheoNgay* DATEDIFF(ngayKetThuc,ngayBatDau)+phiDichVuTheoNgay,"
-					+ "0+phiDichVuTheoGio+(IF(luongTheoGio!=0,Hour(gioKetThuc)-Hour(gioBatDau),0)*luongTheoGio))) "
+					+ "0+phiDichVuTheoGio+(IF(luongTheoGio!=0,IF(MINUTE(TIMEDIFF(gioKetThuc,gioBatDau))>30,(Hour(TIMEDIFF(gioKetThuc,gioBatDau))+1)*LuongTheoGio,Hour(TIMEDIFF(gioKetThuc,gioBatDau))*LuongTheoGio + ( dichvu.luongTheoGio/60)*MINUTE(TIMEDIFF(gioKetThuc,gioBatDau)) ),0)))) "
 					+ "as tongTien, 5 as tongThanhTien "
 					+ " FROM `dangkydichvu`,`dichvu`,`khachhang` WHERE `dangkydichvu`.maDichVu = `dichvu`.maDichVu and `dangkydichvu`.maKhachHang =`khachhang`.maKhachHang";
 		} else {
@@ -51,15 +51,14 @@ public class DangKyDichVuDao extends BaseDao {
 					+ "luongTheoNgay,luongTheoThang,ngayBatDau,ngayKetThuc,gioBatDau,gioKetThuc,phiDichVuTheoThang,phiDichVuTheoNgay,phiDichVuTheoGio,tinhTrangThanhToan"
 					+ ",IF(luongTheoNgay!=0, DATEDIFF(ngayKetThuc,ngayBatDau), IF(luongTheoThang!=0,DATEDIFF(ngayKetThuc,ngayBatDau)%30,0)) as tongThoiGianTheoNgay"
 					+ ",IF(luongTheothang!=0,DATEDIFF(ngayKetThuc, ngayBatDau)/30, 0) as tongThoiGianTheoThang"
-					+ ",IF(luongTheoGio!=0,Hour(gioKetThuc)-Hour(gioBatDau),0)as tongThoiGianTheoGio"
+					+ ",IF(luongTheoGio!=0,TIMEDIFF(gioKetThuc,gioBatDau),0)as tongThoiGianTheoGio"
 
 					+ ",IF(luongTheothang!=0,phiDichVuTheoThang,0+IF(luongTheoNgay!=0,phiDichVuTheoNgay,0+(IF(luongTheoGio!=0,phiDichVuTheoGio,0)))) "
 					+ " as phiDichVu"
 
 					+ ",IF(luongTheothang!=0,DATEDIFF(ngayKetThuc,ngayBatDau)/30*luongTheoThang + ROUND(luongTheoThang/30,0)* DATEDIFF(ngayKetThuc,ngayBatDau)%30 + phiDichVuTheoThang,"
 					+ "0+IF(luongTheoNgay!=0,luongTheoNgay* DATEDIFF(ngayKetThuc,ngayBatDau)+phiDichVuTheoNgay,"
-					+ "0+phiDichVuTheoGio+(IF(luongTheoGio!=0,Hour(gioKetThuc)-Hour(gioBatDau),0)*luongTheoGio))) "
-					+ "as tongTien, 5 as tongThanhTien "
+					+ "0+phiDichVuTheoGio+(IF(luongTheoGio!=0,IF(MINUTE(TIMEDIFF(gioKetThuc,gioBatDau))>30,(Hour(TIMEDIFF(gioKetThuc,gioBatDau))+1)*LuongTheoGio,Hour(TIMEDIFF(gioKetThuc,gioBatDau))*LuongTheoGio + ( dichvu.luongTheoGio/60)*MINUTE(TIMEDIFF(gioKetThuc,gioBatDau)) ),0)))) "					+ "as tongTien, 5 as tongThanhTien "
 					+ " FROM `dangkydichvu`,`dichvu`,`khachhang` WHERE `dangkydichvu`.maDichVu = `dichvu`.maDichVu and `dangkydichvu`.maKhachHang =`khachhang`.maKhachHang and `dangkydichvu`.maDKDV = "
 					+ maDKDV + "";
 		}
@@ -219,8 +218,12 @@ public class DangKyDichVuDao extends BaseDao {
 							+ p.getNgayBatDau() + "',diaChiSuDungDichVu='" + p.getDiaChiSuDungDichVu()
 							+ "' where maDKDV=" + p.getMaDKDV() + "";
 					kq = _jdbcTemplate.update(sql);
+					System.out.println("184tt");
+					return kq;
 				} else {
+					System.out.println("1841");
 					kq = 5;
+					return kq;
 				}
 
 			} else {
@@ -234,21 +237,19 @@ public class DangKyDichVuDao extends BaseDao {
 							+ p.getNgayBatDau() + "',diaChiSuDungDichVu='" + p.getDiaChiSuDungDichVu()
 							+ "' where maDKDV=" + p.getMaDKDV() + "";
 					kq = _jdbcTemplate.update(sql);
+					System.out.println("184t0");
+					return kq;
 					// nhỏ hơn ngày hiện tại mà ngày bắt cũ giống get ngày bắt đầu thì cho sửa thanh
 					// toán,địa chỉ
-				} else if (p.getNgayBatDau().toString().equals(ngayBatDauCu)) {
-					String sql = "update dangkydichvu set maKhachHang='" + p.getMaKhachHang() + "',tinhTrangThanhToan='"
-							+ p.getTinhTrangThanhToan() + "',diaChiSuDungDichVu='" + p.getDiaChiSuDungDichVu()
-							+ "' where maDKDV=" + p.getMaDKDV() + "";
-					kq = _jdbcTemplate.update(sql);
 				} else
 
 				{
 					kq = 10;
+					return kq;
 				}
 
 			}
-			return kq;
+			
 
 		}
 		//////////////
@@ -269,8 +270,11 @@ public class DangKyDichVuDao extends BaseDao {
 							+ p.getDiaChiSuDungDichVu() + "' ,tinhTrangThanhToan='" + p.getTinhTrangThanhToan()
 							+ "' where maDKDV=" + p.getMaDKDV() + "";
 					kq = _jdbcTemplate.update(sql);
+					System.out.println("4532");
+					return kq;
 				} else {
 					kq = 5;
+					return kq;
 				}
 
 			} else {
@@ -279,9 +283,10 @@ public class DangKyDichVuDao extends BaseDao {
 						+ p.getDiaChiSuDungDichVu() + "',tinhTrangThanhToan='" + p.getTinhTrangThanhToan()
 						+ "' where maDKDV=" + p.getMaDKDV() + "";
 				kq = _jdbcTemplate.update(sql);
+				System.out.println("45324747");
+				return kq;
 			}
 
-			return kq;
 
 		}
 		return kq;

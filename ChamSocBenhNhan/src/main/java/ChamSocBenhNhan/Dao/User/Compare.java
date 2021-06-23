@@ -263,9 +263,14 @@ public class Compare {
 		Integer hour = Integer.parseInt(time.toString().substring(0, time.toString().indexOf(":")));
 		Integer min = Integer
 				.parseInt(time.toString().substring(time.toString().indexOf(":") + 1, time.toString().length()));
-
-		if (hour > hournow && min.equals(minnow)) {
+		if(hour-hournow>1) {
 			return true;
+		}
+		else if (hour - hournow==1) {
+			if(min-minnow>0) {
+				return true;
+			}
+			return false;
 		} else {
 			return false;
 		}

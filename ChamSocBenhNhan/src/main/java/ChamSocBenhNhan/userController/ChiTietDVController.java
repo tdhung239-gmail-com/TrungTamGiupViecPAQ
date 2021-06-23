@@ -102,7 +102,7 @@ public class ChiTietDVController extends BaseControlUser {
 				e.printStackTrace();
 			}
 		} else if (kq == 10) {
-			String message = "<script>alert('Bạn nhập giờ không chính xác, mời bạn nhập lại giờ lớn hơn và số phút bằng nhau!!!');</script>";
+			String message = "<script>alert('Bạn nhập giờ không chính xác, mời bạn nhập lại giờ kết thúc lớn hơn giờ kết thúc tối thiểu 1 giờ!!!');</script>";
 			try {
 				return "redirect:/home/ctdv/" + maDichVu + "?message=" + URLEncoder.encode(message, "UTF-8");
 			} catch (UnsupportedEncodingException e) {

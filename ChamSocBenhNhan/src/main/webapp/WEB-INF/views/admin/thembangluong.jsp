@@ -3,7 +3,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <ol class="breadcrumb mb-4">
-	<li class="breadcrumb-item"><a href="<c:url value="/quan-li/${okee }/1a1234Wq6cho4htue7${okee2 }"/>">Dashboard</a></li>
+	<li class="breadcrumb-item"><a
+		href="<c:url value="/quan-li/${okee }/1a1234Wq6cho4htue7${okee2 }"/>">Dashboard</a></li>
 	<li class="breadcrumb-item active">Thêm mới bảng lương ( hoặc thêm
 		dịch vụ của khách hàng đăng ký cho nhân viên )</li>
 </ol>
@@ -21,7 +22,14 @@ ${param.message}
 						MỚI DỮ LIỆU BẢNG LƯƠNG</h3>
 				</th>
 			</tr>
-
+			<tr>
+				<td style="font-size: 18px;">Chọn mã đăng ký dịch vụ : &nbsp
+					&nbsp</td>
+				<td style="font-size: 18px; width: 120px;"><form:select
+						path="maDKDV" items="${chonMaDKDVNOTBL}"
+						style=" font-size: 18px; width: 191px;">
+					</form:select></td>
+			</tr>
 			<tr>
 				<td style="font-size: 18px;">Chọn nhân viên : &nbsp &nbsp</td>
 				<td style="font-size: 18px; width: 120px;"><form:select
@@ -30,11 +38,6 @@ ${param.message}
 					</form:select></td>
 			</tr>
 
-			<tr>
-				<td style="font-size: 18px;">Nhập mã đăng ký dịch vụ :&nbsp
-					&nbsp</td>
-				<td><form:input path="maDKDV" required="required" /></td>
-			</tr>
 
 			<tr>
 

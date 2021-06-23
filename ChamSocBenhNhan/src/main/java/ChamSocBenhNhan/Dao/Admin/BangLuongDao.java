@@ -1,6 +1,7 @@
 package ChamSocBenhNhan.Dao.Admin;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,21 +18,87 @@ import ChamSocBenhNhan.Entity.Admin.CheckIdExistDKDV;
 import ChamSocBenhNhan.Entity.Admin.ChonMaNVMapper;
 import ChamSocBenhNhan.Entity.Admin.ChonNhanVien;
 import ChamSocBenhNhan.Entity.Admin.ChonTenNhanVienMapper;
+import ChamSocBenhNhan.Entity.Admin.ListMaDKDVMapper;
+import ChamSocBenhNhan.Entity.Admin.ListtMaDKDV;
 import ChamSocBenhNhan.Entity.Admin.checkEmCorrectWithIdServiceWorkingMapper;
+import ChamSocBenhNhan.Entity.Admin.chonThangNam;
 import ChamSocBenhNhan.Entity.User.ListDangKyDichVu;
 
 @Repository
 public class BangLuongDao extends BaseDao {
+	Date newDate2 = new Date();
+	java.sql.Date newDateSql2 = new java.sql.Date(newDate2.getTime());
+	Integer yearnow = Integer.parseInt(newDateSql2.toString().substring(0, newDateSql2.toString().indexOf("-")));
+	Integer monthnow = Integer.parseInt(newDateSql2.toString().substring(newDateSql2.toString().indexOf("-") + 1,
+			newDateSql2.toString().lastIndexOf("-")));
+	Integer month = monthnow;
+	Integer year = yearnow;
+	String Sqlnoi = " ";
+
+	public void locThongKe(chonThangNam ctn) {
+		Integer month = ctn.getGiaTriThang();
+		Integer year = ctn.getGiaTriNam();
+		this.month = month;
+		this.year = year;
+
+		if (ctn.getMaHSNV() != null) {
+			Sqlnoi = "and Month(NgayBatDau)=" + this.month + " and Year(ngayBatDau)=" + this.year
+					+ " and bangluong.MaHSNV=" + ctn.getMaHSNV() + "";
+		}
+
+	}
+
+	public void XemTatCa() {
+
+		Sqlnoi = " ";
+
+	}
+
+	public int ThanhToanTatCa(Integer ttthang, Integer ttNam, Integer ttHSNV) {
+
+		String sql = "update bangluong,dangkydichvu set bangluong.tinhTrangThanhToan='xong' where dangkydichvu.maDKDV=bangluong.maDKDV AND Year(dangkydichvu.ngayBatDau)="
+				+ ttNam + " AND Month(dangkydichvu.ngayBatDau)=" + ttthang + " AND bangluong.MaHSNV=" + ttHSNV + "";
+		return _jdbcTemplate.update(sql);
+	}
 
 	public List<BangLuong> getViewQlBangLuong() {
 		return _jdbcTemplate.query(
 				"select bangluong.idBangLuong, bangluong.maHSNV, hosonhanvien.hoTen, bangluong.maDKDV,dangkydichvu.maDichVu, bangluong.tinhTrangThanhToan,"
-						+ "IF(luongTheothang!=0,DATEDIFF(ngayKetThuc,ngayBatDau)/30*luongTheoThang + ROUND(luongTheoThang/30,0)* DATEDIFF(ngayKetThuc,ngayBatDau)%30 + phiDichVuTheoThang,"
-						+ "0+IF(luongTheoNgay!=0,luongTheoNgay* DATEDIFF(ngayKetThuc,ngayBatDau)+phiDichVuTheoNgay,"
-						+ "0+phiDichVuTheoGio+(IF(luongTheoGio!=0,Hour(gioKetThuc)-Hour(gioBatDau),0)*luongTheoGio))) "
+						+ "IF(luongTheothang!=0,DATEDIFF(ngayKetThuc,ngayBatDau)/30*luongTheoThang + ROUND(luongTheoThang/30,0)* DATEDIFF(ngayKetThuc,ngayBatDau)%30 ,"
+						+ "0+IF(luongTheoNgay!=0,luongTheoNgay* DATEDIFF(ngayKetThuc,ngayBatDau),"
+						+ "0+(IF(luongTheoGio!=0,IF(MINUTE(TIMEDIFF(gioKetThuc,gioBatDau))>30,(Hour(TIMEDIFF(gioKetThuc,gioBatDau))+1)*LuongTheoGio,Hour(TIMEDIFF(gioKetThuc,gioBatDau))*LuongTheoGio + ( dichvu.luongTheoGio/60)*MINUTE(TIMEDIFF(gioKetThuc,gioBatDau)) ),0)))) "
 						+ "as tongThanhTien"
-						+ " from bangluong,hosonhanvien,dangkydichvu,dichvu where dichvu.maDichVu=dangkydichvu.maDichVu and bangluong.maDKDV=dangkydichvu.maDKDV and bangluong.maHSNV=hosonhanvien.maHSNV",
+						+ " from bangluong,hosonhanvien,dangkydichvu,dichvu where dichvu.maDichVu=dangkydichvu.maDichVu and bangluong.maDKDV=dangkydichvu.maDKDV and bangluong.maHSNV=hosonhanvien.maHSNV "
+						+ Sqlnoi + "",
 				new BangLuongMapper());
+	}
+
+	public Map<ListtMaDKDV, ListtMaDKDV> getChonMaDKDV() {
+
+		String sqlMadkdv = "SELECT maDKDV FROM dangkydichvu ";
+		List<ListtMaDKDV> madkdv = _jdbcTemplate.query(sqlMadkdv, new ListMaDKDVMapper());
+		String sqlMadkdvInBL = "SELECT maDKDV FROM bangluong ";
+		List<ListtMaDKDV> madkdvInBL = _jdbcTemplate.query(sqlMadkdvInBL, new ListMaDKDVMapper());
+		int check = 0;
+		for (int i = 0; i < madkdvInBL.size(); i++) {
+			for (int j = 0; j < madkdv.size(); j++) {
+				if (madkdv.get(j).toString().equals(madkdvInBL.get(i).toString())) {
+					check++;
+				}
+				if (check > 0) {
+					madkdv.remove(j);
+					check = 0;
+				}
+			}
+
+		}
+
+		Map<ListtMaDKDV, ListtMaDKDV> phones = new HashMap<ListtMaDKDV, ListtMaDKDV>();
+		for (int i = 0; i < madkdv.size(); i++) {
+			phones.put(madkdv.get(i), madkdv.get(i));
+		}
+		System.out.println(phones);
+		return phones;
 	}
 
 	public Map<ChonNhanVien, ChonNhanVien> getChonMaNhanVien() {
@@ -46,6 +113,37 @@ public class BangLuongDao extends BaseDao {
 			phones.put(listMa.get(i), listTen.get(i));
 		}
 		return phones;
+	}
+
+	public Map<ChonNhanVien, ChonNhanVien> getChonMaNhanVienTrongQLBLuong() {
+		List<ChonNhanVien> listMa = new ArrayList<ChonNhanVien>();
+		String sql2 = "SELECT maHSNV FROM hosonhanvien where tinhTrangDuyetHoSo='xong'";
+		listMa = _jdbcTemplate.query(sql2, new ChonMaNVMapper());
+		Map<ChonNhanVien, ChonNhanVien> phones = new HashMap<ChonNhanVien, ChonNhanVien>();
+		for (int i = 0; i < listMa.size(); i++) {
+			phones.put(listMa.get(i), listMa.get(i));
+		}
+		return phones;
+	}
+
+	public Map<Integer, String> getChonThang() {
+
+		Map<Integer, String> states = new HashMap<Integer, String>();
+		for (int i = 1; i < 13; i++) {
+			states.put(i, "Tháng " + i + "");
+		}
+
+		return states;
+	}
+
+	public Map<Integer, String> getChonNam() {
+
+		Map<Integer, String> states = new HashMap<Integer, String>();
+		for (int i = 2021; i < 2030; i++) {
+			states.put(i, "Năm" + i + "");
+		}
+
+		return states;
 	}
 
 	public int luuThemQlBangLuong(BangLuong bl, ChonNhanVien cnv) {

@@ -99,7 +99,7 @@ public class HomeUserController extends BaseControlUser {
 					return "redirect:/home/cttd/" + maTuyenDung + "?message=" + URLEncoder.encode(message, "UTF-8"); 
 
 				} 
-				String message = "<script>alert('Bạn đã đăng ký tuyển dụng không thành công: không được bỏ trống trường và tuổi phải lớn hơn 16 tuổi !!!');</script>"; 
+				String message = "<script>alert('Bạn đã đăng ký tuyển dụng không thành công: bạn phải đủ hoặc lớn hơn 16 tuối !!!');</script>"; 
 
 				return "redirect:/home/cttd/" + maTuyenDung + "?message=" + URLEncoder.encode(message, "UTF-8"); 
 

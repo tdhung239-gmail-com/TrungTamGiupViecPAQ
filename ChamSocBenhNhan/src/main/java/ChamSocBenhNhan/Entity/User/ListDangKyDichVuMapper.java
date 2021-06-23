@@ -28,7 +28,7 @@ public class ListDangKyDichVuMapper implements RowMapper<ListDangKyDichVu> {
 		list.setPhiDichVuTheoThang(rs.getInt("phiDichVuTheoThang"));
 		list.setTongThoiGianTheoNgay(rs.getInt("tongThoiGianTheoNgay"));
 		list.setTongThoiGianTheoThang(rs.getInt("tongThoiGianTheoThang"));
-		list.setTongThoiGianTheoGio(rs.getInt("tongThoiGianTheoGio"));;
+		list.setTongThoiGianTheoGio(rs.getString("tongThoiGianTheoGio"));;
 		list.setPhiDichVu(rs.getInt("phiDichVu"));
 		list.setTongTien(rs.getInt("tongTien"));
 		list.setTongThanhTien(rs.getInt("tongThanhTien"));

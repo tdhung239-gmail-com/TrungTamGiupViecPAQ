@@ -83,14 +83,13 @@
 									href="<c:url value="/quan-li/danh-gia"/>"> Đánh Giá<c:if
 										test="${tbdg !=NULL  }">
 										<p style="color: red;">(${tbdg })</p>
-									</c:if> <c:if test="${tbdg ==NULL  }"></c:if> </a> <a
-									class="nav-link collapsed"
+									</c:if> <c:if test="${tbdg ==NULL  }"></c:if>
+								</a> <a class="nav-link collapsed"
 									href="<c:url value="/quan-li/tuyen-dung"/>"> Tuyển Dụng </a> <a
 									class="nav-link collapsed"
 									href="<c:url value="/quan-li/dangky-timviec"/>"> Đăng Ký
 									Tìm Việc <c:if test="${tbdktv !=NULL  }">
-										<p style="color: red;">(${tbdktv })
-										</p>
+										<p style="color: red;">(${tbdktv })</p>
 									</c:if> <c:if test="${tbdktv ==NULL  }"></c:if>
 								</a> <a class="nav-link collapsed"
 									href="<c:url value="/quan-li/dich-vu"/>"> Dịch Vụ</a>
@@ -122,6 +121,8 @@
 
 		</div>
 	</div>
+	<!-- thêm script jquery để sử dụng form phân tranng và tìm kiếm  -->
+
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		crossorigin="anonymous"></script>
 	<script

@@ -40,7 +40,7 @@
 									<th>Phí DV</th>
 									<th>Tổng tiền</th>
 									<th>Tình trạng thanh toán</th>
-									<th >Chức năng</th>
+									<th width="80" >Chức năng</th>
 
 								</tr>
 
@@ -112,7 +112,7 @@
 											<td><label>NULL</label></td>
 										</c:if>
 										<c:if test="${item.tongThoiGianTheoGio != '0'  }">
-											<td><label>${ item.tongThoiGianTheoGio} giờ</label></td>
+											<td><label>${ item.tongThoiGianTheoGio}</label></td>
 										</c:if>
 										<!-- Địa chỉ -->
 										<td><label>${ item.diaChiSuDungDichVu}</label></td>

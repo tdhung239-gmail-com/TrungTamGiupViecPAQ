@@ -3,8 +3,9 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <ol class="breadcrumb mb-4">
-	<li class="breadcrumb-item"><a href="<c:url value="/quan-li/${okee }/1a1234Wq6cho4htue7${okee2 }"/>">Dashboard</a></li>
-	<li class="breadcrumb-item active">Cập nhật lại bảng lương </li>
+	<li class="breadcrumb-item"><a
+		href="<c:url value="/quan-li/${okee }/1a1234Wq6cho4htue7${okee2 }"/>">Dashboard</a></li>
+	<li class="breadcrumb-item active">Cập nhật lại bảng lương</li>
 </ol>
 ${param.message}
 <div class="outside"
@@ -16,7 +17,7 @@ ${param.message}
 			<tr>
 				<th colspan="2">
 					<h3
-						style="color: red; text-align:center; font-family: Arial; margin-bottom: 20px; font-weight: bold;">CHỈNH
+						style="color: red; text-align: center; font-family: Arial; margin-bottom: 20px; font-weight: bold;">CHỈNH
 						SỬA DỮ LIỆU BẢNG LƯƠNG</h3>
 				</th>
 			</tr>
@@ -33,10 +34,16 @@ ${param.message}
 			</tr>
 
 			<tr>
-				<td style="font-size: 18px;">Nhập mã đăng ký dịch vụ :&nbsp
+				<td style="font-size: 18px;">Chọn mã đăng ký dịch vụ : &nbsp
 					&nbsp</td>
-				<td><form:input path="maDKDV" required="required" /></td>
+
+				<td style="font-size: 18px; width: 230px;"><form:input
+						path="maDKDV" required="required"
+						style=" font-size: 18px; width: 191px;" /></td>
 			</tr>
+
+
+
 
 			<tr>
 				<td style="font-size: 18px;">Tình trạng thanh toán: &nbsp &nbsp</td>

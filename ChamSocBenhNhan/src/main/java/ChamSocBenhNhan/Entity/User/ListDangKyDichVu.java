@@ -25,7 +25,7 @@ public class ListDangKyDichVu {
 	private Date ngayKetThuc;
 	private String gioBatDau;
 	private String gioKetThuc;
-	private Integer tongThoiGianTheoGio;
+	private String tongThoiGianTheoGio;
 	private Integer tongThoiGianTheoNgay;
 	private Integer tongThoiGianTheoThang;
 	private Integer phiDichVu;
@@ -211,11 +211,11 @@ public class ListDangKyDichVu {
 		this.gioKetThuc = gioKetThuc;
 	}
 
-	public Integer getTongThoiGianTheoGio() {
+	public String getTongThoiGianTheoGio() {
 		return tongThoiGianTheoGio;
 	}
 
-	public void setTongThoiGianTheoGio(Integer tongThoiGianTheoGio) {
+	public void setTongThoiGianTheoGio(String tongThoiGianTheoGio) {
 		this.tongThoiGianTheoGio = tongThoiGianTheoGio;
 	}
 

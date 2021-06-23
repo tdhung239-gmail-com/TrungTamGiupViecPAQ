@@ -26,7 +26,7 @@
 					<div class="col-1 shuffle-sizer"></div>
 
 					<c:forEach var="item" items="${ nhanvienn }">
-						<div class="col-lg-3 col-md-6 shuffle-item"
+						<div class="col-lg-4 col-md-6 shuffle-item"
 							data-groups="[&quot;government&quot;,&quot;healthcare&quot;]">
 
 							<a

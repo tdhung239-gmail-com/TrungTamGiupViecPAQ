@@ -55,7 +55,7 @@ public class DangKydichVuController extends BaseController {
 				e.printStackTrace();
 			}
 		} else if (kq == 10) {
-			String message = "<script>alert('Bạn nhập giờ không chính xác, mời bạn nhập lại giờ lớn hơn và số phút bằng nhau!!!');</script>";
+			String message = "<script>alert('Bạn nhập giờ không chính xác, mời bạn nhập lại giờ kết thúc lơn hơn giờ bắt đầu tối thiểu 1 giờ!!!');</script>";
 			try {
 				return "redirect:/quan-li/dang-ky-dich-vu/them/" + maDichVu + "?message="
 						+ URLEncoder.encode(message, "UTF-8");
@@ -80,7 +80,8 @@ public class DangKydichVuController extends BaseController {
 
 	@RequestMapping(value = "/luuSuaDKDV", method = RequestMethod.POST)
 	public String luuSuaDKDV(ListDangKyDichVu emp) throws UnsupportedEncodingException {
-		int kq = dkdv.luuSuaDKDV(emp);
+		Integer kq = dkdv.luuSuaDKDV(emp);
+		System.out.println(kq);
 		if (kq == 0) {
 			String message = "<script>alert('Bạn nhập ngày không chính xác, mời bạn nhập lại đúng!!!');</script>";
 			try {
@@ -89,16 +90,18 @@ public class DangKydichVuController extends BaseController {
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
-		} else if (kq == 10) {
-			String message = "<script>alert('Bạn nhập giờ không chính xác, mời bạn nhập lại giờ lớn hơn và số phút bằng nhau hoặc giờ nằm trong khoảng từ 07:00 - 17:00 !!!');</script>";
+		} 
+		else if (kq == 10) {
+			String message = "<script>alert('Bạn nhập giờ không chính xác, mời bạn nhập lại giờ kết thúc lớn hơn giờ bắt đầu tối thiểu 1 giờ hoặc giờ nằm trong khoảng từ 07:00 - 17:00 !!!');</script>";
 			try {
 				return "redirect:/quan-li/dang-ky-dich-vu/SuaDKDV/" + emp.getMaDKDV() + "/" + emp.getMaDichVu()
 						+ "?message=" + URLEncoder.encode(message, "UTF-8");
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
-		} else if (kq == 5) {
-			String message = "<script>alert('Lưu không thành công vì đang tồn tại mã đăng ký dịch vụ này trong bảng lương (bạn có thể xóa dịch vụ này trong bảng lương và cập nhật lại) hoặc bạn đã nhập ngày giờ không chính xác (ngày phải lớn hơn ngày ngày hiện tại, giờ lớn hơn giờ hiện tại và giờ kết thúc lớn giờ bắt đầu và số phút bằng nhau)!!!');</script>";
+		} 
+		else if (kq.toString().equals("5")) {
+			String message = "<script>alert('Lưu không thành công vì đang tồn tại mã đăng ký dịch vụ này trong bảng lương bạn không thể thay đổi ngày (bạn có thể xóa dịch vụ này trong bảng lương và cập nhật lại) hoặc bạn đã nhập ngày không chính xác (ngày phải lớn hơn ngày ngày hiện tại)!!!');</script>";
 			try {
 				return "redirect:/quan-li/dang-ky-dich-vu/SuaDKDV/" + emp.getMaDKDV() + "/" + emp.getMaDichVu()
 						+ "?message=" + URLEncoder.encode(message, "UTF-8");

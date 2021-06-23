@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ChamSocBenhNhan.Entity.Admin.BangLuong;
 import ChamSocBenhNhan.Entity.Admin.ChonNhanVien;
+import ChamSocBenhNhan.Entity.Admin.chonThangNam;
 import ChamSocBenhNhan.Entity.User.ListDangKyDichVu;
 import ChamSocBenhNhan.Service.admin.BangLuongIml;
 
@@ -26,15 +27,46 @@ public class BangluongController extends BaseController {
 
 	@RequestMapping(value = { "/quan-li/bang-luong" })
 	public ModelAndView QLBangLuong(HttpSession ss) {
-		ss.removeAttribute("tbbl"); 
+		ss.removeAttribute("tbbl");
+		_mvShare.addObject("getChonThang", blIml.getChonThang());
+		_mvShare.addObject("getChonNam", blIml.getChonNam());
 		_mvShare.addObject("bangluong", blIml.getViewQlBangLuong());
+		_mvShare.addObject("chonMaNhanVienTrongBL", blIml.getChonMaNhanVienTrongQLBLuong());
+		_mvShare.addObject("command", new chonThangNam());
 		_mvShare.setViewName("admin/viewqlbangluong");
 		return _mvShare;
+	}
+
+	@RequestMapping(value = "/locBangLuong", method = RequestMethod.POST)
+	public String locThongKe(chonThangNam ctn, HttpSession s) {
+		s.setAttribute("ttthang", ctn.getGiaTriThang());
+		s.setAttribute("ttNam", ctn.getGiaTriNam());
+		s.setAttribute("ttHSNV", ctn.getMaHSNV());
+		blIml.locThongKe(ctn);
+
+		return "redirect:/quan-li/bang-luong";
+	}
+
+	@RequestMapping(value = "/XemTatCa", method = RequestMethod.POST)
+	public String XemTatCa() {
+		blIml.XemTatCa();
+		return "redirect:/quan-li/bang-luong";
+	}
+
+	@RequestMapping(value = "/ThanhToanTatCa", method = RequestMethod.POST)
+	public String ThanhToanTatCa(HttpSession s) {
+		Integer ttNam = (Integer) s.getAttribute("ttNam");
+		Integer ttthang = (Integer) s.getAttribute("ttthang");
+		Integer ttHSNV = (Integer) s.getAttribute("ttHSNV");
+		blIml.ThanhToanTatCa(ttthang, ttNam, ttHSNV);
+
+		return "redirect:/quan-li/bang-luong";
 	}
 
 	@RequestMapping("/quan-li/bang-luong/them-bang-luong")
 	public String themBangLuog(Model m) {
 		m.addAttribute("chonMaNhanVien", blIml.getChonMaNhanVien());
+		m.addAttribute("chonMaDKDVNOTBL", blIml.getChonMaDKDV());
 		m.addAttribute("command", new ListDangKyDichVu());
 		return "admin/thembangluong";
 	}
@@ -48,7 +80,7 @@ public class BangluongController extends BaseController {
 			return "redirect:/quan-li/bang-luong/them-bang-luong?message=" + URLEncoder.encode(message, "UTF-8");
 
 		} else if (kq == 10) {
-			String message = "<script>alert('Thêm không thành công, mời bạn kiểm tra nhập lại mã đăng ký dịch vụ của khách hàng có tồn tại không, hoặc không bận làm dịch vụ khác !!!');</script>";
+			String message = "<script>alert('Thêm không thành công, mời bạn kiểm tra nhân viên không bận làm dịch vụ khác !!!');</script>";
 
 			return "redirect:/quan-li/bang-luong/them-bang-luong?message=" + URLEncoder.encode(message, "UTF-8");
 		} else if (kq == 11) {
@@ -64,6 +96,7 @@ public class BangluongController extends BaseController {
 	@RequestMapping("/quan-li/bang-luong/edit/{idBangLuong}")
 	public String getSuaBangLuog(@PathVariable int idBangLuong, Model m) {
 		m.addAttribute("chonMaNhanVien", blIml.getChonMaNhanVien());
+		//m.addAttribute("chonMaDKDVNOTBL", blIml.getChonMaDKDV());
 		// m.addAttribute("add", new ListDangKyDichVu());
 		m.addAttribute("chonTinhTrangThanhToan", blIml.getChonTinhTrangThanhToan());
 
@@ -85,7 +118,7 @@ public class BangluongController extends BaseController {
 			return "redirect:/quan-li/bang-luong/edit/" + emp.getIdBangLuong() + "?message="
 					+ URLEncoder.encode(message, "UTF-8");
 		} else if (kq == 11) {
-			String message = "<script>alert('Cập nhật không thành công, mời bạn chọn lại dịch vụ đúng mà nhân viên đang làm hoặc kiểm tra dịch vụ này có tồn tại không!!!');</script>";
+			String message = "<script>alert('Cập nhật không thành công, mời bạn chọn lại dịch vụ đúng mà nhân viên đang làm !!!');</script>";
 
 			return "redirect:quan-li/bang-luong/edit/" + emp.getIdBangLuong() + "?message="
 					+ URLEncoder.encode(message, "UTF-8");
